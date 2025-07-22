@@ -1,0 +1,32 @@
+!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Karyawan - Sisa Gaji</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Login Karyawan</h2>
+    <input type="text" id="username" placeholder="Nama Karyawan" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <p id="error-msg"></p>
+    <div id="gaji-info" style="display:none;">
+  <p id="gaji-text"></p>
+  <button onclick="logout()">Logout</button>
+  <div id="update-form" style="display:none; margin-top: 30px;">
+  <h3>Update Gaji Karyawan</h3>
+  <input type="text" id="update-nama" placeholder="Nama karyawan">
+  <input type="number" id="update-gaji" placeholder="Gaji baru">
+  <button onclick="updateGaji()">Update Gaji</button>
+  <p id="update-msg" style="color: green;"></p>
+</div>
+
+ <div id="catatan" stayle="margin-top: 10px; display: none; color: #555;">
+   * Catatan :saldo di atas estimasi sampai Tanggal 20 Juli 2025
+</div>
+  <script src="script.js"></script>
+</body>
+</html>
