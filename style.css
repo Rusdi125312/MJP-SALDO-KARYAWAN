@@ -1,14 +1,19 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #0f0707;
+  background-image: url('bg2.jpg');            /*  ganti dengan nama file gambar yang sesuai */
+  background-size: cover;      /* agar gambar memenuhi layar */
+  background-position: center;    /* posisi tengah */
+  background-repeat: no-repeat;   /* gambar tidak diulang */
+  
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin: 0;
 }
 
 .container {
-  background: rgb(51, 8, 241);
+  background: rgb(0, 99, 230);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(43, 5, 104, 0.1);
@@ -35,6 +40,7 @@ button {
 }
 
 #gaji-info {
+  color: #f3ebeb;
   margin-top: 20px;
   font-size: 18px;
 }
