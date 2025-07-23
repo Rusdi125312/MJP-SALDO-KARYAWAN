@@ -1,14 +1,5 @@
- //data karyawan simulasi(data base);
 const users = [
-  { nama: "budi", password: "budi123", sisaGaji: 3000000 },
-  { nama: "carla", password: "6666", sisaGaji: 2500000 },
-  { nama: "sari", password: "ab12cd", sisaGaji: 1800000 },
-  { nama: "budi", password: "budi123", sisaGaji: 3000000 },
-  { nama: "erica",password: "12345", sisaGaji: 2200000},
-  { nama: "anisya", password: "599", sisaGaji: 500000 },
-  { nama: "rusdi", password: "rusdi123", sisaGaji: 50000000},
- { nama:"rusdiru", password: "2222", sisaGaji: 88992 },
-{ nama: "rusdirustiandisaputra", password: "2222", sisaGaji: 88992 },
+ { nama: "rusdirustiandisaputra", password: "2222", sisaGaji: 88992 },
 { nama: "budiansyah", password: "2223", sisaGaji: 4400160 },
 { nama: "febriadifiansyah", password: "2224", sisaGaji: 184769 },
 { nama: "hakytrieryawan", password: "2225", sisaGaji: -239365 },
@@ -228,7 +219,9 @@ const users = [
 { nama: "sitinurholisoh", password: "2439", sisaGaji: 230 },
 { nama: "m.fikriabdurrahman", password: "2440", sisaGaji: 6050 },
 { nama: "dedefikri", password: "2223", sisaGaji: 7100 },
+ 
 ];
+
 function login() {
   const username = document.getElementById("username").value.toLowerCase();
   const password = document.getElementById("password").value;
@@ -237,61 +230,36 @@ function login() {
 
   if (user) {
     document.getElementById("gaji-info").style.display = "block";
-    document.getElementById("gaji-text").innerText = `Halo, ${user.nama.toUpperCase()}. Sisa gaji kamu adalah Rp${user.sisaGaji.toLocaleString()}`;
+    document.getElementById("gaji-text").innerText =
+      `Halo, ${user.nama.toUpperCase()}. Sisa gaji kamu adalah Rp${user.sisaGaji.toLocaleString()}`;
     document.getElementById("error-msg").innerText = "";
-    // Sembunyikan form login
+
+    // sembunyikan login
     document.getElementById("username").style.display = "none";
     document.getElementById("password").style.display = "none";
     document.querySelector("button").style.display = "none";
-  // 👇 tampilkan catatan
-  document.getElementById("catatan").style.display = "block";
-}
-  }  {
+
+    document.getElementById("catatan").style.display = "block";
+  } else {
     document.getElementById("error-msg").innerText = "Nama atau password salah!";
     document.getElementById("gaji-info").style.display = "none";
   }
+}
 
 function logout() {
-  // Tampilkan kembali form login
+  // tampilkan kembali form login
   document.getElementById("username").style.display = "block";
   document.getElementById("password").style.display = "block";
   document.querySelector("button").style.display = "block";
-  // sembunyikan catattan
-  document.getElementById("catatan").style.display = "none";
-  // sembunyikan form update gaji
-  document.getElementById("update-form").style.display = "none";
-document.getElementById("update-msg").innerText = "";
 
-function updateGaji() {
-  const nama = document.getElementById("update-nama").value.trim().toLowerCase();
-  const gajiBaru = parseInt(document.getElementById("update-gaji").value);
-
-  const user = users.find(u => u.nama.toLowerCase() === nama);
-
-  if (user && !isNaN(gajiBaru)) {
-    user.sisaGaji = gajiBaru;
-    document.getElementById("update-msg").innerText =
-      `✅ Gaji ${user.nama} berhasil diperbarui jadi Rp${gajiBaru.toLocaleString()}`;
-    document.getElementById("update-msg").style.color = "green";
-
-    // Jika user yang sedang login adalah yang diupdate, tampilkan ulang
-    const loginNama = document.getElementById("username").value.trim().toLowerCase();
-    if (user.nama.toLowerCase() === loginNama) {
-      document.getElementById("gaji-text").innerText =
-        `Halo, ${user.nama.toUpperCase()}. Sisa gaji kamu adalah Rp${user.sisaGaji.toLocaleString()}`;
-    }
-
-  } else {
-    document.getElementById("update-msg").innerText = "❌ Nama tidak ditemukan atau gaji tidak valid.";
-    document.getElementById("update-msg").style.color = "red";
-  }
-}
-
-  // Sembunyikan info gaji
+  // sembunyikan info gaji
   document.getElementById("gaji-info").style.display = "none";
   document.getElementById("gaji-text").innerText = "";
 
-  // Kosongkan input
+  // sembunyikan catatan
+  document.getElementById("catatan").style.display = "none";
+
+  // kosongkan input
   document.getElementById("username").value = "";
   document.getElementById("password").value = "";
 }
