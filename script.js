@@ -6,7 +6,7 @@ const users = [
   { nama: "budi", password: "budi123", sisaGaji: 3000000 },
   { nama: "erica",password: "12345", sisaGaji: 2200000},
   { nama: "anisya", password: "599", sisaGaji: 500000 },
-  { nama: "bambang wahyudi", password: "12345", sisaGaji: 300000},
+  { nama: "bambang wahyudi", password: "12345", sisaGaji: 13000000},
  { nama:"rusdi ru", password: "2222", sisaGaji: 88992 },
 { nama: "rusdirustiandisaputra", password: "2222", sisaGaji: 50000000 },
 { nama: "budiansyah", password: "2223", sisaGaji: 4400160 },
