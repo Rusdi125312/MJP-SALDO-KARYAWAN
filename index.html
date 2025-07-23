@@ -1,5 +1,4 @@
- <!DOCTYPE html>
- </html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
@@ -10,25 +9,30 @@
 <body>
   <div class="container">
     <h2>Login Karyawan</h2>
+
     <input type="text" id="username" placeholder="Nama Karyawan" />
     <input type="password" id="password" placeholder="Password" />
     <button onclick="login()">Login</button>
     <p id="error-msg"></p>
-    <div id="gaji-info" style="display:none;">
-  <p id="gaji-text"></p>
-  <button onclick="logout()">Logout</button>
-  <div id="update-form" style="display:none; margin-top: 30px;">
-  <h3>Update Gaji Karyawan</h3>
-  <input type="text" id="update-nama" placeholder="Nama karyawan">
-  <input type="number" id="update-gaji" placeholder="Gaji baru">
-  <button onclick="updateGaji()">Update Gaji</button>
-  <p id="update-msg" style="color: green;"></p>
-</div>
 
- <div id="catatan" stayle="margin-top: 10px; display: none; color: #555;">
-  
-   * Catatan :Saldo di atas estimasi sampai Tanggal 20 Juli 2025  
-</div>
+    <div id="gaji-info" style="display:none; margin-top: 30px;">
+      <p id="gaji-text"></p>
+      <button onclick="logout()" style="margin-bottom: 20px;">Logout</button>
+
+      <div id="update-form" style="display:none; margin-top: 30px;">
+        <h3>Update Gaji Karyawan</h3>
+        <input type="text" id="update-nama" placeholder="Nama karyawan">
+        <input type="number" id="update-gaji" placeholder="Gaji baru">
+        <button onclick="updateGaji()">Update Gaji</button>
+        <p id="update-msg" style="color: green;"></p>
+      </div>
+
+      <div id="catatan" style="margin-top: 10px; color: #555;">
+        * Catatan: Saldo di atas estimasi sampai Tanggal 20 Juli 2025  
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
-</htmml>
+</html>

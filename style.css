@@ -29,11 +29,17 @@ button {
   padding: 10px 20px;
   background: #193696;
   color: rgb(248, 247, 247);
-  border: none;
+  border: rgb(2, 8, 8);
   cursor: pointer;
+  margin-bottom: 15px; /* Tambahan agar tombol tidak mepet ke bawah */
 }
 
 #gaji-info {
   margin-top: 20px;
   font-size: 18px;
+}
+#catatan {
+  color: #f3f3f3;
+  font-size: 14px;
+  margin-top: 10px;
 }
