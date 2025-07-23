@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #161515;
+  background-color: #ad0808;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,10 +8,10 @@ body {
 }
 
 .container {
-  background: rgb(14, 133, 202);
+  background: rgb(5, 42, 63);
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(43, 5, 104, 0.1);
   text-align: center;
   width: 100%;
   max-width: 400px; /* agar tidak terlalu lebar di laptop */
