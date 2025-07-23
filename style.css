@@ -11,7 +11,7 @@ body {
   background: rgb(51, 8, 241);
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(168, 144, 207, 0.1);
+  box-shadow: 0 0 10px rgba(43, 5, 104, 0.1);
   text-align: center;
   width: 100%;
   max-width: 400px; /* agar tidak terlalu lebar di laptop */
