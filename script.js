@@ -249,6 +249,8 @@ function login() {
   }  {
     document.getElementById("error-msg").innerText = "Nama atau password salah!";
     document.getElementById("gaji-info").style.display = "none";
+    document.getElementById('reaksi-area').style.display = 'block';
+
   }
 
 function logout() {
@@ -294,4 +296,23 @@ function updateGaji() {
   // Kosongkan input
   document.getElementById("username").value = "";
   document.getElementById("password").value = "";
+}
+function beriReaksi(reaksi) {
+  const username = document.getElementById('username').value.trim().toUpperCase();
+  const waktu = new Date().toLocaleString();
+  const data = { user: username, waktu: waktu, pesan: reaksi };
+
+  let semuaReaksi = JSON.parse(localStorage.getItem('reaksiLogin')) || [];
+  semuaReaksi.push(data);
+  localStorage.setItem('reaksiLogin', JSON.stringify(semuaReaksi));
+
+  document.getElementById('reaksi-msg').innerText = "Reaksi dikirim!";
+}
+
+function kirimKomentar() {
+  const komentar = document.getElementById('komentar').value.trim();
+  if (komentar === '') return;
+
+  beriReaksi(`💬 ${komentar}`);
+  document.getElementById('komentar').value = '';
 }
