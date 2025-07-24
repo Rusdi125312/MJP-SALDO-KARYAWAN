@@ -222,14 +222,15 @@ const users = [
 
 ];
 
-//function login() {
+let loggedInUsers = [];
+
+function login() {
   const username = document.getElementById("username").value.toLowerCase();
   const password = document.getElementById("password").value;
 
   const user = users.find(u => u.nama === username && u.password === password);
 
   if (user) {
-    // Tambahkan user ke daftar login jika belum ada
     if (!loggedInUsers.includes(user.nama)) {
       loggedInUsers.push(user.nama);
     }
@@ -245,20 +246,36 @@ const users = [
     document.getElementById("catatan").style.display = "block";
     document.getElementById("chat-container").style.display = "block";
 
-    // Jika admin, tampilkan fitur admin
     if (user.role === "admin") {
       showAdminMenu();
     }
   } else {
     document.getElementById("error-msg").innerText = "Nama atau password salah!";
+    document.getElementById("error-msg").style.color = "red";
     document.getElementById("gaji-info").style.display = "none";
     document.getElementById("chat-container").style.display = "none";
   }
-// Tambahkan fitur admin untuk melihat user yang login
+}
+
+function logout() {
+  document.getElementById("username").style.display = "block";
+  document.getElementById("password").style.display = "block";
+  document.querySelector("button").style.display = "block";
+
+  document.getElementById("gaji-info").style.display = "none";
+  document.getElementById("gaji-text").innerText = "";
+  document.getElementById("catatan").style.display = "none";
+  document.getElementById("chat-container").style.display = "none";
+  document.getElementById("chat-box").innerHTML = "";
+
+  document.getElementById("username").value = "";
+  document.getElementById("password").value = "";
+}
+
 function showAdminMenu() {
   let daftar = loggedInUsers.map(u => `<li>${u}</li>`).join("");
   alert("Selamat datang Admin!\n\nUser yang sedang login:\n" + loggedInUsers.join("\n"));
-  // Atau tampilkan di halaman:
+
   let adminList = document.getElementById("admin-list");
   if (!adminList) {
     adminList = document.createElement("div");
@@ -273,7 +290,6 @@ function showAdminMenu() {
   }
 }
 
-//Tambahkan fungsi chat
 function sendChat() {
   const chatInput = document.getElementById("chat-input");
   const chatBox = document.getElementById("chat-box");
@@ -285,31 +301,3 @@ function sendChat() {
     chatInput.value = "";
   }
 }
-    document.getElementById("username").style.display = "none";
-    document.getElementById("password").style.display = "none";
-    document.querySelector("button").style.display = "none";
-    document.getElementById("catatan").style.display = "block";
-
-
-function logout() {
-  // tampilkan kembali form login
-  document.getElementById("username").style.display = "block";
-  document.getElementById("password").style.display = "block";
-  document.querySelector("button").style.display = "block";
-
-  // sembunyikan info gaji
-  document.getElementById("gaji-info").style.display = "none";
-  document.getElementById("gaji-text").innerText = "";
-
-  // sembunyikan catatan
-  document.getElementById("catatan").style.display = "none";
-
-  // sembunyikan chat
-  document.getElementById("chat-container").style.display = "none";
-  document.getElementById("chat-box").innerHTML = "";
-
-  // kosongkan input
-  document.getElementById("username").value = "";
-  document.getElementById("password").value = "";
-}
-
