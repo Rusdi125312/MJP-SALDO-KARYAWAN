@@ -244,7 +244,16 @@ function login() {
     document.getElementById("password").style.display = "none";
     document.querySelector("button").style.display = "none";
     document.getElementById("catatan").style.display = "block";
-    document.getElementById("chat-container").style.display = "block";
+
+    // Tombol ke halaman berikutnya
+  const tombolLanjut = document.createElement("button");
+  tombolLanjut.innerText = "Lanjut ke Halaman Berikutnya";
+  tombolLanjut.style.marginTop = "20px";
+  tombolLanjut.onclick = function() {
+    window.location.href = "index2.html";
+  };
+  document.getElementById("gaji-info").appendChild(tombolLanjut);
+
 
     if (user.role === "admin") {
       showAdminMenu();
@@ -253,7 +262,7 @@ function login() {
     document.getElementById("error-msg").innerText = "Nama atau password salah!";
     document.getElementById("error-msg").style.color = "red";
     document.getElementById("gaji-info").style.display = "none";
-    document.getElementById("chat-container").style.display = "none";
+
   }
 }
 
