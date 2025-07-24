@@ -271,24 +271,10 @@ function logout() {
   document.getElementById("username").value = "";
   document.getElementById("password").value = "";
 }
-
 function showAdminMenu() {
-  let daftar = loggedInUsers.map(u => `<li>${u}</li>`).join("");
-  alert("Selamat datang Admin!\n\nUser yang sedang login:\n" + loggedInUsers.join("\n"));
-
-  let adminList = document.getElementById("admin-list");
-  if (!adminList) {
-    adminList = document.createElement("div");
-    adminList.id = "admin-list";
-    adminList.style.marginTop = "20px";
-    adminList.style.background = "#ffe";
-    adminList.style.padding = "10px";
-    adminList.innerHTML = `<h4>Daftar User Login:</h4><ul>${daftar}</ul>`;
-    document.body.appendChild(adminList);
-  } else {
-    adminList.innerHTML = `<h4>Daftar User Login:</h4><ul>${daftar}</ul>`;
-  }
+  alert("Selamat datang Admin!");
 }
+
 
 function sendChat() {
   const chatInput = document.getElementById("chat-input");
