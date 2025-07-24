@@ -304,16 +304,9 @@ function logout() {
   // sembunyikan catatan
   document.getElementById("catatan").style.display = "none";
 
-  // hapus dari daftar login
-  const username = document.getElementById("username").value.toLowerCase();
-  loggedInUsers = loggedInUsers.filter(u => u !== username);
-
-  // update admin list jika ada
-  let adminList = document.getElementById("admin-list");
-  if (adminList) {
-    let daftar = loggedInUsers.map(u => `<li>${u}</li>`).join("");
-    adminList.innerHTML = `<h4>Daftar User Login:</h4><ul>${daftar}</ul>`;
-  }
+  // sembunyikan chat
+  document.getElementById("chat-container").style.display = "none";
+  document.getElementById("chat-box").innerHTML = "";
 
   // kosongkan input
   document.getElementById("username").value = "";
