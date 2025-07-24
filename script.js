@@ -218,7 +218,7 @@ const users = [
 { nama: "ernawati", password: "2438", sisaGaji: 150, role: "karyawan" },
 { nama: "siti nurholisoh", password: "2439", sisaGaji: 230, role: "karyawan" },
 { nama: "m.fikri abdurrahman", password: "2440", sisaGaji: 6050, role: "karyawan" },
-{ nama: "dede fikri", password: "2223", sisaGaji: 7100, role: "karyawan" },
+{ nama: "dede suparman", password: "2440", sisaGaji: 6050, role: "karyawan" },
 
 ];
 function login() {
