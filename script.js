@@ -276,14 +276,4 @@ function showAdminMenu() {
 }
 
 
-function sendChat() {
-  const chatInput = document.getElementById("chat-input");
-  const chatBox = document.getElementById("chat-box");
-  if (chatInput.value.trim() !== "") {
-    const pesan = document.createElement("div");
-    pesan.textContent = chatInput.value;
-    chatBox.appendChild(pesan);
-    chatBox.scrollTop = chatBox.scrollHeight;
-    chatInput.value = "";
-  }
-}
+
