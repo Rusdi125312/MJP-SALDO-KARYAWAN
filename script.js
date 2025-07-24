@@ -254,7 +254,18 @@ function showAdminMenu() {
   alert("Selamat datang Admin! Fitur admin aktif.");
   // Anda bisa menambahkan elemen HTML khusus admin di sini
 }
-
+// Tambahkan fungsi chat
+function sendChat() {
+  const chatInput = document.getElementById("chat-input");
+  const chatBox = document.getElementById("chat-box");
+  if (chatInput.value.trim() !== "") {
+    const pesan = document.createElement("div");
+    pesan.textContent = chatInput.value;
+    chatBox.appendChild(pesan);
+    chatBox.scrollTop = chatBox.scrollHeight;
+    chatInput.value = "";
+  }
+}
 
 function logout() {
   // tampilkan kembali form login
