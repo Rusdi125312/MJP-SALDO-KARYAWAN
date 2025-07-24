@@ -255,6 +255,7 @@ function showAdminMenu() {
   // Anda bisa menambahkan elemen HTML khusus admin di sini
 }
 
+
 function logout() {
   // tampilkan kembali form login
   document.getElementById("username").style.display = "block";
@@ -272,3 +273,4 @@ function logout() {
   document.getElementById("username").value = "";
   document.getElementById("password").value = "";
 }
+
