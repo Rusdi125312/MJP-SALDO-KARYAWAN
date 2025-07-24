@@ -244,6 +244,8 @@ function login() {
     document.getElementById("password").style.display = "none";
     document.querySelector("button").style.display = "none";
     document.getElementById("catatan").style.display = "block";
+    document.getElementById("next-page").style.display = "block";
+
 
     // Tombol ke halaman berikutnya
   const tombolLanjut = document.createElement("button");
@@ -274,6 +276,7 @@ function logout() {
   document.getElementById("gaji-info").style.display = "none";
   document.getElementById("gaji-text").innerText = "";
   document.getElementById("catatan").style.display = "none";
+  document.getElementById("next-page").style.display = "none";
   document.getElementById("chat-container").style.display = "none";
   document.getElementById("chat-box").innerHTML = "";
 
@@ -282,6 +285,9 @@ function logout() {
 }
 function showAdminMenu() {
   alert("Selamat datang Admin!");
+}
+function goToNextPage() {
+  window.location.href = "index2.html"; // Ganti ke nama halaman tujuan
 }
 
 
