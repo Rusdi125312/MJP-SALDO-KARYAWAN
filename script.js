@@ -221,13 +221,19 @@ const users = [
 { nama: "dede suparman", password: "2440", sisaGaji: 6050, role: "karyawan" },
 
 ];
-function login() {
+
+//function login() {
   const username = document.getElementById("username").value.toLowerCase();
   const password = document.getElementById("password").value;
 
   const user = users.find(u => u.nama === username && u.password === password);
 
   if (user) {
+    // Tambahkan user ke daftar login jika belum ada
+    if (!loggedInUsers.includes(user.nama)) {
+      loggedInUsers.push(user.nama);
+    }
+
     document.getElementById("gaji-info").style.display = "block";
     document.getElementById("gaji-text").innerText =
       `Halo, ${user.nama.toUpperCase()}. Sisa gaji kamu adalah Rp${user.sisaGaji.toLocaleString()}`;
@@ -237,6 +243,7 @@ function login() {
     document.getElementById("password").style.display = "none";
     document.querySelector("button").style.display = "none";
     document.getElementById("catatan").style.display = "block";
+    document.getElementById("chat-container").style.display = "block";
 
     // Jika admin, tampilkan fitur admin
     if (user.role === "admin") {
@@ -245,16 +252,28 @@ function login() {
   } else {
     document.getElementById("error-msg").innerText = "Nama atau password salah!";
     document.getElementById("gaji-info").style.display = "none";
+    document.getElementById("chat-container").style.display = "none";
+  }
+// Tambahkan fitur admin untuk melihat user yang login
+function showAdminMenu() {
+  let daftar = loggedInUsers.map(u => `<li>${u}</li>`).join("");
+  alert("Selamat datang Admin!\n\nUser yang sedang login:\n" + loggedInUsers.join("\n"));
+  // Atau tampilkan di halaman:
+  let adminList = document.getElementById("admin-list");
+  if (!adminList) {
+    adminList = document.createElement("div");
+    adminList.id = "admin-list";
+    adminList.style.marginTop = "20px";
+    adminList.style.background = "#ffe";
+    adminList.style.padding = "10px";
+    adminList.innerHTML = `<h4>Daftar User Login:</h4><ul>${daftar}</ul>`;
+    document.body.appendChild(adminList);
+  } else {
+    adminList.innerHTML = `<h4>Daftar User Login:</h4><ul>${daftar}</ul>`;
   }
 }
 
-// Tambahkan fungsi untuk fitur admin
-function showAdminMenu() {
-  // Contoh: tampilkan alert atau menu khusus
-  alert("Selamat datang Admin! Fitur admin aktif.");
-  // Anda bisa menambahkan elemen HTML khusus admin di sini
-}
-// Tambahkan fungsi chat
+//Tambahkan fungsi chat
 function sendChat() {
   const chatInput = document.getElementById("chat-input");
   const chatBox = document.getElementById("chat-box");
@@ -266,6 +285,11 @@ function sendChat() {
     chatInput.value = "";
   }
 }
+    document.getElementById("username").style.display = "none";
+    document.getElementById("password").style.display = "none";
+    document.querySelector("button").style.display = "none";
+    document.getElementById("catatan").style.display = "block";
+
 
 function logout() {
   // tampilkan kembali form login
@@ -279,6 +303,17 @@ function logout() {
 
   // sembunyikan catatan
   document.getElementById("catatan").style.display = "none";
+
+  // hapus dari daftar login
+  const username = document.getElementById("username").value.toLowerCase();
+  loggedInUsers = loggedInUsers.filter(u => u !== username);
+
+  // update admin list jika ada
+  let adminList = document.getElementById("admin-list");
+  if (adminList) {
+    let daftar = loggedInUsers.map(u => `<li>${u}</li>`).join("");
+    adminList.innerHTML = `<h4>Daftar User Login:</h4><ul>${daftar}</ul>`;
+  }
 
   // kosongkan input
   document.getElementById("username").value = "";
