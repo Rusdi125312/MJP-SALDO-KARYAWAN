@@ -107,3 +107,17 @@ button {
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   z-index: 1000;
 }
+.btn-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background-color: #2196F3;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.btn-link:hover {
+  background-color: #020507;
+}
