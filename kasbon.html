@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kasbon Karyawan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Cek Kasbon Kamu</h2>
+
+  <form id="loginKasbonForm">
+    <label for="nama">Nama:</label>
+    <input type="text" id="nama" name="nama" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <button type="submit">Cek Kasbon</button>
+  </form>
+
+  <div id="hasilKasbon" style="display:none; margin-top:20px;">
+    <h3>Hasil Kasbon:</h3>
+    <p id="kasbonText"></p>
+    <a href="index.html">← Kembali ke Beranda</a>
+  </div>
+
+  <script src="kasbon.js"></script>
+</body>
+</html>
