@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kasbon Saya</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      padding: 20px;
+    }
+    h2 {
+      color: #333;
+    }
+    .catatan {
+      background-color: #fff3cd;
+      border: 1px solid #ffeeba;
+      padding: 10px;
+      margin-bottom: 15px;
+      color: #856404;
+    }
+    .kasbon-item {
+      background-color: #ffffff;
+      padding: 10px;
+      margin-bottom: 5px;
+      border-left: 5px solid #007bff;
+    }
+  </style>
+</head>
+<body>
+  <h2>📋 Kasbon Anda</h2>
+
+  <div class="catatan">
+    💡 <strong>Catatan:</strong> Data kasbon di bawah hanya milik karyawan yang sedang login (sampai tanggal <strong>26 Juli 2025</strong>).
+  </div>
+
+  <div id="listKasbon"></div>
+
+  <br>
+  <a href="index2.html">← Kembali ke Dashboard</a>
+
+  <script>
+    // Ambil nama login dari localStorage
+    const namaLogin = localStorage.getItem("namaLogin");
+
+    // Data kasbon semua orang
+    const kasbonData = [
+      { nama: "Budiansyah", jumlah: 300000 },
+      { nama: "Siti", jumlah: 250000 },
+      { nama: "Andi", jumlah: 200000 },
+      { nama: "Budiansyah", jumlah: 150000 }
+    ];
+
+    const div = document.getElementById("listKasbon");
+
+    if (!namaLogin) {
+      div.innerHTML = "<p>❌ Kamu belum login. Silakan login terlebih dahulu.</p>";
+    } else {
+      // Filter hanya kasbon milik login
+      const kasbonSaya = kasbonData.filter(k => k.nama.toLowerCase() === namaLogin.toLowerCase());
+
+      if (kasbonSaya.length === 0) {
+        div.innerHTML = `<p>✅ Tidak ada kasbon untuk <strong>${namaLogin}</strong>.</p>`;
+      } else {
+        kasbonSaya.forEach(k => {
+          const item = document.createElement("div");
+          item.className = "kasbon-item";
+          item.textContent = `✔️ ${k.nama} - Rp ${k.jumlah.toLocaleString("id-ID")}`;
+          div.appendChild(item);
+        });
+      }
+    }
+  </script>
+</body>
+</html>
+<script src="kasbon.js"></script>
+
