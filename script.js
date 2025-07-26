@@ -228,6 +228,10 @@ function login() {
   const username = document.getElementById("username").value.toLowerCase();
   const password = document.getElementById("password").value;
 
+const dataLogin = [
+    { nama: "Budiansyah", pass: "2223" },
+    { nama: "Siti", pass: "456" } ]
+
   const user = users.find(u => u.nama === username && u.password === password);
 
   if (user) {
