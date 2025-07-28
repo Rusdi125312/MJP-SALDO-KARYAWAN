@@ -18,3 +18,56 @@
 #next-page button:hover {
   background-color: #218838;
 }
+/* === GAYA HALAMAN KASBON === */
+
+.container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+}
+
+.judul {
+  font-size: 24px;
+  margin-bottom: 20px;
+  background-color: #1a4dd1;
+  padding: 12px;
+  border-radius: 10px;
+  color: white;
+}
+
+form input[type="text"],
+form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+form button {
+  width: 100%;
+  background-color: #1a4dd1;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #163a94;
+}
+
+#hasilKasbon {
+  background-color: #fff;
+  color: #000;
+  padding: 10px;
+  border-radius: 8px;
+}
+
