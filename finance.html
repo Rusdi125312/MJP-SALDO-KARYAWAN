@@ -6,18 +6,38 @@
   <title>Tentang Finance Pribadi</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #0d0d0d;
-      color: #f1f1f1;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0f0f0f;
+      color: #e0e0e0;
       padding: 30px;
-      line-height: 1.6;
+      line-height: 1.7;
+      max-width: 800px;
+      margin: auto;
     }
-    h1 {
+    h1, h2 {
+      color: #4caf50;
+      text-align: center;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li::before {
+      content: "✔️ ";
       color: #4caf50;
     }
-    a {
-      color: #4caf50;
-      text-decoration: none;
+    .box {
+      background-color: #1e1e1e;
+      border-left: 4px solid #4caf50;
+      padding: 15px 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+    .quote {
+      font-style: italic;
+      color: #a5d6a7;
+      text-align: center;
+      margin: 30px 0;
     }
     .button {
       display: inline-block;
@@ -41,25 +61,40 @@
   </style>
 </head>
 <body>
-  <h1>Apa Itu Finance Pribadi?</h1>
-  <p>
-    Finance pribadi adalah kemampuan untuk mengelola keuangan sendiri secara bijak — mulai dari mengatur pemasukan, pengeluaran, tabungan, hingga investasi.
-  </p>
 
-  <h2>Kenapa Penting?</h2>
+  <h1>📚 Apa Itu Finance Pribadi?</h1>
+  <div class="box">
+    Finance pribadi adalah cara seseorang mengelola keuangannya sendiri, termasuk pemasukan, pengeluaran, tabungan, investasi, dan pengelolaan utang.  
+    Tujuannya adalah agar kita bisa hidup tenang, bebas utang, dan punya cadangan keuangan di masa depan.
+  </div>
+
+  <h2>🎯 Tips Mengelola Keuangan Pribadi</h2>
   <ul>
-    <li>📌 Agar tidak boros dan bisa menabung</li>
-    <li>📌 Bisa mempersiapkan dana darurat</li>
-    <li>📌 Mampu membedakan kebutuhan vs keinginan</li>
-    <li>📌 Membangun masa depan keuangan lebih aman</li>
+    <li>Buat anggaran bulanan dan patuhi</li>
+    <li>Sisihkan minimal 10% gaji untuk tabungan</li>
+    <li>Catat semua pengeluaran (bahkan yang kecil)</li>
+    <li>Bedakan kebutuhan dan keinginan</li>
+    <li>Miliki dana darurat setara 3–6 bulan gaji</li>
+    <li>Hindari utang konsumtif</li>
+    <li>Investasi di instrumen yang kamu pahami</li>
   </ul>
 
-  <p>Mulailah dari membuat catatan bulanan dan tetapkan tujuan keuangan sederhana.</p>
+  <div class="quote">
+    “Bukan seberapa besar penghasilanmu, tapi seberapa bijak kamu mengelolanya.”
+  </div>
 
-  <!-- Tombol Arah -->
+  <h2>💡 Tips Praktis Langsung Coba!</h2>
+  <div class="box">
+    ✅ Setel pengingat mingguan untuk mengecek saldo  
+    ✅ Buka rekening khusus tabungan otomatis  
+    ✅ Gunakan aplikasi pencatat keuangan (Money Lover, CatatanKeuangan, dll)  
+    ✅ Hindari promo yang bikin boros, belanja hanya saat butuh  
+  </div>
+
   <div class="button-container">
     <a href="index.html" class="button">🏠 Kembali ke Beranda</a>
     <a href="tips-gaji.html" class="button">💡 Kembali ke Tips Gaji</a>
   </div>
+
 </body>
 </html>
