@@ -1,29 +1,26 @@
 <!DOCTYPE html>
-
 <html lang="id">
-<!-- Google AdSense Script -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4381097964402349"
-     crossorigin="anonymous"></script>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tentang Finance Pribadi</title>
-    
-     <!-- ✅ CSS NAVBAR Responsive -->
+  <title>Tentang Finance Pribadi - MJP</title>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4381097964402349" crossorigin="anonymous"></script>
 
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       background: url('bg2.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: #fff;
+      color: #e0e0e0;
     }
 
     /* Navbar */
     .navbar {
       background-color: rgba(44, 62, 80, 0.9);
-      padding: 10px 20px;
+      padding: 12px 20px;
       position: fixed;
       top: 0;
       left: 0;
@@ -35,33 +32,36 @@
     }
 
     .navbar .logo {
-      color: #ecf0f1;
+      color: #fff;
+      font-size: 20px;
       font-weight: bold;
-      font-size: 18px;
       text-decoration: none;
     }
 
     .navbar ul {
       list-style: none;
-      padding: 0;
-      margin: 0;
       display: flex;
-      gap: 12px;
+      gap: 15px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li {
+      list-style: none;
     }
 
     .navbar ul li a {
       color: #ecf0f1;
       text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: background-color 0.3s;
     }
 
     .navbar ul li a:hover {
       background-color: #3498db;
     }
 
-    /* Hamburger */
     .menu-toggle {
       display: none;
       flex-direction: column;
@@ -76,16 +76,16 @@
       border-radius: 2px;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .navbar ul {
         display: none;
         flex-direction: column;
         width: 100%;
-        background-color: rgba(44, 62, 80, 0.95);
         position: absolute;
-        top: 55px;
+        top: 60px;
         left: 0;
+        background-color: rgba(44, 62, 80, 0.95);
+        padding: 10px 0;
       }
 
       .navbar ul.active {
@@ -96,74 +96,83 @@
         display: flex;
       }
     }
-    
-    
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0f0f0f;
-      color: #e0e0e0;
+
+    .container {
+      max-width: 850px;
+      margin: 100px auto 40px;
+      background-color: rgba(0, 0, 0, 0.6);
       padding: 30px;
-      line-height: 1.7;
-      max-width: 800px;
-      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     }
+
     h1, h2 {
       color: #4caf50;
       text-align: center;
     }
-    ul {
-      list-style: none;
-      padding: 0;
+
+    .box, .quote {
+      margin: 20px 0;
     }
-    ul li::before {
-      content: "✔️ ";
-      color: #4caf50;
-    }
+
     .box {
       background-color: #1e1e1e;
-      border-left: 4px solid #4caf50;
-      padding: 15px 20px;
-      margin: 20px 0;
+      border-left: 5px solid #4caf50;
+      padding: 20px;
       border-radius: 8px;
     }
+
+    ul {
+      padding: 0;
+      margin-left: 0;
+    }
+
+    /* Tanda ceklis hanya untuk konten, bukan navigasi */
+    .container ul li::before {
+      content: "✔️ ";
+      margin-right: 5px;
+      color: #4caf50;
+    }
+
     .quote {
       font-style: italic;
       color: #a5d6a7;
       text-align: center;
-      margin: 30px 0;
+      margin: 30px auto;
+      font-size: 16px;
     }
+
+    .button-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
     .button {
       display: inline-block;
-      margin: 10px;
       padding: 12px 24px;
       background-color: #4caf50;
       color: white;
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
+      margin: 8px;
+      transition: 0.3s;
       box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-      transition: background-color 0.3s ease;
     }
+
     .button:hover {
       background-color: #388e3c;
-    }
-    .button-container {
-      margin-top: 40px;
-      text-align: center;
     }
   </style>
 </head>
 <body>
- <!-- ✅ NAVBAR -->
+
+  <!-- ✅ NAVBAR -->
   <nav class="navbar">
     <a href="index.html" class="logo">MJP</a>
-
-    <div class="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="menu-toggle" onclick="document.getElementById('menu').classList.toggle('active')">
+      <span></span><span></span><span></span>
     </div>
-
     <ul id="menu">
       <li><a href="index.html">Home</a></li>
       <li><a href="kasbon.html">Kasbon</a></li>
@@ -174,48 +183,59 @@
       <li><a href="contact.html">Kontak</a></li>
     </ul>
   </nav>
-  <h1>📚 Apa Itu Finance Pribadi?</h1>
-  <div class="box">
-    Finance pribadi adalah cara seseorang mengelola keuangannya sendiri, termasuk pemasukan, pengeluaran, tabungan, investasi, dan pengelolaan utang.  
-    Tujuannya adalah agar kita bisa hidup tenang, bebas utang, dan punya cadangan keuangan di masa depan.
+
+  <!-- ✅ CONTENT -->
+  <div class="container">
+    <h1>📚 Apa Itu Finance Pribadi?</h1>
+    <div class="box">
+      Finance pribadi adalah cara seseorang mengelola keuangan mereka secara bijak. Ini mencakup pemasukan, pengeluaran, tabungan, investasi, dan pengelolaan utang.  
+      Tujuan utamanya adalah mencapai keamanan finansial dan hidup tanpa stres karena masalah uang.
+    </div>
+
+    <h2>🎯 Tips Mengelola Keuangan Pribadi</h2>
+    <ul>
+      <li>Buat anggaran bulanan dan patuhi</li>
+      <li>Sisihkan minimal 10% gaji untuk tabungan</li>
+      <li>Catat semua pengeluaran, sekecil apapun</li>
+      <li>Bedakan kebutuhan dan keinginan</li>
+      <li>Miliki dana darurat setara 3–6 bulan gaji</li>
+      <li>Hindari utang konsumtif</li>
+      <li>Mulai investasi sedini mungkin</li>
+    </ul>
+
+    <div class="quote">“Bukan seberapa besar penghasilanmu, tapi seberapa bijak kamu mengelolanya.”</div>
+
+    <h2>💼 Jenis Investasi yang Cocok untuk Pemula</h2>
+    <div class="box">
+      ✔️ Reksadana Pasar Uang: Cocok untuk pemula, risiko rendah<br>
+      ✔️ Emas: Aman dalam jangka panjang, mudah dicairkan<br>
+      ✔️ Deposito: Bunga tetap, aman dari fluktuasi pasar<br>
+      ✔️ Saham Blue Chip: Potensi tinggi tapi perlu edukasi
+    </div>
+
+    <h2>⚠️ Kesalahan Umum dalam Mengatur Keuangan</h2>
+    <ul>
+      <li>Menabung sisa, bukan menyisihkan di awal</li>
+      <li>Tidak mencatat pengeluaran sama sekali</li>
+      <li>Terlalu banyak cicilan konsumtif</li>
+      <li>Gaji besar, tapi tidak punya tabungan</li>
+      <li>Tidak siap menghadapi keadaan darurat</li>
+    </ul>
+
+    <h2>🧠 Cara Menghindari Gaya Hidup Boros</h2>
+    <div class="box">
+      ✔️ Buat daftar belanja sebelum ke supermarket<br>
+      ✔️ Hapus aplikasi belanja online jika sering impulsif<br>
+      ✔️ Gunakan metode "30 hari": tunda pembelian selama 1 bulan<br>
+      ✔️ Fokus pada tujuan keuangan jangka panjang
+    </div>
+
+    <div class="button-container">
+      <a href="index.html" class="button">🏠 Kembali ke Beranda</a>
+      <a href="tips-gaji.html" class="button">💡 Lanjut ke Tips Gaji</a>
+    </div>
   </div>
 
-  <h2>🎯 Tips Mengelola Keuangan Pribadi</h2>
-  <ul>
-    <li>Buat anggaran bulanan dan patuhi</li>
-    <li>Sisihkan minimal 10% gaji untuk tabungan</li>
-    <li>Catat semua pengeluaran (bahkan yang kecil)</li>
-    <li>Bedakan kebutuhan dan keinginan</li>
-    <li>Miliki dana darurat setara 3–6 bulan gaji</li>
-    <li>Hindari utang konsumtif</li>
-    <li>Investasi di instrumen yang kamu pahami</li>
-  </ul>
-
-  <div class="quote">
-    “Bukan seberapa besar penghasilanmu, tapi seberapa bijak kamu mengelolanya.”
-  </div>
-
-  <h2>💡 Tips Praktis Langsung Coba!</h2>
-  <div class="box">
-    ✅ Setel pengingat mingguan untuk mengecek saldo  
-    ✅ Buka rekening khusus tabungan otomatis  
-    ✅ Gunakan aplikasi pencatat keuangan (Money Lover, CatatanKeuangan, dll)  
-    ✅ Hindari promo yang bikin boros, belanja hanya saat butuh  
-  </div>
-
-  <div class="button-container">
-    <a href="index.html" class="button">🏠 Kembali ke Beranda</a>
-    <a href="tips-gaji.html" class="button">💡 Kembali ke Tips Gaji</a>
-  </div>
- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const menu = document.getElementById('menu');
-
-    menuToggle.addEventListener('click', function() {
-      menu.classList.toggle('active');
-    });
-  });
- </script>
 </body>
 </html>
+
