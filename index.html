@@ -13,11 +13,74 @@
 
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="style2.css" />
-  </head>
+  
+<!-- ✅ Modern Navbar CSS -->
+  <style>
+    /* Reset margin untuk body */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
 
-     <script src="script.js"></script>
+    /* Navbar di atas */
+    nav {
+      background-color: #428edb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: fixed;          /* ✅ fixed di atas */
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+    }
 
-      
+    nav a {
+      color: #ecf0f1;
+      text-decoration: none;
+      margin: 0 12px;
+      font-size: 16px;
+      font-weight: 500;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      padding: 8px 14px;
+      border-radius: 5px;
+    }
+
+    nav a:hover {
+      background-color: #3498db;
+      color: white;
+    }
+
+    /* Tambah padding-top agar konten tidak ketimpa navbar */
+    .content {
+      padding-top: 70px;    /* ✅ sesuaikan tinggi navbar */
+      text-align: center;
+    }
+  </style>
+
+  <!-- JS -->
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+  <!-- ✅ Navbar fixed di atas -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="kasbon.html">Kasbon</a>
+    <a href="finance.html">Finance</a>
+    <a href="tips-gaji.html">Tips Gaji</a>
+    <a href="about.html">Tentang Kami</a>
+    <a href="privacy.html">Privasi</a>
+    <a href="contact.html">Kontak</a>
+  </nav>
+
+
+     
+   
+  
 <!-- Footer -->
 <footer style="
   position: fixed;
