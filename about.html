@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Tentang Kami</title>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tentang Kami - MJP</title>
+  <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: url('bg2.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f0f0f;
+      color: #e0e0e0;
     }
 
-    /* Navbar */
     .navbar {
-      background-color: rgba(44, 62, 80, 0.9);
-      padding: 10px 20px;
+      background-color: rgba(44, 62, 80, 0.95);
+      padding: 12px 24px;
       position: fixed;
       top: 0;
       left: 0;
@@ -29,15 +28,15 @@
     .navbar .logo {
       color: #ecf0f1;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 20px;
       text-decoration: none;
     }
 
     .navbar ul {
       list-style: none;
-      padding: 0;
-      margin: 0;
       display: flex;
+      margin: 0;
+      padding: 0;
       gap: 12px;
     }
 
@@ -46,100 +45,56 @@
       text-decoration: none;
       padding: 8px 12px;
       border-radius: 5px;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s;
     }
 
     .navbar ul li a:hover {
       background-color: #3498db;
     }
 
-    /* Hamburger */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .menu-toggle span {
-      height: 3px;
-      width: 25px;
-      background-color: white;
-      margin: 4px 0;
-      border-radius: 2px;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .navbar ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: rgba(44, 62, 80, 0.95);
-        position: absolute;
-        top: 55px;
-        left: 0;
-      }
-
-      .navbar ul.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: flex;
-      }
-    }
-
-    /* Content */
     .container {
-      padding-top: 90px;
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: center;
-      background-color: rgba(0, 0, 0, 0.5);
+      max-width: 800px;
+      margin: 100px auto 30px;
       padding: 20px;
-      border-radius: 10px;
+      background: #1e1e1e;
+      border-left: 4px solid #4caf50;
+      border-radius: 8px;
     }
 
-    label, input {
-      display: block;
-      width: 100%;
-      margin: 10px 0;
+    h1 {
+      color: #4caf50;
+      text-align: center;
+      margin-bottom: 20px;
     }
 
-    input {
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
+    p {
+      line-height: 1.7;
     }
 
-    button {
-      padding: 10px 16px;
-      font-size: 14px;
-      border: none;
-      border-radius: 6px;
-      background-color: #2ecc71;
+    .button-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .button {
+      background-color: #4caf50;
       color: white;
-      cursor: pointer;
-      margin-top: 10px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
     }
 
-    button:hover {
-      background-color: #27ae60;
+    .button:hover {
+      background-color: #388e3c;
     }
   </style>
 </head>
 <body>
- <!-- ✅ NAVBAR -->
   <nav class="navbar">
     <a href="index.html" class="logo">MJP</a>
-
-    <div class="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    <ul id="menu">
+    <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="kasbon.html">Kasbon</a></li>
       <li><a href="finance.html">Finance</a></li>
@@ -148,19 +103,18 @@
       <li><a href="privacy.html">Privasi</a></li>
       <li><a href="contact.html">Kontak</a></li>
     </ul>
-  </nav> 
-  <h1>Tentang Kami</h1>
-  <p>Website ini dibuat untuk memberikan informasi saldo dan kasbon karyawan PT MJP secara mudah dan transparan.</p>
-  <p>Tujuan kami adalah membantu karyawan agar bisa mengecek saldo gaji dan kasbon mereka kapan saja.</p>
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const menu = document.getElementById('menu');
+  </nav>
 
-    menuToggle.addEventListener('click', function() {
-      menu.classList.toggle('active');
-    });
-  });
-</script>
+  <div class="container">
+    <h1>🌟 Tentang Kami</h1>
+    <p><strong>Web ini</strong> merupakan inisiatif digital yang bertujuan untuk meningkatkan transparansi dan efisiensi dalam pengelolaan keuangan pribadi bagi karyawan.</p>
+    <p>Kami percaya bahwa setiap karyawan berhak memperoleh akses cepat dan jelas terhadap informasi keuangannya, mulai dari gaji, kasbon, hingga tips finansial yang berguna.</p>
+    <p>Didukung dengan teknologi berbasis web yang ringan, aman, dan mudah diakses, MJP hadir untuk memberdayakan karyawan agar bisa mandiri secara finansial.</p>
+    <p><em>“Karyawan yang memiliki informasi keuangan yang akurat akan membuat keputusan hidup yang lebih baik.”</em></p>
+  </div>
+
+  <div class="button-container">
+    <a href="index.html" class="button">🏠 Kembali ke Beranda</a>
+  </div>
 </body>
 </html>

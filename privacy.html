@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Kebijakan Privasi</title>
-
- <!-- ✅ CSS NAVBAR Responsive -->
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kebijakan Privasi - MJP</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: url('bg2.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f0f0f;
+      color: #e0e0e0;
     }
 
-    /* Navbar */
     .navbar {
-      background-color: rgba(44, 62, 80, 0.9);
-      padding: 10px 20px;
+      background-color: rgba(44, 62, 80, 0.95);
+      padding: 12px 24px;
       position: fixed;
       top: 0;
       left: 0;
@@ -32,15 +28,15 @@
     .navbar .logo {
       color: #ecf0f1;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 20px;
       text-decoration: none;
     }
 
     .navbar ul {
       list-style: none;
-      padding: 0;
-      margin: 0;
       display: flex;
+      margin: 0;
+      padding: 0;
       gap: 12px;
     }
 
@@ -49,100 +45,56 @@
       text-decoration: none;
       padding: 8px 12px;
       border-radius: 5px;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s;
     }
 
     .navbar ul li a:hover {
       background-color: #3498db;
     }
 
-    /* Hamburger */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .menu-toggle span {
-      height: 3px;
-      width: 25px;
-      background-color: white;
-      margin: 4px 0;
-      border-radius: 2px;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .navbar ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: rgba(44, 62, 80, 0.95);
-        position: absolute;
-        top: 55px;
-        left: 0;
-      }
-
-      .navbar ul.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: flex;
-      }
-    }
-
-    /* Content */
     .container {
-      padding-top: 90px;
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: center;
-      background-color: rgba(0, 0, 0, 0.5);
+      max-width: 800px;
+      margin: 100px auto 30px;
       padding: 20px;
-      border-radius: 10px;
+      background: #1e1e1e;
+      border-left: 4px solid #4caf50;
+      border-radius: 8px;
     }
 
-    label, input {
-      display: block;
-      width: 100%;
-      margin: 10px 0;
+    h1 {
+      color: #4caf50;
+      text-align: center;
+      margin-bottom: 20px;
     }
 
-    input {
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
+    p {
+      line-height: 1.7;
     }
 
-    button {
-      padding: 10px 16px;
-      font-size: 14px;
-      border: none;
-      border-radius: 6px;
-      background-color: #2ecc71;
+    .button-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .button {
+      background-color: #4caf50;
       color: white;
-      cursor: pointer;
-      margin-top: 10px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
     }
 
-    button:hover {
-      background-color: #27ae60;
+    .button:hover {
+      background-color: #388e3c;
     }
   </style>
 </head>
 <body>
- <!-- ✅ NAVBAR -->
   <nav class="navbar">
     <a href="index.html" class="logo">MJP</a>
-
-    <div class="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    <ul id="menu">
+    <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="kasbon.html">Kasbon</a></li>
       <li><a href="finance.html">Finance</a></li>
@@ -153,20 +105,17 @@
     </ul>
   </nav>
 
-  <h1>Kebijakan Privasi</h1>
-  <p>Kami menghormati privasi Anda. Informasi pribadi tidak akan dibagikan ke pihak ketiga tanpa izin Anda.</p>
-  <p>Website ini mungkin menggunakan cookie untuk meningkatkan pengalaman pengguna.</p>
-  <p>Untuk pertanyaan, silakan hubungi kami melalui halaman kontak atau admin PT MJP.</p>
+  <div class="container">
+    <h1>🔒 Kebijakan Privasi</h1>
+    <p>Kami menghormati privasi Anda dan berkomitmen menjaga data pribadi Anda dengan serius.</p>
+    <p>Informasi yang kami kumpulkan (seperti nama dan password untuk mengakses data kasbon) hanya digunakan untuk verifikasi internal dan tidak akan dibagikan ke pihak ketiga.</p>
+    <p>Website ini tidak menyimpan data keuangan pribadi Anda secara permanen di server, dan semua transaksi bersifat lokal dan terenkripsi.</p>
+    <p>Dengan menggunakan situs ini, Anda menyetujui kebijakan privasi yang berlaku. Setiap perubahan kebijakan akan diumumkan melalui halaman ini secara transparan.</p>
+    <p>Jika Anda memiliki pertanyaan mengenai data dan privasi, hubungi kami melalui <a href="contact.html" style="color: #4caf50;">formulir kontak</a>.</p>
+  </div>
 
- <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const menu = document.getElementById('menu');
-
-    menuToggle.addEventListener('click', function() {
-      menu.classList.toggle('active');
-    });
-  });
-</script>
+  <div class="button-container">
+    <a href="index.html" class="button">🏠 Kembali ke Beranda</a>
+  </div>
 </body>
 </html>
