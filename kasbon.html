@@ -9,6 +9,7 @@
   <title>Cek Kasbon Kamu</title>
   <link rel="stylesheet" href="style.css" />
  <!-- ✅ CSS NAVBAR Responsive -->
+
   <style>
     body {
       margin: 0;
@@ -140,7 +141,7 @@
   <nav class="navbar">
     <a href="index.html" class="logo">MJP</a>
 
-    <div class="menu-toggle" onclick="toggleMenu()">
+    <div class="menu-toggle">
       <span></span>
       <span></span>
       <span></span>
@@ -159,7 +160,7 @@
 
 
   <div class="container">
-    <h2 class="judul">💰 Cek ACC Kasbon Kamu <h2></h2>
+    <h2 class="judul">💰 Cek ACC Kasbon Kamu</h2>
 
     <form id="loginKasbonForm">
       <label for="nama">Nama:</label>
@@ -181,5 +182,16 @@
   </div>
 
   <script src="kasbon.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('menu');
+
+    menuToggle.addEventListener('click', function() {
+      menu.classList.toggle('active');
+    });
+  });
+</script>
+
 </body>
 </html>
