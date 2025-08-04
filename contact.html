@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontak Kami</title>
-  <!-- ✅ CSS NAVBAR Responsive -->
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontak Kami - MJP</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       background: url('bg2.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
@@ -17,13 +15,13 @@
 
     /* Navbar */
     .navbar {
-      background-color: rgba(44, 62, 80, 0.9);
-      padding: 10px 20px;
+      background-color: rgba(44, 62, 80, 0.95);
+      padding: 12px 24px;
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 999;
+      z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -32,23 +30,23 @@
     .navbar .logo {
       color: #ecf0f1;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 20px;
       text-decoration: none;
     }
 
     .navbar ul {
       list-style: none;
-      padding: 0;
-      margin: 0;
       display: flex;
-      gap: 12px;
+      gap: 16px;
+      margin: 0;
+      padding: 0;
     }
 
     .navbar ul li a {
       color: #ecf0f1;
       text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 5px;
+      padding: 8px 14px;
+      border-radius: 6px;
       transition: background-color 0.3s ease;
     }
 
@@ -56,7 +54,6 @@
       background-color: #3498db;
     }
 
-    /* Hamburger */
     .menu-toggle {
       display: none;
       flex-direction: column;
@@ -71,7 +68,6 @@
       border-radius: 2px;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .navbar ul {
         display: none;
@@ -92,51 +88,54 @@
       }
     }
 
-    /* Content */
+    /* Konten Utama */
     .container {
-      padding-top: 90px;
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: center;
+      max-width: 800px;
+      margin: 120px auto 40px;
       background-color: rgba(0, 0, 0, 0.5);
-      padding: 20px;
+      padding: 30px;
       border-radius: 10px;
+      text-align: center;
     }
 
-    label, input {
-      display: block;
+    h1 {
+      margin-bottom: 10px;
+      font-size: 26px;
+      color: #4caf50;
+    }
+
+    p {
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+
+    iframe {
       width: 100%;
-      margin: 10px 0;
-    }
-
-    input {
-      padding: 10px;
-      border-radius: 5px;
+      height: 700px;
       border: none;
+      border-radius: 8px;
     }
 
-    button {
-      padding: 10px 16px;
-      font-size: 14px;
-      border: none;
-      border-radius: 6px;
-      background-color: #2ecc71;
-      color: white;
-      cursor: pointer;
-      margin-top: 10px;
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: #4caf50;
+      text-decoration: none;
+      font-weight: bold;
     }
 
-    button:hover {
-      background-color: #27ae60;
+    .back-link:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
+
   <!-- ✅ NAVBAR -->
   <nav class="navbar">
     <a href="index.html" class="logo">MJP</a>
 
-    <div class="menu-toggle">
+    <div class="menu-toggle" id="menu-toggle">
       <span></span>
       <span></span>
       <span></span>
@@ -151,25 +150,34 @@
       <li><a href="privacy.html">Privasi</a></li>
       <li><a href="contact.html">Kontak</a></li>
     </ul>
-  </nav> 
-  <h1>Hubungi Kami</h1>
-  <p>Jika Anda memiliki pertanyaan, kritik, atau saran, silakan hubungi kami melalui formulir di bawah ini.</p>
+  </nav>
 
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScNqRVF65hKfOPL54LOIYKphQgF5MmcIYk8CkZiHJB_Gp-eBw/viewform"
-          width="100%" height="750" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe>
+  <!-- ✅ KONTEN -->
+  <div class="container">
+    <h1>📩 Hubungi Kami</h1>
+    <p>
+      Jika Anda memiliki pertanyaan, kritik, atau saran, jangan ragu untuk menghubungi kami melalui formulir berikut.
+      Kami menghargai setiap masukan Anda untuk meningkatkan pelayanan kami.
+    </p>
 
-  <p style="margin-top: 30px;">
-    <a href="index.html" style="color: #4caf50;">← Kembali ke Beranda</a>
-  </p>
-    <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const menu = document.getElementById('menu');
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScNqRVF65hKfOPL54LOIYKphQgF5MmcIYk8CkZiHJB_Gp-eBw/viewform"
+            loading="lazy" allowfullscreen>
+      Memuat formulir…
+    </iframe>
 
-    menuToggle.addEventListener('click', function() {
-      menu.classList.toggle('active');
+    <a class="back-link" href="index.html">← Kembali ke Beranda</a>
+  </div>
+
+  <!-- ✅ Script Toggle Menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const menuToggle = document.getElementById('menu-toggle');
+      const menu = document.getElementById('menu');
+
+      menuToggle.addEventListener('click', function () {
+        menu.classList.toggle('active');
+      });
     });
-  });
-</script>
+  </script>
 </body>
 </html>
