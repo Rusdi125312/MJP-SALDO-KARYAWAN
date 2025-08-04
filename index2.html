@@ -12,58 +12,109 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      background: url('bg2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
     }
 
-    nav {
-      background-color: #2c3e50;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 12px 0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    /* Navbar */
+    .navbar {
+      background-color: rgba(44, 62, 80, 0.9);
+      padding: 10px 20px;
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    nav a {
+    .navbar .logo {
+      color: #ecf0f1;
+      font-weight: bold;
+      font-size: 18px;
+      text-decoration: none;
+    }
+
+    .navbar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 12px;
+    }
+
+    .navbar ul li a {
       color: #ecf0f1;
       text-decoration: none;
-      margin: 0 12px;
-      font-size: 16px;
-      font-weight: 500;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      padding: 8px 14px;
+      padding: 8px 12px;
       border-radius: 5px;
+      transition: background-color 0.3s ease;
     }
 
-    nav a:hover {
+    .navbar ul li a:hover {
       background-color: #3498db;
-      color: white;
     }
 
+    /* Hamburger */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background-color: white;
+      margin: 4px 0;
+      border-radius: 2px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(44, 62, 80, 0.95);
+        position: absolute;
+        top: 55px;
+        left: 0;
+      }
+
+      .navbar ul.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    /* Content */
     .container {
-      padding-top: 90px; /* supaya konten tidak tertutup navbar */
+      padding-top: 90px;
       max-width: 600px;
       margin: 0 auto;
       text-align: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
     }
 
-    .btn-link {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #3498db;
-      color: white;
-      text-decoration: none;
+    label, input {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    input {
+      padding: 10px;
       border-radius: 5px;
-      font-weight: bold;
-    }
-
-    .btn-link:hover {
-      background-color: #2980b9;
+      border: none;
     }
 
     button {
@@ -74,6 +125,7 @@
       background-color: #2ecc71;
       color: white;
       cursor: pointer;
+      margin-top: 10px;
     }
 
     button:hover {
@@ -82,14 +134,25 @@
   </style>
 </head>
 <body>
-<nav>
-    <a href="index.html">Home</a>
-    <a href="kasbon.html">Kasbon</a>
-    <a href="finance.html">Finance</a>
-    <a href="tips-gaji.html">Tips Gaji</a>
-    <a href="about.html">Tentang Kami</a>
-    <a href="privacy.html">Privasi</a>
-    <a href="contact.html">Kontak</a>
+<!-- ✅ NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">MJP</a>
+
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <ul id="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="kasbon.html">Kasbon</a></li>
+      <li><a href="finance.html">Finance</a></li>
+      <li><a href="tips-gaji.html">Tips Gaji</a></li>
+      <li><a href="about.html">Tentang Kami</a></li>
+      <li><a href="privacy.html">Privasi</a></li>
+      <li><a href="contact.html">Kontak</a></li>
+    </ul>
   </nav>
 
   <div class="container">
@@ -108,5 +171,15 @@
       </a>
     </div>
   </div>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('menu');
+
+    menuToggle.addEventListener('click', function() {
+      menu.classList.toggle('active');
+    });
+  });
+</script>
 </body>
 </html>
