@@ -3,18 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rekap saldo-Sisa </title>
+  <title>Rekap Saldo - MJP</title>
 
-  <!-- Kode Google AdSense -->
+  <!-- AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4381097964402349"
      crossorigin="anonymous"></script>
-</head>
-
 
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="style2.css" />
-
-  <!-- ✅ CSS NAVBAR Responsive -->
 
   <style>
     body {
@@ -25,7 +21,6 @@
       color: #fff;
     }
 
-    /* Navbar */
     .navbar {
       background-color: rgba(44, 62, 80, 0.9);
       padding: 10px 20px;
@@ -42,22 +37,22 @@
     .navbar .logo {
       color: #ecf0f1;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 20px;
       text-decoration: none;
     }
 
     .navbar ul {
       list-style: none;
-      padding: 0;
-      margin: 0;
       display: flex;
-      gap: 12px;
+      gap: 15px;
+      margin: 0;
+      padding: 0;
     }
 
     .navbar ul li a {
       color: #ecf0f1;
       text-decoration: none;
-      padding: 8px 12px;
+      padding: 8px 14px;
       border-radius: 5px;
       transition: background-color 0.3s ease;
     }
@@ -66,7 +61,6 @@
       background-color: #3498db;
     }
 
-    /* Hamburger */
     .menu-toggle {
       display: none;
       flex-direction: column;
@@ -81,7 +75,6 @@
       border-radius: 2px;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .navbar ul {
         display: none;
@@ -102,32 +95,33 @@
       }
     }
 
-    /* Content */
     .container {
-      padding-top: 90px;
-      max-width: 600px;
+      padding-top: 100px;
+      max-width: 400px;
       margin: 0 auto;
       text-align: center;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 20px;
-      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     }
 
-    label, input {
-      display: block;
-      width: 100%;
-      margin: 10px 0;
+    h2 {
+      margin-bottom: 20px;
+      color: #2ecc71;
     }
 
     input {
-      padding: 10px;
-      border-radius: 5px;
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
       border: none;
+      border-radius: 5px;
     }
 
     button {
-      padding: 10px 16px;
-      font-size: 14px;
+      padding: 12px 20px;
+      font-size: 16px;
       border: none;
       border-radius: 6px;
       background-color: #2ecc71;
@@ -139,20 +133,39 @@
     button:hover {
       background-color: #27ae60;
     }
+
+    #error-msg {
+      color: #e74c3c;
+      margin-top: 10px;
+    }
+
+    a.tips-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #4caf50;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a.tips-link:hover {
+      text-decoration: underline;
+    }
+
+    #catatan {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #ecf0f1;
+    }
   </style>
 </head>
-<body>
 
-  <!-- ✅ NAVBAR -->
+<body>
+  <!-- Navbar -->
   <nav class="navbar">
     <a href="index.html" class="logo">MJP</a>
-
-    <div class="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
     </div>
-
     <ul id="menu">
       <li><a href="index.html">Home</a></li>
       <li><a href="kasbon.html">Kasbon</a></li>
@@ -164,54 +177,33 @@
     </ul>
   </nav>
 
-</body>
-</html>
-
-
-
-<body>
+  <!-- Halaman -->
   <div class="container">
-    <h2>Hasil Kerja Kerasmu Ada di Sini</h2>
-
+    <h2>💼 Cek Saldo Gaji Kamu</h2>
     <input type="text" id="username" placeholder="Nama Karyawan" />
     <input type="password" id="password" placeholder="Password" />
     <button onclick="login()">Login</button>
     <p id="error-msg"></p>
 
-    <!-- Link Tips Gaji -->
-<div style="margin-top: 20px; text-align: center;">
-  <a href="tips-gaji.html" style="color: #4caf50; font-weight: bold; text-decoration: none;">
-    💡 Baca Tips Mengatur Gaji
-  </a>
-</div>
-
+    <a href="tips-gaji.html" class="tips-link">💡 Baca Tips Mengatur Gaji</a>
 
     <div id="gaji-info" style="display:none; margin-top: 30px;">
       <p id="gaji-text"></p>
-      <button onclick="logout()" style="margin-bottom: 20px;">Logout</button>
+      <button onclick="logout()">Logout</button>
     </div>
 
-   
-
-    <div id="catatan" style="margin-top: 10px; display: none; color: #fff; text-align: center;">
-  * Catatan: Saldo di atas estimasi sampai tanggal 01 Agustus 2025
-  <div style="margin-top: 10px;">
-
-    <button onclick="goToNextPage()">➡️ Lanjut ke Halaman Berikutnya</button>
+    <div id="catatan" style="display:none;">
+      * Catatan: Saldo di atas estimasi sampai tanggal 01 Agustus 2025
+      <br><br>
+      <button onclick="goToNextPage()">➡️ Lanjut ke Halaman Berikutnya</button>
+    </div>
   </div>
-</div>
 
-
-    <script src="script.js"></script>
- <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const menu = document.getElementById('menu');
-
-    menuToggle.addEventListener('click', function() {
-      menu.classList.toggle('active');
-    });
-  });
-</script>
+  <script src="script.js"></script>
+  <script>
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
