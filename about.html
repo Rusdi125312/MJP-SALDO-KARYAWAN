@@ -4,14 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tentang Kami - MJP</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
       background: #0f0f0f;
       color: #e0e0e0;
     }
 
+    /* Navbar */
     .navbar {
       background-color: rgba(44, 62, 80, 0.95);
       padding: 12px 24px;
@@ -35,8 +45,6 @@
     .navbar ul {
       list-style: none;
       display: flex;
-      margin: 0;
-      padding: 0;
       gap: 12px;
     }
 
@@ -52,6 +60,40 @@
       background-color: #3498db;
     }
 
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background-color: white;
+      margin: 4px 0;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar ul {
+        display: none;
+        flex-direction: column;
+        background-color: rgba(44, 62, 80, 0.95);
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+      }
+
+      .navbar ul.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
     .container {
       max-width: 800px;
       margin: 100px auto 30px;
@@ -59,6 +101,7 @@
       background: #1e1e1e;
       border-left: 4px solid #4caf50;
       border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     h1 {
@@ -69,6 +112,8 @@
 
     p {
       line-height: 1.7;
+      font-size: 16px;
+      margin-bottom: 16px;
     }
 
     .button-container {
@@ -92,9 +137,18 @@
   </style>
 </head>
 <body>
+
+  <!-- ✅ NAVBAR -->
   <nav class="navbar">
     <a href="index.html" class="logo">MJP</a>
-    <ul>
+
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <ul id="menu">
       <li><a href="index.html">Home</a></li>
       <li><a href="kasbon.html">Kasbon</a></li>
       <li><a href="finance.html">Finance</a></li>
@@ -105,28 +159,36 @@
     </ul>
   </nav>
 
+  <!-- ✅ KONTEN -->
   <div class="container">
     <h1>🌟 Tentang Kami</h1>
-    <p><strong>Web ini</strong> merupakan inisiatif digital yang bertujuan untuk meningkatkan transparansi dan efisiensi dalam pengelolaan keuangan pribadi bagi karyawan.</p>
-    <p>Kami percaya bahwa setiap karyawan berhak memperoleh akses cepat dan jelas terhadap informasi keuangannya, mulai dari gaji, kasbon, hingga tips finansial yang berguna.</p>
-    <p>Didukung dengan teknologi berbasis web yang ringan, aman, dan mudah diakses, MJP hadir untuk memberdayakan karyawan agar bisa mandiri secara finansial.</p>
-    <p><em>“Karyawan yang memiliki informasi keuangan yang akurat akan membuat keputusan hidup yang lebih baik.”</em></p>
+    <p><strong>MJP</strong> adalah platform transparansi keuangan internal untuk karyawan. Kami berkomitmen untuk memberikan informasi yang akurat, real-time, dan mudah diakses seputar sisa gaji, kasbon, serta manajemen finansial pribadi.</p>
+    
+    <p>Kami percaya bahwa keterbukaan informasi adalah kunci dari kepercayaan. Dengan web ini, karyawan dapat memantau sisa gaji dan kasbon kapan saja, di mana saja, tanpa harus menunggu laporan manual.</p>
+    
+    <p>Dikembangkan dengan teknologi yang ringan, aman, dan mobile-friendly, kami ingin menciptakan pengalaman terbaik bagi seluruh pengguna. Website ini juga dilengkapi dengan tips finansial, fitur kasbon, dan dukungan privasi untuk menjaga kerahasiaan setiap data karyawan.</p>
+    
+    <p><em>“Karyawan yang memiliki kontrol terhadap keuangannya adalah karyawan yang berdaya.”</em></p>
   </div>
 
+  <!-- ✅ BUTTON -->
   <div class="button-container">
     <a href="index.html" class="button">🏠 Kembali ke Beranda</a>
   </div>
-    <!-- ✅ Script Toggle Menu -->
- <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const menu = document.getElementById('menu');
 
-    menuToggle.addEventListener('click', function () {
-      menu.classList.toggle('active');
+  <!-- ✅ SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const menu = document.getElementById('menu');
+
+      menuToggle.addEventListener('click', function () {
+        menu.classList.toggle('active');
+      });
     });
-  });
-</script>
+  </script>
 
 </body>
 </html>
+
+
