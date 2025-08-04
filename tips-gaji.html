@@ -156,9 +156,7 @@
       <li><a href="contact.html">Kontak</a></li>
     </ul>
   </nav>
-___________________________________________________________________________________________________________________________________________
-___________________________________________________________________________________________________________________________________________
-___________________________________________________________________________________________________________________________________________
+
   <h1>5 Tips Mengatur Gaji Bulanan dengan Bijak</h1>
   <ol>
     <li><strong>Buat Anggaran Bulanan:</strong> Catat pemasukan dan semua pengeluaran agar kamu tahu ke mana uang pergi.</li>
@@ -171,9 +169,17 @@ ________________________________________________________________________________
   <p>Semoga tips ini membantumu mengelola keuangan dengan lebih baik!</p>
 
   <p><a href="index.html">← Kembali ke Beranda</a></p>
-  script src="kasbon.js"></script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('menu');
 
+    menuToggle.addEventListener('click', function() {
+      menu.classList.toggle('active');
+    });
+  });
+</script>
 </body>
 </html>
 <!-- Tombol ke halaman finance dengan animasi -->
