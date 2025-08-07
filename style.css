@@ -134,3 +134,9 @@ footer {
   font-size: 14px;
   z-index: 100;
 }
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f0f0f;
+  color: #e0e0e0;
+}

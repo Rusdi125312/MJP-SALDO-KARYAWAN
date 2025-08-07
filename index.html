@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard Gaji - MJP</title>
+  <title>Dashboard - MJP</title>
 
   <!-- AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4381097964402349" crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4381097964402349"
+     crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="style2.css" />
+
   <style>
     body {
       margin: 0;
@@ -17,6 +19,9 @@
       background: url('bg2.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     .navbar {
@@ -93,78 +98,79 @@
       }
     }
 
-    .dashboard {
+    .container {
       padding-top: 100px;
-      max-width: 960px;
-      margin: auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-      padding: 30px;
+      padding-bottom: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
     }
 
-    h1 {
-      text-align: center;
+    h2 {
       margin-bottom: 30px;
       color: #2ecc71;
     }
 
-    .stats {
+    .cards {
       display: flex;
-      justify-content: space-between;
       flex-wrap: wrap;
       gap: 20px;
+      justify-content: center;
     }
 
     .card {
-      flex: 1;
-      min-width: 250px;
-      background-color: rgba(255,255,255,0.1);
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 25px;
+      max-width: 300px;
+      flex: 1 1 280px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
     }
 
     .card h3 {
+      color: #00e0ff;
       margin-bottom: 10px;
-      color: #f1c40f;
     }
 
     .card p {
-      font-size: 24px;
-      font-weight: bold;
-      color: #ecf0f1;
+      color: #ffffff;
+      font-size: 15px;
+      line-height: 1.6;
     }
 
-    .quick-links {
+    .button-container {
       margin-top: 30px;
-      text-align: center;
     }
 
-    .quick-links a {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 20px;
-      background-color: #3498db;
-      color: #fff;
+    .button-container a {
       text-decoration: none;
-      border-radius: 6px;
+      background-color: #3498db;
+      color: white;
+      padding: 14px 25px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
       transition: background-color 0.3s ease;
+      display: inline-block;
     }
 
-    .quick-links a:hover {
+    .button-container a:hover {
       background-color: #2980b9;
     }
 
-    .chart-placeholder {
-      margin-top: 40px;
-      background-color: rgba(255,255,255,0.1);
+    footer {
+      margin-top: auto;
       padding: 20px;
-      border-radius: 10px;
+      background-color: rgba(0,0,0,0.7);
       text-align: center;
-      color: #bdc3c7;
+      color: #aaa;
+      font-size: 14px;
     }
-
   </style>
 </head>
 
@@ -186,61 +192,39 @@
     </ul>
   </nav>
 
-  <!-- Konten Dashboard -->
-  <div class="dashboard">
-    <h1>📊 Dashboard Rekap Gaji</h1>
-<div class="stats">
-  <div class="card">
-    <h3>💼 <span class="highlight">Cek Sisa Saldo</span></h3>
-    <p>
-      Website ini membantu Anda untuk <strong>mengetahui sisa saldo</strong> Anda secara real time. 
-      Tidak perlu lagi menunggu laporan manual, cukup akses kapan saja melalui perangkat Anda.
-    </p>
-  </div>
+  <!-- Konten -->
+  <div class="container">
+    <h2>Selamat Datang di Dashboard MJP</h2>
 
-  <div class="card">
-    <h3>📄 <span class="highlight">Ajukan Kasbon</span></h3>
-    <p>
-      Fitur <strong>pengajuan kasbon online</strong> memudahkan Anda mengirimkan permintaan pinjaman dengan cepat. 
-      Tanpa perlu kertas, semua dilakukan secara digital dan aman.
-    </p>
-  </div>
-
-  <div class="card">
-    <h3>✅ <span class="highlight">Status Persetujuan Kasbon</span></h3>
-    <p>
-      Lacak pengajuan kasbon Anda dan lihat apakah permintaan telah <strong>di-ACC atau ditolak</strong>. 
-      Semua data tersimpan rapi dan transparan untuk pengguna.
-    </p>
-  </div>
-</div>
-
-
-    <div class="quick-links">
-      <a href="indexold.html">💰 Cek Sisa saldo</a>
-     
+    <div class="cards">
+      <div class="card">
+        <h3>Cek Saldo Gaji</h3>
+        <p>Mengetahui sisa gaji adalah langkah awal untuk mengatur masa depan keuanganmu. Bijaklah sebelum bertindak.</p>
+      </div>
+      <div class="card">
+        <h3>Pengajuan Kasbon</h3>
+        <p>Ketika kebutuhan mendesak datang, kasbon adalah jembatan. Ajukan dengan tanggung jawab dan perencanaan.</p>
+      </div>
+      <div class="card">
+        <h3>Cek ACC Kasbon</h3>
+        <p>Pantau status pengajuan kasbonmu. Ketahui kapan kasbon disetujui tanpa harus bertanya atau menunggu lama.</p>
+      </div>
     </div>
 
-    <div class="chart-placeholder">
-      <h3>CEK SALDO KAMU</h3>
-      <p>Selamat Datang di Website Kami!
-Kami senang Anda berkunjung. Temukan berbagai informasi, layanan, dan konten menarik yang telah kami siapkan khusus untuk Anda.</p>
+    <div class="button-container">
+      <a href="indexold.html">💼 Cek Saldo Sekarang</a>
     </div>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    MJP © 2025. All rights reserved.
+  </footer>
 
   <script>
     function toggleMenu() {
       document.getElementById('menu').classList.toggle('active');
     }
   </script>
-
- <footer>
-    &copy; 2025 MJP Saldo. All rights reserved.
-  </footer> 
-
-
 </body>
 </html>
-
-
-

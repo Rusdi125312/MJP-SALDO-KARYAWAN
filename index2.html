@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - MJP Saldo</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ajukan Kasbon - MJP</title>
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4381097964402349"
+     crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style2.css" />
+
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
+      font-family: Arial, sans-serif;
+      background: url('bg2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
     }
+
     .navbar {
-      background-color: #005792;
+      background-color: rgba(44, 62, 80, 0.9);
       padding: 10px 20px;
       position: fixed;
       top: 0;
@@ -24,34 +33,40 @@
       justify-content: space-between;
       align-items: center;
     }
+
     .navbar .logo {
-      color: #fff;
+      color: #ecf0f1;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 20px;
       text-decoration: none;
     }
+
     .navbar ul {
       list-style: none;
       display: flex;
-      gap: 12px;
+      gap: 15px;
       margin: 0;
       padding: 0;
     }
+
     .navbar ul li a {
       color: #ecf0f1;
       text-decoration: none;
-      padding: 8px 12px;
+      padding: 8px 14px;
       border-radius: 5px;
       transition: background-color 0.3s ease;
     }
+
     .navbar ul li a:hover {
       background-color: #3498db;
     }
+
     .menu-toggle {
       display: none;
       flex-direction: column;
       cursor: pointer;
     }
+
     .menu-toggle span {
       height: 3px;
       width: 25px;
@@ -59,84 +74,71 @@
       margin: 4px 0;
       border-radius: 2px;
     }
+
     @media (max-width: 768px) {
       .navbar ul {
         display: none;
         flex-direction: column;
         width: 100%;
-        background-color: #005792;
+        background-color: rgba(44, 62, 80, 0.95);
         position: absolute;
         top: 55px;
         left: 0;
       }
+
       .navbar ul.active {
         display: flex;
       }
+
       .menu-toggle {
         display: flex;
       }
     }
-    header {
-      background-color: #005792;
-      color: white;
-      padding: 1.2rem 2rem;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      margin-top: 60px;
-    }
+
     .container {
-      max-width: 960px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    .card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .card h2 {
-      margin-top: 0;
-      color: #005792;
-    }
-    .card p {
-      font-size: 1.05rem;
-      line-height: 1.6;
-    }
-    .icon {
-      font-size: 2rem;
-      color: #005792;
-      margin-right: 10px;
-    }
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    footer {
+      padding-top: 100px;
+      max-width: 400px;
+      margin: 0 auto;
       text-align: center;
-      font-size: 0.9rem;
-      color: #777;
-      padding: 2rem 1rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     }
-    .btn-link {
-      display: inline-block;
-      padding: 12px 20px;
-      background-color: #3498db;
-      color: white;
+
+    h2 {
+      margin-bottom: 20px;
+      color: #2ecc71;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 30px;
+      align-items: center;
+    }
+
+    .button-container a {
       text-decoration: none;
+      background-color: #2ecc71;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 16px;
       font-weight: bold;
-      border-radius: 8px;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 300px;
       text-align: center;
+      transition: background-color 0.3s ease;
     }
-    .btn-link:hover {
-      background-color: #2980b9;
+
+    .button-container a:hover {
+      background-color: #27aea7;
     }
   </style>
 </head>
+
 <body>
   <!-- Navbar -->
   <nav class="navbar">
@@ -155,41 +157,16 @@
     </ul>
   </nav>
 
-  <header>
-    <h1><i class="fas fa-wallet"></i> Dashboard MJP Saldo</h1>
-  </header>
-
+  <!-- Konten -->
   <div class="container">
-    <div class="dashboard-grid">
-      <div class="card">
-        <h2><i class="fas fa-money-check-alt icon"></i>Cek Sisa Saldo Gaji</h2>
-        <p>Website ini membantu Anda melihat sisa saldo gaji kapan pun dibutuhkan, secara praktis dan akurat.</p>
-      </div>
-
-      <div class="card">
-        <h2><i class="fas fa-hand-holding-usd icon"></i>Ajukan Kasbon</h2>
-        <p>Ajukan kasbon dengan mudah melalui fitur online tanpa harus repot bertanya ke HR atau admin.</p>
-      </div>
-
-      <div class="card">
-        <h2><i class="fas fa-check-circle icon"></i>Status Kasbon</h2>
-        <p>Anda dapat memantau status pengajuan kasbon secara real-time: apakah sudah disetujui atau masih menunggu.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2><i class="fas fa-info-circle icon"></i>Tentang Website Ini</h2>
-      <p>MJP Saldo dirancang untuk membantu karyawan mengetahui informasi keuangan secara transparan dan efisien. Baik untuk keperluan pribadi maupun laporan internal, semua bisa diakses dalam satu platform digital.</p>
-    </div>
-
-    <div class="card" style="text-align:center">
-      <a href="indexold.html" class="btn-link">💼 Cek Saldo Sekarang</a>
+    <h2>Ajukan Kasbon Anda di Sini</h2>
+    <div class="button-container">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdbkH9yWUt2EIlFMkrmaIro7o_d--bLThkdo1wKA2H_yyi7PA/closedform" target="_blank">
+        Isi Form Kasbon
+      </a>
+      <a href="kasbon.html">Lihat Data Kasbon</a>
     </div>
   </div>
-
-  <footer>
-    &copy; 2025 MJP Saldo. All rights reserved.
-  </footer>
 
   <script>
     function toggleMenu() {
@@ -198,5 +175,6 @@
   </script>
 </body>
 </html>
+
 
 
