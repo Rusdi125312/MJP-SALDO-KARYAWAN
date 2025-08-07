@@ -1,25 +1,19 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Form Kasbon Karyawan</title>
-
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4381097964402349"
-    crossorigin="anonymous"></script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - MJP Saldo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: url('bg2.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
     }
-
     .navbar {
-      background-color: rgba(44, 62, 80, 0.9);
+      background-color: #005792;
       padding: 10px 20px;
       position: fixed;
       top: 0;
@@ -30,14 +24,12 @@
       justify-content: space-between;
       align-items: center;
     }
-
     .navbar .logo {
-      color: #ecf0f1;
+      color: #fff;
       font-weight: bold;
       font-size: 18px;
       text-decoration: none;
     }
-
     .navbar ul {
       list-style: none;
       display: flex;
@@ -45,7 +37,6 @@
       margin: 0;
       padding: 0;
     }
-
     .navbar ul li a {
       color: #ecf0f1;
       text-decoration: none;
@@ -53,17 +44,14 @@
       border-radius: 5px;
       transition: background-color 0.3s ease;
     }
-
     .navbar ul li a:hover {
       background-color: #3498db;
     }
-
     .menu-toggle {
       display: none;
       flex-direction: column;
       cursor: pointer;
     }
-
     .menu-toggle span {
       height: 3px;
       width: 25px;
@@ -71,47 +59,67 @@
       margin: 4px 0;
       border-radius: 2px;
     }
-
     @media (max-width: 768px) {
       .navbar ul {
         display: none;
         flex-direction: column;
         width: 100%;
-        background-color: rgba(44, 62, 80, 0.95);
+        background-color: #005792;
         position: absolute;
         top: 55px;
         left: 0;
       }
-
       .navbar ul.active {
         display: flex;
       }
-
       .menu-toggle {
         display: flex;
       }
     }
-
-    .container {
-      max-width: 500px;
-      margin: 100px auto 30px;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    header {
+      background-color: #005792;
+      color: white;
+      padding: 1.2rem 2rem;
       text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-top: 60px;
     }
-
-    h2 {
-      color: #2ecc71;
-      margin-bottom: 10px;
+    .container {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1rem;
     }
-
-    p {
-      margin-bottom: 25px;
-      font-size: 15px;
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
     }
-
+    .card h2 {
+      margin-top: 0;
+      color: #005792;
+    }
+    .card p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    .icon {
+      font-size: 2rem;
+      color: #005792;
+      margin-right: 10px;
+    }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      padding: 2rem 1rem;
+    }
     .btn-link {
       display: inline-block;
       padding: 12px 20px;
@@ -122,35 +130,15 @@
       border-radius: 8px;
       transition: background-color 0.3s ease;
       box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+      text-align: center;
     }
-
     .btn-link:hover {
       background-color: #2980b9;
     }
-
-    .container button {
-      padding: 12px 20px;
-      background-color: #2ecc71;
-      border: none;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 10px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-      transition: background-color 0.3s ease;
-    }
-
-    .container button:hover {
-      background-color: #27ae60;
-    }
   </style>
 </head>
-
 <body>
-
-  <!-- ✅ NAVBAR -->
+  <!-- Navbar -->
   <nav class="navbar">
     <a href="index.html" class="logo">MJP</a>
     <div class="menu-toggle" onclick="toggleMenu()">
@@ -167,21 +155,41 @@
     </ul>
   </nav>
 
-  <!-- ✅ CONTENT -->
+  <header>
+    <h1><i class="fas fa-wallet"></i> Dashboard MJP Saldo</h1>
+  </header>
+
   <div class="container">
-    <h2>Form Kasbon Karyawan</h2>
-    <p>Jika kamu ingin mengajukan kasbon, silakan isi formulir di bawah ini:</p>
+    <div class="dashboard-grid">
+      <div class="card">
+        <h2><i class="fas fa-money-check-alt icon"></i>Cek Sisa Saldo Gaji</h2>
+        <p>Website ini membantu Anda melihat sisa saldo gaji kapan pun dibutuhkan, secara praktis dan akurat.</p>
+      </div>
 
-    <a href="https://s.id/kasbon_kry_ptmjp" target="_blank" class="btn-link">
-      📋 Klik di sini untuk isi Form Kasbon
-    </a>
+      <div class="card">
+        <h2><i class="fas fa-hand-holding-usd icon"></i>Ajukan Kasbon</h2>
+        <p>Ajukan kasbon dengan mudah melalui fitur online tanpa harus repot bertanya ke HR atau admin.</p>
+      </div>
 
-    <div style="margin-top: 25px;">
-      <a href="kasbon.html">
-        <button>💰 Cek Kasbon Kamu</button>
-      </a>
+      <div class="card">
+        <h2><i class="fas fa-check-circle icon"></i>Status Kasbon</h2>
+        <p>Anda dapat memantau status pengajuan kasbon secara real-time: apakah sudah disetujui atau masih menunggu.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-info-circle icon"></i>Tentang Website Ini</h2>
+      <p>MJP Saldo dirancang untuk membantu karyawan mengetahui informasi keuangan secara transparan dan efisien. Baik untuk keperluan pribadi maupun laporan internal, semua bisa diakses dalam satu platform digital.</p>
+    </div>
+
+    <div class="card" style="text-align:center">
+      <a href="indexold.html" class="btn-link">💼 Cek Saldo Sekarang</a>
     </div>
   </div>
+
+  <footer>
+    &copy; 2025 MJP Saldo. All rights reserved.
+  </footer>
 
   <script>
     function toggleMenu() {
@@ -190,4 +198,5 @@
   </script>
 </body>
 </html>
+
 
