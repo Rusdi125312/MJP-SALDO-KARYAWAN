@@ -99,7 +99,7 @@
     }
 
     .container {
-      padding-top: 100px;
+      padding-top: 120px;
       padding-bottom: 40px;
       max-width: 1000px;
       margin: 0 auto;
@@ -108,7 +108,9 @@
 
     h2 {
       margin-bottom: 30px;
-      color: #2ecc71;
+      color: #00ffcc;
+      font-size: 30px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     }
 
     .cards {
@@ -119,22 +121,25 @@
     }
 
     .card {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(0, 0, 0, 0.5);
+      border: 1px solid #3498db;
       border-radius: 12px;
       padding: 25px;
       max-width: 300px;
       flex: 1 1 280px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-      transition: transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
     .card:hover {
       transform: scale(1.05);
+      background-color: rgba(0, 0, 0, 0.6);
     }
 
     .card h3 {
       color: #00e0ff;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      font-size: 20px;
     }
 
     .card p {
@@ -184,6 +189,7 @@
     <ul id="menu">
       <li><a href="index.html">Home</a></li>
       <li><a href="kasbon.html">Kasbon</a></li>
+      <li><a href="index2.html">Isi Link</a></li>
       <li><a href="finance.html">Finance</a></li>
       <li><a href="tips-gaji.html">Tips Gaji</a></li>
       <li><a href="about.html">Tentang Kami</a></li>
@@ -194,7 +200,7 @@
 
   <!-- Konten -->
   <div class="container">
-    <h2>Selamat Datang di Dashboard MJP</h2>
+    <h2>Selamat Datang di Dashboard MJP 💼</h2>
 
     <div class="cards">
       <div class="card">
@@ -212,7 +218,7 @@
     </div>
 
     <div class="button-container">
-      <a href="indexold.html">💼 Cek Saldo Sekarang</a>
+      <a href="indexold.html">💰 Cek Saldo Sekarang</a>
     </div>
   </div>
 
