@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Absensi Karyawan - MJP</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('bg2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    /* Navbar sama seperti dashboard */
+    .navbar {
+      background-color: rgba(44, 62, 80, 0.9);
+      padding: 10px 20px;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar .logo {
+      color: #ecf0f1;
+      font-weight: bold;
+      font-size: 20px;
+      text-decoration: none;
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      margin: 0; padding: 0;
+    }
+    .navbar ul li a {
+      color: #ecf0f1;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .navbar ul li a:hover { background-color: #3498db; }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background-color: white;
+      margin: 4px 0;
+      border-radius: 2px;
+    }
+    @media (max-width: 768px) {
+      .navbar ul { display: none; flex-direction: column; width: 100%;
+        background-color: rgba(44, 62, 80, 0.95);
+        position: absolute; top: 55px; left: 0;
+      }
+      .navbar ul.active { display: flex; }
+      .menu-toggle { display: flex; }
+    }
+    /* Container */
+    .container {
+      padding-top: 120px;
+      padding-bottom: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 30px;
+      color: #00ffcc;
+      font-size: 30px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    /* Form Login */
+    .login-form {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 400px;
+      margin: 0 auto 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    .login-form input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+    .login-form button {
+      background: linear-gradient(135deg, #00ff80, #00cc44);
+      border: none;
+      padding: 12px 20px;
+      color: #000;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    .login-form button:hover {
+      background: linear-gradient(135deg, #00e673, #00b33c);
+      transform: scale(1.05);
+    }
+    /* Tabel */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(0,0,0,0.6);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      text-align: center;
+    }
+    th {
+      background: rgba(0,255,128,0.3);
+      color: #fff;
+    }
+    tr:hover { background: rgba(255,255,255,0.1); }
+    footer {
+      margin-top: auto;
+      padding: 20px;
+      background-color: rgba(0,0,0,0.7);
+      text-align: center;
+      color: #aaa;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">MJP</a>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <ul id="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="kasbon.html">Kasbon</a></li>
+      <li><a href="index2.html">Isi Link</a></li>
+      <li><a href="finance.html">Finance</a></li>
+      <li><a href="tips-gaji.html">Tips Gaji</a></li>
+      <li><a href="about.html">Tentang Kami</a></li>
+      <li><a href="privacy.html">Privasi</a></li>
+      <li><a href="contact.html">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h2>Absensi Karyawan</h2>
+
+    <!-- Form Login -->
+    <div class="login-form" id="loginForm">
+      <input type="text" id="username" placeholder="Nama" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button onclick="login()">Login</button>
+    </div>
+
+    <!-- Tabel Absensi -->
+    <div id="absensiSection" style="display:none;">
+      <h3 id="welcomeUser"></h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Tanggal</th>
+            <th>Nama</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="absenTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    MJP © 2025. All rights reserved.
+  </footer>
+
+  <script>
+    const dataAbsensi = [
+      { tanggal: '2025-08-01', nama: 'Budi', status: 'Hadir' },
+      { tanggal: '2025-08-01', nama: 'Andi', status: 'Hadir' },
+      { tanggal: '2025-08-02', nama: 'Budi', status: 'Izin' },
+      { tanggal: '2025-08-02', nama: 'Andi', status: 'Hadir' },
+      { tanggal: '2025-08-03', nama: 'Budi', status: 'Hadir' },
+    ];
+
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('active');
+    }
+
+    function login() {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+
+      // Password contoh: "1234" untuk semua user
+      if (user && pass === "1234") {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('absensiSection').style.display = 'block';
+        document.getElementById('welcomeUser').innerText = `Data Absensi: ${user}`;
+
+        const tbody = document.getElementById('absenTable');
+        tbody.innerHTML = '';
+        dataAbsensi
+          .filter(row => row.nama.toLowerCase() === user.toLowerCase())
+          .forEach(row => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${row.tanggal}</td><td>${row.nama}</td><td>${row.status}</td>`;
+            tbody.appendChild(tr);
+          });
+
+        if (tbody.innerHTML === '') {
+          tbody.innerHTML = `<tr><td colspan="3">Tidak ada data untuk ${user}</td></tr>`;
+        }
+      } else {
+        alert("Nama atau password salah!");
+      }
+    }
+  </script>
+</body>
+</html>
