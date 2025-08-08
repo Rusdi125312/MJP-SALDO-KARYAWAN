@@ -24,6 +24,7 @@
       min-height: 100vh;
     }
 
+    /* Navbar */
     .navbar {
       background-color: rgba(44, 62, 80, 0.9);
       padding: 10px 20px;
@@ -88,16 +89,15 @@
         top: 55px;
         left: 0;
       }
-
       .navbar ul.active {
         display: flex;
       }
-
       .menu-toggle {
         display: flex;
       }
     }
 
+    /* Container */
     .container {
       padding-top: 120px;
       padding-bottom: 40px;
@@ -113,6 +113,7 @@
       text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     }
 
+    /* Card */
     .cards {
       display: flex;
       flex-wrap: wrap;
@@ -129,11 +130,13 @@
       flex: 1 1 280px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
       transition: transform 0.3s ease, background-color 0.3s ease;
+      text-align: center;
     }
 
     .card:hover {
       transform: scale(1.05);
       background-color: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 15px rgba(0,255,128,0.4);
     }
 
     .card h3 {
@@ -148,6 +151,26 @@
       line-height: 1.6;
     }
 
+    /* Tombol di card */
+    .card .card-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #00ff80, #00cc44);
+      color: #000;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      margin-top: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .card .card-button:hover {
+      background: linear-gradient(135deg, #00e673, #00b33c);
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0, 255, 128, 0.5);
+    }
+
+    /* Tombol bawah */
     .button-container {
       margin-top: 30px;
     }
@@ -175,6 +198,17 @@
       text-align: center;
       color: #aaa;
       font-size: 14px;
+    }
+
+    /* Responsif */
+    @media (max-width: 500px) {
+      .card {
+        padding: 15px;
+      }
+      .card .card-button {
+        width: 100%;
+        box-sizing: border-box;
+      }
     }
   </style>
 </head>
@@ -205,21 +239,31 @@
     <div class="cards">
       <div class="card">
         <h3>Cek Saldo Gaji</h3>
-        <p>Lihat sisa gaji kamu secara real-time, kapan saja dan di mana saja. Fitur ini membantu kamu mengelola keuangan dengan lebih efisien dan transparan.
+        <p>Lihat sisa gaji kamu secara real-time, kapan saja dan di mana saja. Fitur ini membantu kamu mengelola keuangan dengan lebih efisien dan transparan.</p>
+        <a href="indexold.html" class="card-button">Cek Saldo</a>
       </div>
+
       <div class="card">
         <h3>Pengajuan Kasbon</h3>
-        <p>Ajukan kasbon dengan mudah dan cepat melalui web, tanpa perlu proses manual yang memakan waktu. Semua pengajuan tercatat otomatis dan bisa dipantau statusnya.
+        <p>Ajukan kasbon dengan mudah dan cepat melalui web, tanpa perlu proses manual yang memakan waktu. Semua pengajuan tercatat otomatis dan bisa dipantau statusnya.</p>
+        <a href="index2.html" class="card-button">Ajukan Kasbon</a>
       </div>
+
       <div class="card">
         <h3>Cek ACC Kasbon</h3>
-        <p>Pantau status persetujuan kasbon secara online. Tidak perlu lagi menunggu kabar atau bertanya ke admin, semua informasi bisa diakses langsung dari dashboard.
+        <p>Pantau status persetujuan kasbon secara online. Tidak perlu lagi menunggu kabar atau bertanya ke admin, semua informasi bisa diakses langsung dari dashboard.</p>
+        <a href="kasbon.html" class="card-button">Cek ACC</a>
+      </div>
+
+      <div class="card">
+        <h3>Lihat Absen Karyawan</h3>
+        <p>Cek data kehadiran dan absensi karyawan secara online. Fitur ini memudahkan pemantauan kehadiran tanpa harus mencatat manual.</p>
+        <a href="absen.html" class="card-button">Lihat Absen</a>
       </div>
     </div>
 
-
     <div class="button-container">
-      <a href="indexold.html">💰 Cek Saldo Sekarang</a>
+      <a href="tips-gaji.html">Belajar</a>
     </div>
   </div>
 
