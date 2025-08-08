@@ -2,95 +2,44 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Absen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cek Absensi</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #eef2f3;
-      padding: 20px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    table, th, td {
-      border: 1px solid #333;
-    }
-    th, td {
-      padding: 8px;
-      text-align: center;
-    }
-    th {
-      background-color: #4CAF50;
-      color: white;
-    }
-    .logout {
-      margin-top: 20px;
-    }
+    body { background:#222; color:white; font-family:sans-serif; }
+    table { width:100%; border-collapse:collapse; margin-top:20px; }
+    th, td { border:1px solid #555; padding:8px; text-align:left; }
+    th { background:#444; }
   </style>
 </head>
 <body>
-  <h2>Data Absen</h2>
-  <p id="welcome"></p>
-
-  <table id="tabel-absen">
+  <h1>📋 Data Absensi Seluruh Karyawan</h1>
+  <table>
     <thead>
-      <tr>
-        <th>Nama</th>
-        <th>Tanggal</th>
-        <th>Status</th>
-      </tr>
+      <tr><th>Tanggal</th><th>Nama</th><th>Absen</th></tr>
     </thead>
-    <tbody></tbody>
+    <tbody id="absen-data">
+      <tr><td colspan="3">Loading data...</td></tr>
+    </tbody>
   </table>
 
-  <button class="logout" onclick="logout()">Logout</button>
-
   <script>
-    const sheetID = "1r1OzFKF2y3w7FcG4b4_wn-6JSbLG8BSD_BU8CvBVlWw";
-    const sheetName = "ABSEN";
-    const url = `https://opensheet.elk.sh/${sheetID}/${sheetName}`;
-
-    const namaLogin = localStorage.getItem("namaUser");
-
-    if (!namaLogin) {
-      // kalau belum login, kembalikan ke login
-      window.location.href = "login.html";
-    }
-
-    document.getElementById("welcome").innerText = `Selamat datang, ${namaLogin}`;
-
-    fetch(url)
+    const sheetURL = "https://opensheet.elk.sh/1r1OzFKF2y3w7FcG4b4_wn-6JSbLG8BSD_BU8CvBVlWw/ABSENWEB";
+    fetch(sheetURL)
       .then(res => res.json())
       .then(data => {
-        const tbody = document.querySelector("#tabel-absen tbody");
-        tbody.innerHTML = ""; // kosongkan tabel
-
-        const dataUser = data.filter(row => row.nama.toLowerCase() === namaLogin.toLowerCase());
-
-        if (dataUser.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="3">Tidak ada data</td></tr>`;
-        } else {
-          dataUser.forEach(row => {
-            const statusText = row.status == 1 ? "Hadir" : "Alfa/Izin";
-            tbody.innerHTML += `
-              <tr>
-                <td>${row.nama}</td>
-                <td>${row.tanggal}</td>
-                <td>${statusText}</td>
-              </tr>
-            `;
-          });
-        }
+        const tbody = document.getElementById("absen-data");
+        tbody.innerHTML = "";
+        data.forEach(row => {
+          tbody.innerHTML += `<tr>
+            <td>${row.Tanggal}</td>
+            <td>${row.Nama}</td>
+            <td>${row.Absen}</td>
+          </tr>`;
+        });
       })
-      .catch(err => console.error("Gagal ambil data:", err));
-
-    function logout() {
-      localStorage.removeItem("namaUser");
-      window.location.href = "login.html";
-    }
+      .catch(() => {
+        document.getElementById("absen-data").innerHTML = `<tr><td colspan="3">Gagal memuat data</td></tr>`;
+      });
   </script>
 </body>
 </html>
