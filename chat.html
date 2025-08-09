@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live Chat Karyawan</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style2.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('bg2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .container {
+      max-width: 500px;
+      margin: 110px auto 30px auto;
+      background: rgba(0,0,0,0.7);
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      padding: 30px 20px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      min-height: 500px;
+    }
+    h2 {
+      text-align: center;
+      color: #00ffcc;
+      margin-bottom: 18px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    #chat-box {
+      flex: 1;
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 14px;
+      overflow-y: auto;
+      max-height: 300px;
+      min-height: 200px;
+      font-size: 15px;
+    }
+    .chat-msg {
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      background: rgba(0,255,200,0.08);
+      border-radius: 6px;
+      color: #fff;
+      word-break: break-word;
+    }
+    .chat-user {
+      color: #00ffcc;
+      font-weight: bold;
+      margin-right: 6px;
+    }
+    #chat-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    #chat-name, #chat-input {
+      border-radius: 6px;
+      border: none;
+      padding: 10px;
+      font-size: 15px;
+      outline: none;
+    }
+    #chat-name {
+      width: 30%;
+      background: #ececec;
+      color: #333;
+    }
+    #chat-input {
+      flex: 1;
+      background: #ececec;
+      color: #333;
+    }
+    #chat-send {
+      background: linear-gradient(135deg, #00ff80, #00ccff);
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      padding: 10px 18px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    #chat-send:hover {
+      background: linear-gradient(135deg, #00e673, #00b3e6);
+      color: #fff;
+    }
+    @media (max-width:600px) {
+      .container { padding: 10px; margin: 80px 5px 20px 5px; }
+      #chat-form { flex-direction: column; }
+      #chat-name, #chat-input, #chat-send { width: 100%; }
+    }
+    /* Navbar fix */
+    .navbar {
+      background-color: rgba(44, 62, 80, 0.9);
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar .logo {
+      color: #ecf0f1;
+      font-weight: bold;
+      font-size: 22px;
+      text-decoration: none;
+    }
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 18px;
+    }
+    .navbar ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .navbar ul li a:hover {
+      color: #00ffcc;
+    }
+    .menu-toggle { display: none; }
+    @media (max-width: 700px) {
+      .container { margin: 70px 5px 20px 5px; }
+      .navbar ul { flex-direction: column; background: rgba(44,62,80,0.98); position: absolute; top: 50px; right: 0; left: 0; display: none; }
+      .navbar ul.active { display: flex; }
+      .menu-toggle { display: block; cursor: pointer; }
+      .menu-toggle span {
+        display: block; width: 25px; height: 3px; margin: 5px; background: #fff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">MJP</a>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <ul id="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="kasbon.html">Kasbon</a></li>
+      <li><a href="index2.html">Isi Link</a></li>
+      <li><a href="finance.html">Finance</a></li>
+      <li><a href="tips-gaji.html">Tips Gaji</a></li>
+      <li><a href="about.html">Tentang Kami</a></li>
+      <li><a href="privacy.html">Privasi</a></li>
+      <li><a href="contact.html">Kontak</a></li>
+      <li><a href="chat.html">Chat</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h2>💬 Live Chat Karyawan</h2>
+    <div id="chat-box"></div>
+    <form id="chat-form" autocomplete="off">
+      <input type="text" id="chat-name" placeholder="Nama" required />
+      <input type="text" id="chat-input" placeholder="Tulis pesan..." required />
+      <button type="submit" id="chat-send">Kirim</button>
+    </form>
+  </div>
+
+  <footer style="margin-top:auto;padding:20px;background:rgba(0,0,0,0.7);text-align:center;color:#aaa;font-size:14px;">
+    MJP © 2025. All rights reserved.
+  </footer>
+
+  <script>
+    // Toggle menu responsive
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('active');
+    }
+
+    // Ambil pesan dari localStorage
+    function loadChat() {
+      const chatBox = document.getElementById('chat-box');
+      chatBox.innerHTML = '';
+      const chatData = JSON.parse(localStorage.getItem('chatData') || '[]');
+      chatData.forEach(msg => {
+        chatBox.innerHTML += `<div class="chat-msg"><span class="chat-user">${msg.nama}:</span> ${msg.pesan}</div>`;
+      });
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Kirim pesan
+    document.getElementById('chat-form').onsubmit = function(e) {
+      e.preventDefault();
+      const nama = document.getElementById('chat-name').value.trim();
+      const pesan = document.getElementById('chat-input').value.trim();
+      if (!nama || !pesan) return;
+      const chatData = JSON.parse(localStorage.getItem('chatData') || '[]');
+      chatData.push({ nama, pesan });
+      localStorage.setItem('chatData', JSON.stringify(chatData));
+      document.getElementById('chat-input').value = '';
+      loadChat();
+    };
+
+    // Load chat saat halaman dibuka
