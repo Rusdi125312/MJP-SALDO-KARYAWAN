@@ -8,9 +8,9 @@ document.getElementById("loginKasbonForm").addEventListener("submit", function(e
 
   // Data karyawan (nama dan password dalam huruf kecil semua)
   const dataKasbon = {
-"rusdi rustiandi saputra": { password: "2222", kasbon: 300000 },
+"rusdi rustiandi saputra": { password: "2222", kasbon: 3000000 },
 "febri adi fiansyah": { password: "2224", kasbon: 600000 },
-"haky tri eryawan": { password: "2225", kasbon: 600000 },
+"haky tri eryawan": { password: "2225", kasbon: 500000 },
 "dede gunawan": { password: "2227", kasbon: 200000 },
 "hari anggawijaya": { password: "2228", kasbon: 1000000 },
 "fikran s janual": { password: "2229", kasbon: 300000 },
