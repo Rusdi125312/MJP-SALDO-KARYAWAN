@@ -1,5 +1,5 @@
 const users = [
-{ nama: "rusdi rustiandi saputra", password: "2222", sisaGaji: 53960700, role: "admin" },
+{ nama: "rusdi rustiandi saputra", password: "2222", sisaGaji: 53860700, role: "admin" },
 { nama: "budiansyah", password: "2223", sisaGaji: 5982030, role: "karyawan" },
 { nama: "febri adi fiansyah", password: "2224", sisaGaji: -248062, role: "karyawan" },
 { nama: "haky tri eryawan", password: "2225", sisaGaji: -99920, role: "karyawan" },
