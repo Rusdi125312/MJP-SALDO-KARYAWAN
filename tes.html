@@ -54,6 +54,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      height: 55px;
+      box-sizing: border-box;
     }
 
     .navbar .logo {
@@ -118,7 +120,7 @@
     /* Container */
     .container {
       flex: 1 0 auto;
-      padding-top: 80px;
+      padding-top: 95px; /* Tinggi navbar + margin */
       padding-bottom: 40px;
       max-width: 1000px;
       margin: 0 auto;
@@ -247,7 +249,7 @@
     }
     @media (max-width: 600px) {
       .container {
-        padding-top: 110px;
+        padding-top: 120px;
         padding-left: 8px;
         padding-right: 8px;
         padding-bottom: 90px;
@@ -272,7 +274,7 @@
   <!-- Navbar -->
   <nav class="navbar">
     <a href="index.html" class="logo">MJP</a>
-    <div class="menu-toggle" onclick="toggleMenu()">
+    <div class="menu-toggle" id="menu-toggle">
       <span></span><span></span><span></span>
     </div>
     <ul id="menu">
@@ -341,6 +343,10 @@
   </footer>
 
   <script>
-    function toggleMenu() {
+    // Toggle menu mobile agar tetap berfungsi
+    document.getElementById('menu-toggle').onclick = function() {
       document.getElementById('menu').classList.toggle('active');
-    }
+    };
+  </script>
+</body>
+</html>

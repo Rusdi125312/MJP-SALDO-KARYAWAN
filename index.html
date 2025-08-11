@@ -54,6 +54,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      height: 55px;
+      box-sizing: border-box;
     }
 
     .navbar .logo {
@@ -117,12 +119,13 @@
 
     /* Container */
     .container {
-      padding-top: 70px;
-      padding-bottom: 90px;
+      flex: 1 0 auto;
+      padding-top: 95px; /* Tinggi navbar + margin */
+      padding-bottom: 40px;
       max-width: 1000px;
       margin: 0 auto;
       text-align: center;
-      min-height: 100vh;
+      min-height: 70vh;
       box-sizing: border-box;
     }
 
@@ -218,23 +221,39 @@
       color: #fff;
     }
 
+    /* Footer */
     footer {
-      padding: 20px;
-      background-color: rgba(0,0,0,0.7);
+      flex-shrink: 0;
+      padding: 18px 10px;
+      background-color: rgba(0,0,0,0.85);
       text-align: center;
-      color: #aaa;
-      font-size: 14px;
-      position: relative;
+      color: #eee;
+      font-size: 15px;
+      letter-spacing: 0.5px;
       width: 100%;
+      border-top: 1px solid #222;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 10;
     }
 
     /* Responsif */
+    @media (max-width: 900px) {
+      .cards {
+        flex-direction: column;
+        align-items: center;
+      }
+      .card {
+        max-width: 95vw;
+      }
+    }
     @media (max-width: 600px) {
       .container {
-        padding-top: 110px;
+        padding-top: 120px;
         padding-left: 8px;
         padding-right: 8px;
-        padding-bottom: 110px;
+        padding-bottom: 90px;
+        min-height: 75vh;
       }
       .card {
         padding: 15px;
@@ -242,6 +261,10 @@
       .card .card-button {
         width: 100%;
         box-sizing: border-box;
+      }
+      footer {
+        font-size: 13px;
+        padding: 14px 4px 14px 4px;
       }
     }
   </style>
@@ -251,7 +274,7 @@
   <!-- Navbar -->
   <nav class="navbar">
     <a href="index.html" class="logo">MJP</a>
-    <div class="menu-toggle" onclick="toggleMenu()">
+    <div class="menu-toggle" id="menu-toggle">
       <span></span><span></span><span></span>
     </div>
     <ul id="menu">
@@ -320,3 +343,10 @@
   </footer>
 
   <script>
+    // Toggle menu mobile agar tetap berfungsi
+    document.getElementById('menu-toggle').onclick = function() {
+      document.getElementById('menu').classList.toggle('active');
+    };
+  </script>
+</body>
+</html>
