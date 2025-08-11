@@ -144,7 +144,7 @@
   <!-- Navbar -->
   <nav class="navbar">
     <a href="index.html" class="logo">MJP</a>
-    <div class="menu-toggle" onclick="toggleMenu()">
+    <div class="menu-toggle" id="menu-toggle">
       <span></span><span></span><span></span>
     </div>
     <ul id="menu">
@@ -182,12 +182,14 @@
       </div>
     </div>
   </div>
-<!-- ...existing code...
+<!-- ...existing code.... -->
 
   <script>
-    function toggleMenu() {
+
+  // Toggle menu agar berfungsi di mobile
+    document.getElementById('menu-toggle').onclick = function() {
       document.getElementById('menu').classList.toggle('active');
-    }
+    };
   </script>
 </body>
 </html>
