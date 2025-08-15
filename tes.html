@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Absen Karyawan</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style2.css" />
+
+<!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4381097964402349"
+     crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: url('bg2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .container {
+      padding-top: 900px;;
+      max-width: 500px;
+      margin: 110px auto 30px auto;
+      background: rgba(0,0,0,0.7);
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      padding: 30px 20px 20px 20px;
+    }
+    .card {
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      box-shadow: none;
+      max-width: none;
+      margin: 0;
+    }
+    h1, h2 {
+      font-size: 24px;
+      margin-bottom: 18px;
+      text-align: center;
+      color: #00ffcc;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    label {
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 6px;
+      display: block;
+      text-align: left;
+    }
+    select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border-radius: 8px;
+      border: 1px solid #3498db;
+      font-size: 16px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    button {
+      background: linear-gradient(135deg, #00ff80, #00ccff);
+      color: #000;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #00e673, #00b3e6);
+      color: #fff;
+    }
+    .controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      justify-content: flex-end;
+    }
+    .controls button {
+      width: auto;
+      min-width: 90px;
+      margin: 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(0,0,0,0.5);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+    th, td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid #3498db;
+      color: #fff;
+    }
+    th {
+      background: #222;
+      color: #00e0ff;
+      font-weight: 600;
+    }
+    tr:hover td {
+      background: #1a1a1a;
+    }
+    .small {
+      font-size: 13px;
+      color: #00ffcc;
+      margin-bottom: 8px;
+    }
+    #status {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #ccc;
+      text-align: left;
+    }
+    .back-btn {
+      display: inline-block;
+      margin: 20px 0 0 0;
+      padding: 10px 22px;
+      background: linear-gradient(135deg, #00ff80, #00ccff);
+      color: #000;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 255, 200, 0.3);
+      transition: all 0.3s;
+    }
+    .back-btn:hover {
+      background: linear-gradient(135deg, #00e673, #00b3e6);
+      color: #fff;
+      transform: scale(1.05);
+    }
+    @media (max-width:600px) {
+      .container { padding-top: 120px; margin: 80px 5px 20px 5px; }
+      table, th, td { font-size: 13px; }
+    }
+    /* Navbar fix */
+    .navbar {
+      background-color: rgba(44, 62, 80, 0.9);
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar .logo {
+      color: #ecf0f1;
+      font-weight: bold;
+      font-size: 22px;
+      text-decoration: none;
+    }
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 18px;
+    }
+    .navbar ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .navbar ul li a:hover {
+      color: #00ffcc;
+    }
+    .menu-toggle { display: none; }
+    @media (max-width: 700px) {
+      .container { margin: 70px 5px 20px 5px; }
+      .navbar ul { flex-direction: column; background: rgba(44,62,80,0.98); position: absolute; top: 50px; right: 0; left: 0; display: none; }
+      .navbar ul.active { display: flex; }
+      .menu-toggle { display: block; cursor: pointer; }
+      .menu-toggle span {
+        display: block; width: 25px; height: 3px; margin: 5px; background: #fff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">MJP</a>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <ul id="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="kasbon.html">Kasbon</a></li>
+      <li><a href="index2.html">Isi Link</a></li>
+      <li><a href="finance.html">Finance</a></li>
+      <li><a href="tips-gaji.html">Tips Gaji</a></li>
+      <li><a href="about.html">Tentang Kami</a></li>
+      <li><a href="privacy.html">Privasi</a></li>
+      <li><a href="contact.html">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div id="loginScreen" class="card">
+      <h1>Login Absen</h1>
+      <label>Pilih Nama:</label>
+      <select id="nameSelect"></select>
+      <button id="loginBtn">Login</button>
+    </div>
+
+    <div id="absenScreen" style="display:none;">
+      <header style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px">
+        <div>
+          <h2>Absen Karyawan</h2>
+          <div class="small">Login sebagai: <span id="userName"></span></div>
+        </div>
+        <div class="controls">
+          <button id="btnLogout" class="secondary">Logout</button>
+          <button id="btnReload">Reload</button>
+        </div>
+      </header>
+      <div id="status">Memuat data...</div>
+      <div style="margin-top:12px;overflow:auto">
+        <table>
+          <thead><tr id="theadRow"></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+      <a href="index.html" class="back-btn">← Kembali ke Dashboard</a>
+    </div>
+  </div>
+
+  <footer style="margin-top:auto;padding:20px;background:rgba(0,0,0,0.7);text-align:center;color:#aaa;font-size:14px;">
+    MJP © 2025. All rights reserved.
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('active');
+    }
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSyAD19vapWIxD6g1NlIy63tyH0stasOJtgSfVdTRrJfBkmsOYPfp5hIZ3qlyZqE-BJwhbT2Wjl3V5O/pub?gid=853862450&single=true&output=csv";
+    const loginScreen = document.getElementById('loginScreen');
+    const absenScreen = document.getElementById('absenScreen');
+    const nameSelect = document.getElementById('nameSelect');
+    const loginBtn = document.getElementById('loginBtn');
+    const btnLogout = document.getElementById('btnLogout');
+    const btnReload = document.getElementById('btnReload');
+    const userNameSpan = document.getElementById('userName');
+    const statusEl = document.getElementById('status');
+    const theadRow = document.getElementById('theadRow');
+    const tbody = document.getElementById('tbody');
+    let rawData = [];
+    let currentUser = "";
+
+    async function fetchCSV(){
+      statusEl.textContent = "Mengambil data...";
+      try {
+        const res = await fetch(CSV_URL);
+        const text = await res.text();
+        parseCSV(text);
+        statusEl.textContent = `Selesai. ${rawData.length} baris ditemukan.`;
+      } catch(err) {
+        statusEl.textContent = "Error: " + err.message;
+        console.error(err);
+      }
+    }
+
+    function parseCSV(csvText){
+      const lines = csvText.split(/\r\n|\n/).filter(l=>l.trim()!=="");
+      const header = parseCSVLine(lines[0]);
+      const rows = [];
+      for(let i=1;i<lines.length;i++){
+        const vals = parseCSVLine(lines[i]);
+        const obj = {};
+        header.forEach((h,j)=> obj[h] = vals[j] || "");
+        rows.push(obj);
+      }
+      rawData = rows;
+      populateNameList(header);
+      if(currentUser) renderTable(header, rows);
+    }
+
+    function parseCSVLine(line){
+      const result = []; let cur = "", inQuotes = false;
+      for(let ch of line){
+        if(ch === '"'){ inQuotes = !inQuotes; }
+        else if(ch === ',' && !inQuotes){ result.push(cur); cur=""; }
+        else{ cur += ch; }
+      }
+      result.push(cur);
+      return result;
+    }
+
+    function populateNameList(header){
+      if(nameSelect.options.length > 0) return;
+      const nameCol = header.find(h=>/nama|name/i.test(h)) || header[0];
+      const uniqueNames = [...new Set(rawData.map(r=>r[nameCol]).filter(n=>n))].sort();
+      nameSelect.innerHTML = "";
+      uniqueNames.forEach(n=>{
+        const opt = document.createElement('option');
+        opt.value = n;
+        opt.textContent = n;
+        nameSelect.appendChild(opt);
+      });
+    }
+
+    function renderTable(header, data){
+      const nameCol = header.find(h=>/nama|name/i.test(h)) || header[0];
+      const filtered = data.filter(r => r[nameCol] === currentUser);
+
+      theadRow.innerHTML = "";
+      header.forEach(h=>{
+        const th = document.createElement('th');
+        th.textContent = h;
+        theadRow.appendChild(th);
+      });
+
+      tbody.innerHTML = "";
+      filtered.forEach(row=>{
+        const tr = document.createElement('tr');
+        header.forEach(h=>{
+          const td = document.createElement('td');
+          td.textContent = row[h];
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+    }
+
+    loginBtn.addEventListener('click', ()=>{
+      currentUser = nameSelect.value;
+      if(currentUser){
+        loginScreen.style.display = "none";
+        absenScreen.style.display = "block";
+        userNameSpan.textContent = currentUser;
+        fetchCSV();
+      }
+    });
+
+    btnLogout.addEventListener('click', ()=>{
+      currentUser = "";
+      absenScreen.style.display = "none";
+      loginScreen.style.display = "block";
+    });
+
+    btnReload.addEventListener('click', ()=> fetchCSV());
+
+    fetchCSV();
+  </script>
+</body>
