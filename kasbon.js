@@ -11,7 +11,7 @@ document.getElementById("loginKasbonForm").addEventListener("submit", function(e
 "rusdi rustiandi saputra": { password: "2222", kasbon: 260000 },
 "budiansyah": { password: "2223", kasbon: 7802500 },
 "febri adi fiansyah": { password: "2224", kasbon: 1000000 },
-"haky tri eryawan": { password: "2225", kasbon: 650000 },
+"haky tri eryawan": { password: "2225", kasbon: 550000 },
 "ferdiansyah": { password: "2226", kasbon: 150000 },
 "dede gunawan": { password: "2227", kasbon: 150000 },
 "hari anggawijaya": { password: "2228", kasbon: 750000 },
