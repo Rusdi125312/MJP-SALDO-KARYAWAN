@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - MJP</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Dashboard karyawan MJP: cek saldo gaji, pengajuan kasbon, absensi, tips keuangan, dan info penting karyawan secara online, mudah, dan aman.">
+  <meta name="keywords" content="dashboard karyawan, cek gaji, kasbon, absensi, tips keuangan, MJP, keuangan karyawan, pengajuan kasbon, info karyawan">
+  <meta name="author" content="MJP Team">
+  <meta property="og:title" content="Dashboard Karyawan MJP">
+  <meta property="og:description" content="Cek saldo gaji, ajukan kasbon, absensi, dan info penting karyawan secara online di dashboard MJP.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mjpsaldo.netlify.app/">
+  <meta property="og:image" content="https://mjpsaldo.netlify.app/logo-mjp.png">
+  <meta name="robots" content="index, follow">
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4381097964402349"
+     crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style2.css" />
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('bg2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: rgba(44, 62, 80, 0.9);
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 55px;
+      box-sizing: border-box;
+    }
+
+    .navbar .logo {
+      color: #ecf0f1;
+      font-weight: bold;
+      font-size: 20px;
+      text-decoration: none;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li a {
+      color: #ecf0f1;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar ul li a:hover {
+      background-color: #3498db;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background-color: white;
+      margin: 4px 0;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(44, 62, 80, 0.95);
+        position: absolute;
+        top: 55px;
+        left: 0;
+      }
+      .navbar ul.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    /* Container */
+    .container {
+      flex: 1 0 auto;
+      padding-top: 280px; /* Tinggi navbar + margin */
+      padding-bottom: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+      min-height: 70vh;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+      color: #00ffcc;
+      font-size: 30px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+
+    /* Card */
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: 1px solid #3498db;
+      border-radius: 12px;
+      padding: 25px;
+      max-width: 300px;
+      flex: 1 1 280px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      background-color: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 15px rgba(0,255,128,0.4);
+    }
+
+    .card h3 {
+      color: #00e0ff;
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+
+    .card p {
+      color: #ffffff;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* Tombol di card */
+    .card .card-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #00ff80, #00cc44);
+      color: #000;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      margin-top: auto;
+      transition: all 0.3s ease;
+    }
+
+    .card .card-button:hover {
+      background: linear-gradient(135deg, #00e673, #00b33c);
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0, 255, 128, 0.5);
+      color: #fff;
+    }
+
+    /* Tombol bawah */
+    .button-container {
+      margin-top: 30px;
+    }
+
+    .button-container a {
+      text-decoration: none;
+      background: linear-gradient(135deg, #00ff80, #00ccff);
+      color: #000;
+      padding: 14px 25px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      display: inline-block;
+      box-shadow: 0 4px 10px rgba(0, 255, 200, 0.3);
+    }
+
+    .button-container a:hover {
+      background: linear-gradient(135deg, #00e673, #00b3e6);
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 255, 200, 0.6);
+      color: #fff;
+    }
+
+    /* Footer */
+    footer {
+      flex-shrink: 0;
+      padding: 18px 10px;
+      background-color: rgba(0,0,0,0.85);
+      text-align: center;
+      color: #eee;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      width: 100%;
+      border-top: 1px solid #222;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Responsif */
+    @media (max-width: 900px) {
+      .cards {
+        flex-direction: column;
+        align-items: center;
+      }
+      .card {
+        max-width: 95vw;
+      }
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding-top: 1550px;
+        padding-left: 8px;
+        padding-right: 8px;
+        padding-bottom: 90px;
+        min-height: 75vh;
+      }
+      .card {
+        padding: 15px;
+      }
+      .card .card-button {
+        width: 100%;
+        box-sizing: border-box;
+      }
+      footer {
+        font-size: 13px;
+        padding: 14px 4px 14px 4px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">MJP</a>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span><span></span><span></span>
+    </div>
+    <ul id="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="kasbon.html">Kasbon</a></li>
+      <li><a href="index2.html">Isi Link</a></li>
+      <li><a href="finance.html">Finance</a></li>
+      <li><a href="tips-gaji.html">Tips Gaji</a></li>
+      <li><a href="about.html">Tentang Kami</a></li>
+      <li><a href="privacy.html">Privasi</a></li>
+      <li><a href="contact.html">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <!-- Konten -->
+  <div class="container">
+    <h2>Selamat Datang di Dashboard MJP 💼</h2>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Cek Saldo Gaji</h3>
+        <p>Lihat sisa gaji kamu secara real-time, kapan saja dan di mana saja. Fitur ini membantu kamu mengelola keuangan dengan lebih efisien dan transparan.</p>
+        <a href="indexold.html" class="card-button">Cek Saldo</a>
+      </div>
+
+      <div class="card">
+        <h3>Pengajuan Kasbon</h3>
+        <p>Ajukan kasbon dengan mudah dan cepat melalui web, tanpa perlu proses manual yang memakan waktu. Semua pengajuan tercatat otomatis dan bisa dipantau statusnya.</p>
+        <a href="index2.html" class="card-button">Ajukan Kasbon</a>
+      </div>
+
+      <div class="card">
+        <h3>Cek ACC Kasbon</h3>
+        <p>Pantau status persetujuan kasbon secara online. Tidak perlu lagi menunggu kabar atau bertanya ke admin, semua informasi bisa diakses langsung dari dashboard.</p>
+        <a href="kasbon.html" class="card-button">Cek ACC</a>
+      </div>
+
+      <div class="card">
+        <h3>Lihat Absen Karyawan</h3>
+        <p>Cek data kehadiran dan absensi karyawan secara online. Fitur ini memudahkan pemantauan kehadiran tanpa harus mencatat manual.</p>
+        <a href="absen.html" class="card-button">Lihat Absen</a>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <a href="tips-gaji.html">📊 Belajar Finance</a>
+    </div>
+
+    <!-- Konten Menarik Tambahan -->
+    <div style="margin-top:38px; background:rgba(44,62,80,0.7); border-radius:12px; padding:22px 16px; color:#fff;">
+      <h3 style="color:#00ffcc; margin-top:0;">Info & Motivasi Karyawan</h3>
+      <ul style="text-align:left; margin:0 0 10px 18px; font-size:15px;">
+        <li>Selalu cek saldo dan kasbon kamu secara berkala agar keuangan tetap terkontrol.</li>
+        <li>Gunakan fitur absensi untuk memastikan kehadiranmu tercatat dengan baik.</li>
+        <li>Manfaatkan menu <b>Belajar Finance</b> untuk menambah wawasan pengelolaan keuangan pribadi.</li>
+        <li>Jika ada kendala, jangan ragu untuk menghubungi admin melalui menu kontak.</li>
+      </ul>
+      <div style="margin-top:12px; color:#ffe; font-style:italic;">
+        “Kerja cerdas, keuangan sehat, masa depan cerah!”
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    MJP © 2025. All rights reserved.
+  </footer>
+
+  <script>
+    // Toggle menu mobile agar tetap berfungsi
+    document.getElementById('menu-toggle').onclick = function() {
+      document.getElementById('menu').classList.toggle('active');
+    };
+  </script>
+</body>
+</html>

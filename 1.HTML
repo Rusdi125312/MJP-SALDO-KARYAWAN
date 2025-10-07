@@ -30,7 +30,7 @@
       padding: 0;
       font-family: Arial, sans-serif;
       /* Tema Halloween: Latar belakang gelap dengan motif Halloween (asumsikan gambar halloween-bg.jpg, atau gunakan gradient) */
-      background: url('bg2.jpg') no-repeat center center fixed; /* Ganti dengan gambar Halloween seperti labu dan hantu */
+      background: linear-gradient(to bottom, #000428, #004e92), url('halloween-bg.jpg') no-repeat center center fixed; /* Ganti dengan gambar Halloween seperti labu dan hantu */
       background-size: cover;
       background-blend-mode: overlay;
       color: #fff;
@@ -83,7 +83,7 @@
 
     /* Navbar Halloween */
     .navbar {
-      background-color: rgba(44, 62, 80, 0.9); /* Hitam gelap */
+      background-color: rgba(0, 0, 0, 0.9); /* Hitam gelap */
       padding: 10px 20px;
       position: fixed;
       top: 0;
@@ -95,15 +95,15 @@
       align-items: center;
       height: 55px;
       box-sizing: border-box;
-      border-bottom: 2px solid #383be0; /* Oranye Halloween */
+      border-bottom: 2px solid #ff6600; /* Oranye Halloween */
     }
 
     .navbar .logo {
-      color: #f7f0eb; /* Oranye */
+      color: #ff6600; /* Oranye */
       font-weight: bold;
       font-size: 20px;
       text-decoration: none;
-      text-shadow: 0 0 5px #141a70;
+      text-shadow: 0 0 5px #ff6600;
     }
 
     .navbar ul {
@@ -120,12 +120,12 @@
       padding: 8px 14px;
       border-radius: 5px;
       transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid #082c70;
+      border: 1px solid #ff6600;
     }
 
     .navbar ul li a:hover {
-      background-color: #092268;
-      box-shadow: 0 0 10px #2600ff8e;
+      background-color: #ff6600;
+      box-shadow: 0 0 10px #ff6600;
     }
 
     .menu-toggle {
@@ -137,7 +137,7 @@
     .menu-toggle span {
       height: 3px;
       width: 25px;
-      background-color: #088354;
+      background-color: #ff6600;
       margin: 4px 0;
       border-radius: 2px;
     }
@@ -176,15 +176,15 @@
 
     h2 {
       margin-bottom: 30px;
-      color: #00ff22; /* Oranye Halloween */
+      color: #ff6600; /* Oranye Halloween */
       font-size: 30px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 10px #2600ff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 10px #ff6600;
       animation: glow 2s ease-in-out infinite alternate;
     }
 
     @keyframes glow {
-      from { text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 10px #19dd71; }
-      to { text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px #212aad, 0 0 30px #350da1; }
+      from { text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 10px #ff6600; }
+      to { text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px #ff6600, 0 0 30px #ff6600; }
     }
 
     /* Card Halloween */
@@ -197,12 +197,12 @@
 
     .card {
       background-color: rgba(0, 0, 0, 0.7); /* Lebih gelap */
-      border: 2px solid #00a2ff; /* Oranye border */
+      border: 2px solid #ff6600; /* Oranye border */
       border-radius: 12px;
       padding: 25px;
       max-width: 300px;
       flex: 1 1 280px;
-      box-shadow: 0 4px 12px rgba(22, 10, 2, 0.3), inset 0 0 10px rgba(255, 102, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3), inset 0 0 10px rgba(255, 102, 0, 0.1);
       transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
       text-align: center;
       display: flex;
@@ -230,11 +230,11 @@
     .card:hover {
       transform: scale(1.05);
       background-color: rgba(0, 0, 0, 0.8);
-      box-shadow: 0 0 20px rgba(6, 155, 73, 0.6);
+      box-shadow: 0 0 20px rgba(255, 102, 0, 0.6);
     }
 
     .card h3 {
-      color: #66ff94; /* Oranye muda */
+      color: #ffb366; /* Oranye muda */
       margin-bottom: 12px;
       font-size: 20px;
       text-shadow: 1px 1px 2px #000;
@@ -249,7 +249,7 @@
     /* Tombol di card Halloween */
     .card .card-button {
       display: inline-block;
-      background: linear-gradient(135deg, #0be052, #19b921); /* Oranye ke coklat gelap */
+      background: linear-gradient(135deg, #ff6600, #cc5200); /* Oranye ke coklat gelap */
       color: #fff;
       padding: 10px 18px;
       border-radius: 8px;
@@ -257,13 +257,13 @@
       text-decoration: none;
       margin-top: auto;
       transition: all 0.3s ease;
-      box-shadow: 0 2px 5px rgba(10, 175, 38, 0.4);
+      box-shadow: 0 2px 5px rgba(255, 102, 0, 0.4);
     }
 
     .card .card-button:hover {
-      background: linear-gradient(135deg, #17aa12, #17b145);
+      background: linear-gradient(135deg, #ff8533, #ff6600);
       transform: scale(1.05);
-      box-shadow: 0 4px 10px rgba(21, 109, 224, 0.7);
+      box-shadow: 0 4px 10px rgba(255, 102, 0, 0.7);
       color: #000;
     }
 
@@ -274,7 +274,7 @@
 
     .button-container a {
       text-decoration: none;
-      background: linear-gradient(135deg, #0fa535, #15c724); /* Oranye Halloween */
+      background: linear-gradient(135deg, #ff6600, #993d00); /* Oranye Halloween */
       color: #fff;
       padding: 14px 25px;
       border-radius: 8px;
@@ -282,13 +282,13 @@
       font-weight: bold;
       transition: all 0.3s ease;
       display: inline-block;
-      box-shadow: 0 4px 10px rgba(15, 230, 87, 0.5);
+      box-shadow: 0 4px 10px rgba(255, 102, 0, 0.5);
     }
 
     .button-container a:hover {
-      background: linear-gradient(135deg, #1fe049, #19ce28);
+      background: linear-gradient(135deg, #ff8533, #ff6600);
       transform: scale(1.05);
-      box-shadow: 0 6px 15px rgba(13, 190, 66, 0.8);
+      box-shadow: 0 6px 15px rgba(255, 102, 0, 0.8);
       color: #000;
     }
 
@@ -298,11 +298,11 @@
       padding: 18px 10px;
       background-color: rgba(0,0,0,0.95);
       text-align: center;
-      color: #3eda58;
+      color: #ffb366;
       font-size: 15px;
       letter-spacing: 0.5px;
       width: 100%;
-      border-top: 2px solid #5ebb28;
+      border-top: 2px solid #ff6600;
       box-sizing: border-box;
       position: relative;
       z-index: 10;
@@ -312,14 +312,14 @@
     .info-section {
       margin-top: 38px;
       background: rgba(0,0,0,0.7);
-      border: 1px solid #2dca27;
+      border: 1px solid #ff6600;
       border-radius: 12px;
       padding: 22px 16px;
       color: #fff;
     }
 
     .info-section h3 {
-      color: #1dcf3b;
+      color: #ff6600;
       margin-top: 0;
     }
 
@@ -331,7 +331,7 @@
 
     .info-section .quote {
       margin-top: 12px;
-      color: #1de772;
+      color: #ffb366;
       font-style: italic;
       text-shadow: 1px 1px 2px #000;
     }
