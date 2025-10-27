@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Slip Gaji - MJP</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('bg2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    .login-container, .slip-container {
+      display: none;
+      max-width: 400px;
+      margin: 120px auto;
+      background-color: rgba(0,0,0,0.7);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+    .login-container.active, .slip-container.active {
+      display: block;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background: linear-gradient(135deg, #00ff80, #00cc44);
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: rgba(0,0,0,0.6);
+    }
+    table, th, td {
+      border: 1px solid #00ffcc;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: rgba(0,255,200,0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container active" id="login">
+    <h2>Login Slip Gaji MJP</h2>
+    <input type="text" id="username" placeholder="Nama" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="login()">Login</button>
+  </div>
+
+  <div class="slip-container" id="slip">
+    <h2>Slip Gaji Karyawan</h2>
+    <table>
+      <tr><th>No ID</th><td id="id"></td></tr>
+      <tr><th>Nama</th><td id="nama"></td></tr>
+      <tr><th>Jumlah Masuk</th><td id="masuk"></td></tr>
+      <tr><th>Gaji Kotor</th><td id="kotor"></td></tr>
+      <tr><th>Potongan BPJS</th><td id="bpjs"></td></tr>
+      <tr><th>Gaji Bersih</th><td id="bersih"></td></tr>
+    </table>
+    <button style="margin-top:20px;" onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    const dataGaji = {
+   'RUSDI RUSTIANDI SAPUTRA': { password: '2222', id: 'MJPID24040002', nama: 'rusdi rustiandi saputra', masuk: '24 Hari', gajikotor: 'RP 3030505', bpjs: '12500', bersih: '3018005' }, 
+ 'BUDIANSYAH': { password: '2223', id: 'MJPID24040003', nama: 'budiansyah', masuk: '21 Hari', gajikotor: 'RP 2504170', bpjs: '12500', bersih: '2491670' }, 
+ 'FEBRI ADI FIANSYAH': { password: '2224', id: 'MJPID24040004', nama: 'febri adi fiansyah', masuk: '23 Hari', gajikotor: 'RP 3018580', bpjs: '12500', bersih: '3006080' }, 
+ 'HAKY TRI ERYAWAN': { password: '2225', id: 'MJPID24040005', nama: 'haky tri eryawan', masuk: '20 Hari', gajikotor: 'RP 2549855', bpjs: '12500', bersih: '2537355' }, 
+ 'FERDIANSYAH': { password: '2226', id: 'MJPID24040006', nama: 'ferdiansyah', masuk: '9 Hari', gajikotor: 'RP 1209700', bpjs: '12500', bersih: '1197200' }, 
+ 'DEDE GUNAWAN': { password: '2227', id: 'MJPID24040007', nama: 'dede gunawan', masuk: '6 Hari', gajikotor: 'RP 775900', bpjs: '12500', bersih: '763400' }, 
+ 'HARI ANGGAWIJAYA': { password: '2228', id: 'MJPID24040008', nama: 'hari anggawijaya', masuk: '24 Hari', gajikotor: 'RP 3204006', bpjs: '12500', bersih: '3191506' }, 
+ 'FIKRAN S JANUAL': { password: '2229', id: 'MJPID24040010', nama: 'fikran s janual', masuk: '9 Hari', gajikotor: 'RP 1091435', bpjs: '12500', bersih: '1078935' }, 
+ 'MUTIARA ZAHRIATUL PASYA': { password: '2230', id: 'MJPID24040011', nama: 'mutiara zahriatul pasya', masuk: '23 Hari', gajikotor: 'RP 3007300', bpjs: '12500', bersih: '2994800' }, 
+ 'SALSA NABILA AZAHRA': { password: '2231', id: 'MJPID24040012', nama: 'salsa nabila azahra', masuk: '24 Hari', gajikotor: 'RP 3147000', bpjs: '12500', bersih: '3134500' }, 
+ 'ERIK SOPIAN': { password: '2233', id: 'MJPID24040014', nama: 'erik sopian', masuk: '6 Hari', gajikotor: 'RP 720700', bpjs: '12500', bersih: '708200' }, 
+ 'REFI SAPUTRA': { password: '2234', id: 'MJPID24040016', nama: 'refi saputra', masuk: '9 Hari', gajikotor: 'RP 1213800', bpjs: '12500', bersih: '1201300' }, 
+ 'M. YUSUF S NUR': { password: '2235', id: 'MJPID24040018', nama: 'm. yusuf s nur', masuk: '6 Hari', gajikotor: 'RP 831400', bpjs: '12500', bersih: '818900' }, 
+ 'RISNAWATI': { password: '2236', id: 'MJPID24040019', nama: 'risnawati', masuk: '24 Hari', gajikotor: 'RP 3203200', bpjs: '12500', bersih: '3190700' }, 
+ 'MUHAMMAD FABIL RASYID': { password: '2238', id: 'MJPID24040022', nama: 'muhammad fabil rasyid', masuk: '8 Hari', gajikotor: 'RP 1058100', bpjs: '12500', bersih: '1045600' }, 
+ 'DEDE SURYADIN': { password: '2239', id: 'MJPID24040023', nama: 'dede suryadin', masuk: '20 Hari', gajikotor: 'RP 2696485', bpjs: '12500', bersih: '2683985' }, 
+ 'FAUZAN FUZIANSYAH': { password: '2242', id: 'MJPID24040027', nama: 'fauzan fuziansyah', masuk: '18 Hari', gajikotor: 'RP 2223400', bpjs: '12500', bersih: '2210900' }, 
+ 'SANTI AMELIA': { password: '2243', id: 'MJPID24040028', nama: 'santi amelia', masuk: '13 Hari', gajikotor: 'RP 1603700', bpjs: '12500', bersih: '1591200' }, 
+ 'CARLA AMALIA ARIFANI': { password: '2245', id: 'MJPID24040031', nama: 'carla amalia arifani', masuk: '24 Hari', gajikotor: 'RP 2990060', bpjs: '12500', bersih: '2977560' }, 
+ 'YANTI SUMIYANTI': { password: '2246', id: 'MJPID24040032', nama: 'yanti sumiyanti', masuk: '11 Hari', gajikotor: 'RP 1456700', bpjs: '12500', bersih: '1444200' }, 
+ 'NINA AGUSTINA': { password: '2247', id: 'MJPID24040034', nama: 'nina agustina', masuk: '18 Hari', gajikotor: 'RP 2353700', bpjs: '12500', bersih: '2341200' }, 
+ 'SOPIAN JAELANI': { password: '2250', id: 'MJPID24040037', nama: 'sopian jaelani', masuk: '5 Hari', gajikotor: 'RP 670700', bpjs: '12500', bersih: '658200' }, 
+ 'M FAISAL AGASY': { password: '2251', id: 'MJPID24040043', nama: 'm faisal agasy', masuk: '4 Hari', gajikotor: 'RP 465350', bpjs: '12500', bersih: '452850' }, 
+ 'ARIF SETIAWAN': { password: '2252', id: 'MJPID24040044', nama: 'arif setiawan', masuk: '22 Hari', gajikotor: 'RP 2884468', bpjs: '12500', bersih: '2871968' }, 
+ 'MELANI AZARINA': { password: '2253', id: 'MJPID24040046', nama: 'melani azarina', masuk: '8 Hari', gajikotor: 'RP 1107800', bpjs: '12500', bersih: '1095300' }, 
+ 'IMAN NURZAMAN': { password: '2255', id: 'MJPID24040050', nama: 'iman nurzaman', masuk: '14 Hari', gajikotor: 'RP 1863600', bpjs: '12500', bersih: '1851100' }, 
+ 'NENG SRI ANGGRAENI': { password: '2257', id: 'MJPID24040054', nama: 'neng sri anggraeni', masuk: '12 Hari', gajikotor: 'RP 1370800', bpjs: '12500', bersih: '1358300' }, 
+ 'YESA MOWINA': { password: '2259', id: 'MJPID24040056', nama: 'yesa mowina', masuk: '14 Hari', gajikotor: 'RP 1811400', bpjs: '12500', bersih: '1798900' }, 
+ 'ALLUDYA RAHAF AURASYIFAFA': { password: '2260', id: 'MJPID24040057', nama: 'alludya rahaf aurasyifafa', masuk: '15 Hari', gajikotor: 'RP 1944500', bpjs: '12500', bersih: '1932000' }, 
+ 'RINA LESTARI': { password: '2262', id: 'MJPID24050059', nama: 'rina lestari', masuk: '16 Hari', gajikotor: 'RP 2073500', bpjs: '12500', bersih: '2061000' }, 
+ 'RATNASARI': { password: '2263', id: 'MJPID24050061', nama: 'ratnasari', masuk: '7 Hari', gajikotor: 'RP 905000', bpjs: '12500', bersih: '892500' }, 
+ 'IRMAWATI': { password: '2264', id: 'MJPID24050063', nama: 'irmawati', masuk: '25 Hari', gajikotor: 'RP 3261800', bpjs: '12500', bersih: '3249300' }, 
+ 'NINDIA APRILIANTI': { password: '2266', id: 'MJPID24050069', nama: 'nindia aprilianti', masuk: '14 Hari', gajikotor: 'RP 1744650', bpjs: '12500', bersih: '1732150' }, 
+ 'SITI MAEMUNAH OKTAVIA': { password: '2267', id: 'MJPID24050072', nama: 'siti maemunah oktavia', masuk: '15 Hari', gajikotor: 'RP 1930000', bpjs: '12500', bersih: '1917500' }, 
+ 'ANGGI PERMANA': { password: '2268', id: 'MJPID24050074', nama: 'anggi permana', masuk: '12 Hari', gajikotor: 'RP 1502320', bpjs: '12500', bersih: '1489820' }, 
+ 'SANTI': { password: '2269', id: 'MJPID24050076', nama: 'santi', masuk: '15 Hari', gajikotor: 'RP 1913300', bpjs: '12500', bersih: '1900800' }, 
+ 'NURAENI 03': { password: '2271', id: 'MJPID24050078', nama: 'nuraeni 03', masuk: '5 Hari', gajikotor: 'RP 641000', bpjs: '12500', bersih: '628500' }, 
+ 'ENENG SUMYATI': { password: '2272', id: 'MJPID24050079', nama: 'eneng sumyati', masuk: '13 Hari', gajikotor: 'RP 1617200', bpjs: '12500', bersih: '1604700' }, 
+ 'LISNAWATI': { password: '2273', id: 'MJPID24050080', nama: 'lisnawati', masuk: '23 Hari', gajikotor: 'RP 3006600', bpjs: '12500', bersih: '2994100' }, 
+ 'FITRIA AMBARWATI': { password: '2276', id: 'MJPID24050083', nama: 'fitria ambarwati', masuk: '14 Hari', gajikotor: 'RP 1867500', bpjs: '12500', bersih: '1855000' }, 
+ 'RAHMA MAULIDHA': { password: '2279', id: 'MJPID24060087', nama: 'rahma maulidha', masuk: '6 Hari', gajikotor: 'RP 639200', bpjs: '12500', bersih: '626700' }, 
+ 'RIKA NURHAYATI': { password: '2280', id: 'MJPID24060088', nama: 'rika nurhayati', masuk: '3 Hari', gajikotor: 'RP 367200', bpjs: '12500', bersih: '354700' }, 
+ 'ARDI MUHAMMAD AYUB': { password: '2281', id: 'MJPID24060089', nama: 'ardi muhammad ayub', masuk: '6 Hari', gajikotor: 'RP 764500', bpjs: '12500', bersih: '752000' }, 
+ 'JAYA NUGI NUGRAHA': { password: '2282', id: 'MJPID24060090', nama: 'jaya nugi nugraha', masuk: '7 Hari', gajikotor: 'RP 916700', bpjs: '12500', bersih: '904200' }, 
+ 'MUHAMMAD RIFQI MUSTOPA KAMIL': { password: '2284', id: 'MJPID24060093', nama: 'muhammad rifqi mustopa kamil', masuk: '3 Hari', gajikotor: 'RP 407600', bpjs: '12500', bersih: '395100' }, 
+ 'WULANDARI MEILANI PUTRI': { password: '2285', id: 'MJPID24060094', nama: 'wulandari meilani putri', masuk: '24 Hari', gajikotor: 'RP 3085450', bpjs: '12500', bersih: '3072950' }, 
+ 'DEWI SANJUNG': { password: '2286', id: 'MJPID24060095', nama: 'dewi sanjung', masuk: '10 Hari', gajikotor: 'RP 1370300', bpjs: '12500', bersih: '1357800' }, 
+ 'RIDWAN MUHAMMAD': { password: '2289', id: 'MJPID24060099', nama: 'ridwan muhammad', masuk: '5 Hari', gajikotor: 'RP 646700', bpjs: '12500', bersih: '634200' }, 
+ 'HENI ANGGRAENI': { password: '2290', id: 'MJPID24060100', nama: 'heni anggraeni', masuk: '12 Hari', gajikotor: 'RP 1527600', bpjs: '12500', bersih: '1515100' }, 
+ 'PAHRI HUSAENI': { password: '2291', id: 'MJPID24060101', nama: 'pahri husaeni', masuk: '7 Hari', gajikotor: 'RP 890700', bpjs: '12500', bersih: '878200' }, 
+ 'MUHAMMAD EKA ASTIYAN': { password: '2292', id: 'MJPID24060102', nama: 'muhammad eka astiyan', masuk: '6 Hari', gajikotor: 'RP 768400', bpjs: '12500', bersih: '755900' }, 
+ 'TSANIA MARWA': { password: '2293', id: 'MJPID24060103', nama: 'tsania marwa', masuk: '11 Hari', gajikotor: 'RP 1318500', bpjs: '12500', bersih: '1306000' }, 
+ 'GILAR PUTRA PANGESTU': { password: '2295', id: 'MJPID24060106', nama: 'gilar putra pangestu', masuk: '3 Hari', gajikotor: 'RP 274500', bpjs: '12500', bersih: '262000' }, 
+ 'ZILHAN FAUZI': { password: '2298', id: 'MJPID24060110', nama: 'zilhan fauzi', masuk: '11 Hari', gajikotor: 'RP 1407250', bpjs: '12500', bersih: '1394750' }, 
+ 'ARIS SUNANDI': { password: '2300', id: 'MJPID24060113', nama: 'aris sunandi', masuk: '5 Hari', gajikotor: 'RP 686600', bpjs: '12500', bersih: '674100' }, 
+ 'FATIMAH SURAHMAN': { password: '2302', id: 'MJPID24060115', nama: 'fatimah surahman', masuk: '2 Hari', gajikotor: 'RP 260000', bpjs: '12500', bersih: '247500' }, 
+ 'SITI SARAH': { password: '2304', id: 'MJPID24060118', nama: 'siti sarah', masuk: '17 Hari', gajikotor: 'RP 2295100', bpjs: '12500', bersih: '2282600' }, 
+ 'BAGAS RIAN NUGRAHA': { password: '2306', id: 'MJPID24060120', nama: 'bagas rian nugraha', masuk: '6 Hari', gajikotor: 'RP 839000', bpjs: '12500', bersih: '826500' }, 
+ 'MUH RIZKI MAULANA': { password: '2307', id: 'MJPID24060121', nama: 'muh rizki maulana', masuk: '21 Hari', gajikotor: 'RP 2639100', bpjs: '12500', bersih: '2626600' }, 
+ 'DICKY FADILAH MAULANA': { password: '2308', id: 'MJPID24060122', nama: 'dicky fadilah maulana', masuk: '4 Hari', gajikotor: 'RP 506000', bpjs: '12500', bersih: '493500' }, 
+ 'GIANTI PUSPITASARI': { password: '2310', id: 'MJPID24060124', nama: 'gianti puspitasari', masuk: '21 Hari', gajikotor: 'RP 2850500', bpjs: '12500', bersih: '2838000' }, 
+ 'HANI NATALIA': { password: '2311', id: 'MJPID24060125', nama: 'hani natalia', masuk: '15 Hari', gajikotor: 'RP 1939200', bpjs: '12500', bersih: '1926700' }, 
+ 'NOVIA': { password: '2312', id: 'MJPID24060126', nama: 'novia', masuk: '22 Hari', gajikotor: 'RP 2842300', bpjs: '12500', bersih: '2829800' }, 
+ 'TITA ROSITA': { password: '2314', id: 'MJPID24060131', nama: 'tita rosita', masuk: '12 Hari', gajikotor: 'RP 1563400', bpjs: '12500', bersih: '1550900' }, 
+ 'RINEU': { password: '2315', id: 'MJPID24060132', nama: 'rineu', masuk: '9 Hari', gajikotor: 'RP 1181000', bpjs: '12500', bersih: '1168500' }, 
+ 'NENG ANDINI NOER HABBIBAH': { password: '2316', id: 'MJPID24080142', nama: 'neng andini noer habbibah', masuk: '10 Hari', gajikotor: 'RP 1233000', bpjs: '12500', bersih: '1220500' }, 
+ 'HERNI SRI LESTARI': { password: '2319', id: 'MJPID24080145', nama: 'herni sri lestari', masuk: '13 Hari', gajikotor: 'RP 1711200', bpjs: '12500', bersih: '1698700' }, 
+ 'MUHAMMAD NURJAMIL': { password: '2320', id: 'MJPID24080146', nama: 'muhammad nurjamil', masuk: '2 Hari', gajikotor: 'RP 300900', bpjs: '12500', bersih: '288400' }, 
+ 'SANTI HERMAWANTI': { password: '2321', id: 'MJPID24080148', nama: 'santi hermawanti', masuk: '14 Hari', gajikotor: 'RP 1867600', bpjs: '12500', bersih: '1855100' }, 
+ 'SILVIA HELEN': { password: '2322', id: 'MJPID24080149', nama: 'silvia helen', masuk: '14 Hari', gajikotor: 'RP 1935100', bpjs: '12500', bersih: '1922600' }, 
+ 'PENI SILVIANA ERAWAN': { password: '2323', id: 'MJPID24080150', nama: 'peni silviana erawan', masuk: '6 Hari', gajikotor: 'RP 797400', bpjs: '12500', bersih: '784900' }, 
+ 'MUHAMMAD ABDUL SALAM': { password: '2326', id: 'MJPID24080154', nama: 'muhammad abdul salam', masuk: '2 Hari', gajikotor: 'RP 234100', bpjs: '12500', bersih: '221600' }, 
+ 'SAEPUL RAHMAN': { password: '2328', id: 'MJPID24080156', nama: 'saepul rahman', masuk: '3 Hari', gajikotor: 'RP 411600', bpjs: '12500', bersih: '399100' }, 
+ 'MELISA SABILA': { password: '2330', id: 'MJPID24080158', nama: 'melisa sabila', masuk: '13 Hari', gajikotor: 'RP 1666100', bpjs: '12500', bersih: '1653600' }, 
+ 'ENDRA AGUSTIAN': { password: '2333', id: 'MJPID24090163', nama: 'endra agustian', masuk: '3 Hari', gajikotor: 'RP 415700', bpjs: '12500', bersih: '403200' }, 
+ 'ISMI NUR AJIJAH': { password: '2336', id: 'MJPID24090166', nama: 'ismi nur ajijah', masuk: '13 Hari', gajikotor: 'RP 1590050', bpjs: '12500', bersih: '1577550' }, 
+ 'WIDIAWATI AYU LESTARI': { password: '2337', id: 'MJPID24090167', nama: 'widiawati ayu lestari', masuk: '12 Hari', gajikotor: 'RP 1634200', bpjs: '12500', bersih: '1621700' }, 
+ 'NAJWA ZAHIYYAH HANUN': { password: '2338', id: 'MJPID24090168', nama: 'najwa zahiyyah hanun', masuk: '15 Hari', gajikotor: 'RP 1973700', bpjs: '12500', bersih: '1961200' }, 
+ 'RINI NURYANI': { password: '2339', id: 'MJPID24090170', nama: 'rini nuryani', masuk: '11 Hari', gajikotor: 'RP 1431200', bpjs: '12500', bersih: '1418700' }, 
+ 'NURMALA': { password: '2340', id: 'MJPID24090171', nama: 'nurmala', masuk: '11 Hari', gajikotor: 'RP 1463100', bpjs: '12500', bersih: '1450600' }, 
+ 'RIANA NOPRIANTI': { password: '2341', id: 'MJPID24090172', nama: 'riana noprianti', masuk: '12 Hari', gajikotor: 'RP 1604400', bpjs: '12500', bersih: '1591900' }, 
+ 'DWI MEGA NOVIANTY': { password: '2342', id: 'MJPID24090173', nama: 'dwi mega novianty', masuk: '14 Hari', gajikotor: 'RP 1834000', bpjs: '12500', bersih: '1821500' }, 
+ 'FAUJIAH ISYUNIARTI': { password: '2343', id: 'MJPID24090174', nama: 'faujiah isyuniarti', masuk: '14 Hari', gajikotor: 'RP 1845300', bpjs: '12500', bersih: '1832800' }, 
+ 'ERICA NAYLA MARYAM': { password: '2346', id: 'MJPID24090178', nama: 'erica nayla maryam', masuk: '11 Hari', gajikotor: 'RP 1510600', bpjs: '12500', bersih: '1498100' }, 
+ 'SIDIK ABDUL ROHMAN': { password: '2347', id: 'MJPID24090179', nama: 'sidik abdul rohman', masuk: '9 Hari', gajikotor: 'RP 1192800', bpjs: '12500', bersih: '1180300' }, 
+ 'ERNI SUKAESIH': { password: '2348', id: 'MJPID24090183', nama: 'erni sukaesih', masuk: '13 Hari', gajikotor: 'RP 1760100', bpjs: '12500', bersih: '1747600' }, 
+ 'M ZHIA RHAMANDHA': { password: '2349', id: 'MJPID24100184', nama: 'm zhia rhamandha', masuk: '8 Hari', gajikotor: 'RP 1022900', bpjs: '12500', bersih: '1010400' }, 
+ 'TIARA DELIA NURFAUZIAH JUNAEDI': { password: '2350', id: 'MJPID24100185', nama: 'tiara delia nurfauziah junaedi', masuk: '12 Hari', gajikotor: 'RP 1609200', bpjs: '12500', bersih: '1596700' }, 
+ 'ANISYA NURHALIZA': { password: '2351', id: 'MJPID24100186', nama: 'anisya nurhaliza', masuk: '24 Hari', gajikotor: 'RP 3083900', bpjs: '12500', bersih: '3071400' }, 
+ 'DARA CYNTHIA PASHA': { password: '2352', id: 'MJPID24110187', nama: 'dara cynthia pasha', masuk: '13 Hari', gajikotor: 'RP 1748200', bpjs: '12500', bersih: '1735700' }, 
+ 'RATNASARI 04': { password: '2355', id: 'MJPID24110191', nama: 'ratnasari 04', masuk: '11 Hari', gajikotor: 'RP 1425100', bpjs: '12500', bersih: '1412600' }, 
+ 'MUHAMAD SAHRUL RAMADANI': { password: '2356', id: 'MJPID24110192', nama: 'muhamad sahrul ramadani', masuk: '8 Hari', gajikotor: 'RP 1048300', bpjs: '12500', bersih: '1035800' }, 
+ 'PEGI ANUGRAH JULTIAMAN': { password: '2357', id: 'MJPID24110193', nama: 'pegi anugrah jultiaman', masuk: '2 Hari', gajikotor: 'RP 203100', bpjs: '12500', bersih: '190600' }, 
+ 'NEZAN NUR RISDIANI': { password: '2362', id: 'MJPID24110198', nama: 'nezan nur risdiani', masuk: '15 Hari', gajikotor: 'RP 1990400', bpjs: '12500', bersih: '1977900' }, 
+ 'AYANG SURYANI': { password: '2363', id: 'MJPID24110201', nama: 'ayang suryani', masuk: '13 Hari', gajikotor: 'RP 1662300', bpjs: '12500', bersih: '1649800' }, 
+ 'ERMA RACHMAWATI': { password: '2364', id: 'MJPID24110202', nama: 'erma rachmawati', masuk: '13 Hari', gajikotor: 'RP 1740830', bpjs: '12500', bersih: '1728330' }, 
+ 'ISMAH ROJANI': { password: '2365', id: 'MJPID24110203', nama: 'ismah rojani', masuk: '7 Hari', gajikotor: 'RP 992300', bpjs: '12500', bersih: '979800' }, 
+ 'MARSHA AMELDALIA': { password: '2369', id: 'MJPID24110207', nama: 'marsha ameldalia', masuk: '15 Hari', gajikotor: 'RP 1990400', bpjs: '12500', bersih: '1977900' }, 
+ 'RISSAL HERDIANSYAH': { password: '2370', id: 'MJPID24110208', nama: 'rissal herdiansyah', masuk: '2 Hari', gajikotor: 'RP 300900', bpjs: '12500', bersih: '288400' }, 
+ 'RAMADANI': { password: '2373', id: 'MJPID24120211', nama: 'ramadani', masuk: '8 Hari', gajikotor: 'RP 1013100', bpjs: '12500', bersih: '1000600' }, 
+ 'HILMA AMALIA': { password: '2376', id: 'MJPID24120217', nama: 'hilma amalia', masuk: '12 Hari', gajikotor: 'RP 1564200', bpjs: '12500', bersih: '1551700' }, 
+ 'SITI ROHMAH': { password: '2377', id: 'MJPID24120218', nama: 'siti rohmah', masuk: '13 Hari', gajikotor: 'RP 1719200', bpjs: '12500', bersih: '1706700' }, 
+ 'TAUFIK MAULANA NUGRAHA': { password: '2378', id: 'MJPID24120219', nama: 'taufik maulana nugraha', masuk: '6 Hari', gajikotor: 'RP 798100', bpjs: '12500', bersih: '785600' }, 
+ 'NESA HARDIANTY PUTRI': { password: '2379', id: 'MJPID24120220', nama: 'nesa hardianty putri', masuk: '4 Hari', gajikotor: 'RP 543800', bpjs: '12500', bersih: '531300' }, 
+ 'RIVA AULIANI': { password: '2383', id: 'MJPID25010223', nama: 'riva auliani', masuk: '10 Hari', gajikotor: 'RP 1321400', bpjs: '12500', bersih: '1308900' }, 
+ 'MUHAMAD RIJKY ALAMSYAH': { password: '2390', id: 'MJPID25010230', nama: 'muhamad rijky alamsyah', masuk: '8 Hari', gajikotor: 'RP 1066200', bpjs: '12500', bersih: '1053700' }, 
+ 'MUHAMMAD FAISAL': { password: '2393', id: 'MJPID25010233', nama: 'muhammad faisal', masuk: '1 Hari', gajikotor: 'RP 0', bpjs: '12500', bersih: '-12500' }, 
+ 'MAULANA YUSUF': { password: '2394', id: 'MJPID25010234', nama: 'maulana yusuf', masuk: '5 Hari', gajikotor: 'RP 653600', bpjs: '12500', bersih: '641100' }, 
+ 'MOJANG RUCITA WIJAKSANA': { password: '2395', id: 'MJPID25010235', nama: 'mojang rucita wijaksana', masuk: '14 Hari', gajikotor: 'RP 1799500', bpjs: '12500', bersih: '1787000' }, 
+ 'TRISNAWATI DEWI': { password: '2397', id: 'MJPID25010237', nama: 'trisnawati dewi', masuk: '12 Hari', gajikotor: 'RP 1566600', bpjs: '12500', bersih: '1554100' }, 
+ 'RISKA RISMAWATI': { password: '2398', id: 'MJPID25010238', nama: 'riska rismawati', masuk: '13 Hari', gajikotor: 'RP 1562800', bpjs: '12500', bersih: '1550300' }, 
+ 'DIAZ HERMAYADI': { password: '2399', id: 'MJPID25010239', nama: 'diaz hermayadi', masuk: '4 Hari', gajikotor: 'RP 539200', bpjs: '12500', bersih: '526700' }, 
+ 'ITA NURLITA': { password: '2405', id: 'MJPID25010245', nama: 'ita nurlita', masuk: '5 Hari', gajikotor: 'RP 637900', bpjs: '12500', bersih: '625400' }, 
+ 'DIAH WIDANINGSIH': { password: '2406', id: 'MJPID25010246', nama: 'diah widaningsih', masuk: '14 Hari', gajikotor: 'RP 1806800', bpjs: '12500', bersih: '1794300' }, 
+ 'FERA PERMATASARI': { password: '2407', id: 'MJPID25020248', nama: 'fera permatasari', masuk: '9 Hari', gajikotor: 'RP 1087000', bpjs: '12500', bersih: '1074500' }, 
+ 'NUREINA ARDIA KAYLA RAHMANI': { password: '2409', id: 'MJPID25020250', nama: 'nureina ardia kayla rahmani', masuk: '5 Hari', gajikotor: 'RP 620800', bpjs: '12500', bersih: '608300' }, 
+ 'NAZIRA SYAHWAL': { password: '2410', id: 'MJPID25020251', nama: 'nazira syahwal', masuk: '4 Hari', gajikotor: 'RP 408200', bpjs: '12500', bersih: '395700' }, 
+ 'SARIPAH FATMAWATI': { password: '2413', id: 'MJPID25020254', nama: 'saripah fatmawati', masuk: '9 Hari', gajikotor: 'RP 1209700', bpjs: '12500', bersih: '1197200' }, 
+ 'MITA HAFITYA AZZAHRA': { password: '2414', id: 'MJPID25020255', nama: 'mita hafitya azzahra', masuk: '5 Hari', gajikotor: 'RP 548600', bpjs: '12500', bersih: '536100' }, 
+ 'SITI BILKIS': { password: '2415', id: 'MJPID25020256', nama: 'siti bilkis', masuk: '12 Hari', gajikotor: 'RP 1604400', bpjs: '12500', bersih: '1591900' }, 
+ 'UCI WULANDARI': { password: '2416', id: 'MJPID25020257', nama: 'uci wulandari', masuk: '5 Hari', gajikotor: 'RP 524200', bpjs: '12500', bersih: '511700' }, 
+ 'CIKAL FIRGINA TASYA': { password: '2419', id: 'MJPID25020262', nama: 'cikal firgina tasya', masuk: '10 Hari', gajikotor: 'RP 1243400', bpjs: '12500', bersih: '1230900' }, 
+ 'WINI WIDIASTUTI': { password: '2423', id: 'MJPID25020266', nama: 'wini widiastuti', masuk: '11 Hari', gajikotor: 'RP 1390400', bpjs: '12500', bersih: '1377900' }, 
+ 'SUSI SUSILAWATI': { password: '2424', id: 'MJPID25020267', nama: 'susi susilawati', masuk: '6 Hari', gajikotor: 'RP 897900', bpjs: '12500', bersih: '885400' }, 
+ 'NURMILAH': { password: '2425', id: 'MJPID25020268', nama: 'nurmilah', masuk: '2 Hari', gajikotor: 'RP 177200', bpjs: '12500', bersih: '164700' }, 
+ 'SILVA RAHAYU': { password: '2428', id: 'MJPID25020271', nama: 'silva rahayu', masuk: '4 Hari', gajikotor: 'RP 502200', bpjs: '12500', bersih: '489700' }, 
+ 'MUH LATIF ASYDIK': { password: '2429', id: 'MJPID25020272', nama: 'muh latif asydik', masuk: '6 Hari', gajikotor: 'RP 806200', bpjs: '12500', bersih: '793700' }, 
+ 'M DAFA NUGRAHA': { password: '2430', id: 'MJPID25020273', nama: 'm dafa nugraha', masuk: '4 Hari', gajikotor: 'RP 437900', bpjs: '12500', bersih: '425400' }, 
+ 'MELA NOVIANA': { password: '2431', id: 'MJPID25020274', nama: 'mela noviana', masuk: '10 Hari', gajikotor: 'RP 1234000', bpjs: '12500', bersih: '1221500' }, 
+ 'ESTER FELISIA': { password: '2435', id: 'MJPID25020278', nama: 'ester felisia', masuk: '1 Hari', gajikotor: 'RP 118600', bpjs: '12500', bersih: '106100' }, 
+
+      
+     };
+
+    function login() {
+      const user = document.getElementById('username').value.toLowerCase();
+      const pass = document.getElementById('password').value;
+      if (dataGaji[user] && dataGaji[user].password === pass) {
+        document.getElementById('login').classList.remove('active');
+        document.getElementById('slip').classList.add('active');
+        const d = dataGaji[user];
+        document.getElementById('id').textContent = d.id;
+        document.getElementById('nama').textContent = d.nama;
+        document.getElementById('masuk').textContent = d.masuk;
+        document.getElementById('kotor').textContent = d.kotor;
+        document.getElementById('bpjs').textContent = d.bpjs;
+        document.getElementById('bersih').textContent = d.bersih;
+      } else {
+        alert('Nama atau password salah!');
+      }
+    }
+
+    function logout() {
+      document.getElementById('slip').classList.remove('active');
+      document.getElementById('login').classList.add('active');
+      document.getElementById('username').value = '';
+      document.getElementById('password').value = '';
+    }
+  </script>
+</body>
+</html>

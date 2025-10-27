@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Slip Gaji Karyawan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .slip {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        .slip h2 {
+            margin-top: 0;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cek Slip Gaji Bulanan</h1>
+        <form id="cekForm">
+            <label for="employeeId">Masukkan ID Karyawan:</label>
+            <input type="text" id="employeeId" required>
+            <button type="submit">Cek Slip Gaji</button>
+        </form>
+        <div id="slipContainer" class="slip">
+            <h2>Slip Gaji Bulan Ini</h2>
+            <p><strong>ID Karyawan:</strong> <span id="id"></span></p>
+            <p><strong>Nama Karyawan:</strong> <span id="nama"></span></p>
+            <p><strong>Jumlah Masuk Kerja (Hari):</strong> <span id="masuk"></span></p>
+            <p><strong>Gaji:</strong> <span id="gaji"></span></p>
+        </div>
+        <div id="errorMessage" class="error"></div>
+    </div>
+
+    <script>
+        // Data dummy karyawan (dalam dunia nyata, ganti dengan fetch dari API/database)
+        const employees = {
+            "001": { nama: "Ahmad Surya", masuk: 22, gaji: "Rp 5.000.000" },
+            "002": { nama: "Budi Santoso", masuk: 20, gaji: "Rp 4.500.000" },
+            "003": { nama: "Citra Dewi", masuk: 25, gaji: "Rp 6.000.000" }
+        };
+
+        document.getElementById('cekForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const id = document.getElementById('employeeId').value.trim();
+            const errorMsg = document.getElementById('errorMessage');
+            const slip = document.getElementById('slipContainer');
+
+            if (employees[id]) {
+                // Tampilkan slip gaji
+                document.getElementById('id').textContent = id;
+                document.getElementById('nama').textContent = employees[id].nama;
+                document.getElementById('masuk').textContent = employees[id].masuk;
+                document.getElementById('gaji').textContent = employees[id].gaji;
+                slip.style.display = 'block';
+                errorMsg.textContent = '';
+            } else {
+                // Tampilkan error
+                slip.style.display = 'none';
+                errorMsg.textContent = 'ID karyawan tidak ditemukan. Silakan coba lagi.';
+            }
+        });
+    </script>
+</body>
+</html>

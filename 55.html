@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Slip Gaji - Demo</title>
+<style>
+  :root{
+    --bg:#f5f7fb;
+    --card:#fff;
+    --muted:#6b7280;
+    --accent:#0f172a;
+    --accent-2:#0369a1;
+    --border:#e6e9ef;
+  }
+  body{font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);margin:0;padding:28px;color:#0b1220}
+  .container{max-width:980px;margin:0 auto}
+  .top{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .card{background:var(--card);padding:18px;border-radius:8px;box-shadow:0 6px 18px rgba(12,20,40,0.06);border:1px solid var(--border)}
+  h1{font-size:18px;margin:0}
+  .controls{display:flex;gap:8px;align-items:center}
+  select,input{padding:8px;border-radius:6px;border:1px solid var(--border);background:#fff}
+  button{padding:8px 12px;border-radius:6px;border:0;background:var(--accent-2);color:#fff;cursor:pointer}
+  .slip-header{display:grid;grid-template-columns:1fr auto;gap:12px;margin-top:12px}
+  .meta{display:grid;grid-template-columns:120px 1fr;gap:6px;align-items:center}
+  .meta .label{color:var(--muted);font-size:13px}
+  .meta .value{font-weight:600}
+  .table-wrap{overflow:auto;margin-top:12px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  thead th{background:#f3f6fb;padding:8px;border-bottom:1px solid var(--border);text-align:left;position:sticky;top:0}
+  tbody td{padding:8px;border-bottom:1px dashed #e9eef6;vertical-align:middle}
+  .right{text-align:right}
+  .center{text-align:center}
+  tfoot td{padding:10px;font-weight:700;border-top:2px solid var(--border);background:#fff}
+  .summary-row{display:flex;gap:12px;justify-content:flex-end;margin-top:12px;align-items:flex-end}
+  .small-card{background:#fbfdff;border:1px solid var(--border);padding:12px;border-radius:8px;min-width:220px}
+  .muted{color:var(--muted);font-size:13px}
+  .big{font-size:18px;font-weight:700}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+  @media print {
+    body{background:#fff;padding:0}
+    .controls, .top{display:none}
+    .container{max-width:100%;padding:0;margin:0}
+    .card{box-shadow:none;border:none}
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="top">
+      <div>
+        <h1>Slip Gaji (Preview)</h1>
+        <div class="muted">Tampilan slip gaji mirip screenshot yang kamu kirim</div>
+      </div>
+      <div class="controls">
+        <label class="muted">Pilih:</label>
+        <select id="employeeSelect"></select>
+        <button id="printBtn">Cetak / Print</button>
+      </div>
+    </div>
+
+    <div class="card" id="slipCard">
+      <div class="slip-header">
+        <div>
+          <div class="meta">
+            <div class="label">No. ID :</div><div class="value" id="noId">-</div>
+            <div class="label">Nama :</div><div class="value" id="nama">-</div>
+            <div class="label">No. Rek :</div><div class="value" id="norek">-</div>
+            <div class="label">Email :</div><div class="value" id="email">-</div>
+            <div class="label">Periode :</div><div class="value" id="periode">-</div>
+          </div>
+        </div>
+        <div class="small-card">
+          <div class="muted">Total Upah</div>
+          <div class="big right" id="totalUpah">Rp 0</div>
+          <div class="muted" style="margin-top:6px">Total Slip (setelah potongan)</div>
+          <div class="big right" id="totalSaldo">Rp 0</div>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table id="detailTable">
+          <thead>
+            <tr>
+              <th style="width:130px">TANGGAL</th>
+              <th style="width:100px" class="center">ABSENSI</th>
+              <th>SUMMARY HARIAN</th>
+              <th style="width:140px" class="right">NILAI UPAH (Rp)</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3" class="right">TOTAL Rp</td>
+              <td class="right" id="grandTotal">Rp 0</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="muted">Tambahan</div>
+          <div style="margin-top:8px">
+            <div style="display:flex;justify-content:space-between;padding:6px 0"><div class="muted">Uang Makan</div><div id="uangMakan" class="right">Rp 0</div></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0"><div class="muted">Bonus</div><div id="bonus" class="right">Rp 0</div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="muted">Potongan</div>
+          <div style="margin-top:8px">
+            <div style="display:flex;justify-content:space-between;padding:6px 0"><div class="muted">BPJS Kesehatan</div><div id="bpjsKes" class="right">Rp 0</div></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0"><div class="muted">BPJS Ketenagakerjaan</div><div id="bpjsKer" class="right">Rp 0</div></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0"><div class="muted">BPJS Pensiun</div><div id="bpjsPen" class="right">Rp 0</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+        <div class="muted">Total Kasbon / Sisa Saldo (kamu bisa edit di data)</div>
+        <div style="text-align:right">
+          <div style="font-size:13px">Total Kasbon : <span id="totalKasbon">Rp 0</span></div>
+          <div style="font-size:18px;font-weight:700">TOTAL SALDO : <span id="totalSaldoFinal">Rp 0</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<script>
+/*
+  Sample data structure.
+  - rows: array of {tanggal, absensi (number or "-"), summary (number), nilaiUpah (number)}
+  Currency values are integer (Rupiah) for easy calc.
+*/
+const payrollData = [
+  {
+    id: "MJPID24050076",
+    nama: "SANTI",
+    norek: "",
+    email: "",
+    periode: "Sep-2025",
+    tambahan: { uangMakan: 0, bonus: 0 },
+    potongan: { bpjsKes: 0, bpjsKer: 0, bpjsPen: 0 },
+    kasbon: 0,
+    rows: [
+      // we'll include a subset similar to screenshot. Fill with sample values.
+      { tanggal: "1-Sep-2025", absensi: 1.00, summary: 5840733, nilaiUpah: 145000 },
+      { tanggal: "2-Sep-2025", absensi: 1.00, summary: 7539826, nilaiUpah: 145000 },
+      { tanggal: "3-Sep-2025", absensi: 1.00, summary: 9195966, nilaiUpah: 145000 },
+      { tanggal: "4-Sep-2025", absensi: 1.00, summary: 8937320, nilaiUpah: 145000 },
+      { tanggal: "5-Sep-2025", absensi: "-", summary: 0, nilaiUpah: 0 },
+      { tanggal: "6-Sep-2025", absensi: 1.00, summary: 8765000, nilaiUpah: 143000 },
+      { tanggal: "7-Sep-2025", absensi: "-", summary: 0, nilaiUpah: 0 },
+      { tanggal: "8-Sep-2025", absensi: 1.00, summary: 10429920, nilaiUpah: 143000 },
+      { tanggal: "9-Sep-2025", absensi: 1.00, summary: 6227881, nilaiUpah: 154000 },
+      { tanggal: "10-Sep-2025", absensi: 1.12, summary: 10385894, nilaiUpah: 154000 },
+      { tanggal: "11-Sep-2025", absensi: 1.13, summary: 8666757, nilaiUpah: 154000 },
+      { tanggal: "12-Sep-2025", absensi: 1.00, summary: 6773309, nilaiUpah: 154000 },
+      { tanggal: "13-Sep-2025", absensi: 1.00, summary: 0, nilaiUpah: 0 },
+      { tanggal: "14-Sep-2025", absensi: 1.00, summary: 5835334, nilaiUpah: 140200 },
+      { tanggal: "15-Sep-2025", absensi: 1.00, summary: 10868181, nilaiUpah: 140200 },
+      { tanggal: "16-Sep-2025", absensi: 1.00, summary: 10745666, nilaiUpah: 140200 },
+      { tanggal: "17-Sep-2025", absensi: 1.00, summary: 8764505, nilaiUpah: 140200 },
+      { tanggal: "18-Sep-2025", absensi: 1.25, summary: 7335447, nilaiUpah: 175250 },
+      { tanggal: "19-Sep-2025", absensi: 1.00, summary: 3937766, nilaiUpah: 140200 },
+      { tanggal: "20-Sep-2025", absensi: "-", summary: 0, nilaiUpah: 0 },
+      { tanggal: "21-Sep-2025", absensi: 1.00, summary: 6357827, nilaiUpah: 149000 },
+      { tanggal: "22-Sep-2025", absensi: 1.00, summary: 10146560, nilaiUpah: 149000 },
+      { tanggal: "23-Sep-2025", absensi: 1.00, summary: 7869753, nilaiUpah: 149000 },
+      { tanggal: "24-Sep-2025", absensi: 1.00, summary: 9188872, nilaiUpah: 149000 },
+      { tanggal: "25-Sep-2025", absensi: 1.00, summary: 6215747, nilaiUpah: 149000 },
+      { tanggal: "26-Sep-2025", absensi: 1.00, summary: 6626179, nilaiUpah: 149000 },
+      { tanggal: "27-Sep-2025", absensi: "-", summary: 0, nilaiUpah: 0 },
+      { tanggal: "28-Sep-2025", absensi: 1.00, summary: 3706718, nilaiUpah: 160000 },
+      { tanggal: "29-Sep-2025", absensi: 1.00, summary: 5626588, nilaiUpah: 160000 },
+      { tanggal: "30-Sep-2025", absensi: "-", summary: 0, nilaiUpah: 0 }
+    ]
+  }
+];
+
+// UTIL
+function formatRp(n){
+  if (!n && n !== 0) return "Rp -";
+  const neg = n < 0;
+  const v = Math.abs(Math.round(n));
+  return (neg? "-":"") + 'Rp ' + v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+function numberSum(arr){
+  let s = 0;
+  for(let i=0;i<arr.length;i++){
+    const v = Number(arr[i])||0;
+    s += v;
+  }
+  return s;
+}
+
+// Build UI
+const empSelect = document.getElementById('employeeSelect');
+const noIdEl = document.getElementById('noId');
+const namaEl = document.getElementById('nama');
+const norekEl = document.getElementById('norek');
+const emailEl = document.getElementById('email');
+const periodeEl = document.getElementById('periode');
+const tbody = document.querySelector('#detailTable tbody');
+const grandTotalEl = document.getElementById('grandTotal');
+const totalUpahEl = document.getElementById('totalUpah');
+const uangMakanEl = document.getElementById('uangMakan');
+const bonusEl = document.getElementById('bonus');
+const bpjsKesEl = document.getElementById('bpjsKes');
+const bpjsKerEl = document.getElementById('bpjsKer');
+const bpjsPenEl = document.getElementById('bpjsPen');
+const totalKasbonEl = document.getElementById('totalKasbon');
+const totalSaldoFinalEl = document.getElementById('totalSaldoFinal');
+
+// populate select
+payrollData.forEach((p, idx) => {
+  const opt = document.createElement('option');
+  opt.value = idx;
+  opt.textContent = `${p.nama} — ${p.periode}`;
+  empSelect.appendChild(opt);
+});
+
+// initial render
+function renderEmployee(index){
+  const e = payrollData[index];
+  noIdEl.textContent = e.id || '-';
+  namaEl.textContent = e.nama || '-';
+  norekEl.textContent = e.norek || '-';
+  emailEl.textContent = e.email || '-';
+  periodeEl.textContent = e.periode || '-';
+
+  // build table rows
+  tbody.innerHTML = '';
+  let values = [];
+  for(let r of e.rows){
+    const tr = document.createElement('tr');
+
+    const tdDate = document.createElement('td'); tdDate.textContent = r.tanggal;
+    const tdAbs = document.createElement('td'); tdAbs.className = "center"; tdAbs.textContent = (r.absensi === "-"? "-" : Number(r.absensi).toFixed(2).replace(/\.00$/,'')); // show integer when possible
+    const tdSum = document.createElement('td'); tdSum.textContent = r.summary? r.summary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : '-';
+    const tdUpah = document.createElement('td'); tdUpah.className = 'right'; tdUpah.textContent = r.nilaiUpah? formatRp(r.nilaiUpah) : 'Rp 0';
+
+    tr.appendChild(tdDate);
+    tr.appendChild(tdAbs);
+    tr.appendChild(tdSum);
+    tr.appendChild(tdUpah);
+    tbody.appendChild(tr);
+
+    values.push(Number(r.nilaiUpah)||0);
+  }
+
+  // totals
+  const grandTotal = numberSum(values);
+  grandTotalEl.textContent = formatRp(grandTotal);
+  totalUpahEl.textContent = formatRp(grandTotal);
+
+  // tambahan / potongan / kasbon
+  uangMakanEl.textContent = formatRp(e.tambahan?.uangMakan || 0);
+  bonusEl.textContent = formatRp(e.tambahan?.bonus || 0);
+  bpjsKesEl.textContent = formatRp(e.potongan?.bpjsKes || 0);
+  bpjsKerEl.textContent = formatRp(e.potongan?.bpjsKer || 0);
+  bpjsPenEl.textContent = formatRp(e.potongan?.bpjsPen || 0);
+  totalKasbonEl.textContent = formatRp(e.kasbon || 0);
+
+  // Final saldo = grandTotal + tambahan - potongan - kasbon
+  const tambahanSum = numberSum([e.tambahan?.uangMakan, e.tambahan?.bonus]);
+  const potonganSum = numberSum([e.potongan?.bpjsKes, e.potongan?.bpjsKer, e.potongan?.bpjsPen]);
+  const totalSaldo = grandTotal + tambahanSum - potonganSum - (e.kasbon||0);
+  totalSaldoFinalEl.textContent = formatRp(totalSaldo);
+  document.getElementById('totalSaldo').textContent = formatRp(totalSaldo);
+}
+
+// handle change
+empSelect.addEventListener('change', (ev)=>{
+  renderEmployee(Number(ev.target.value));
+});
+
+// initialize first
+empSelect.value = 0;
+renderEmployee(0);
+
+// print button
+document.getElementById('printBtn').addEventListener('click', ()=> {
+  window.print();
+});
+</script>
+</body>
+</html>

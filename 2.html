@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login dan Cek Slip Gaji Karyawan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .slip {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        .slip h2 {
+            margin-top: 0;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .logout {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .logout button {
+            background-color: #f44336;
+        }
+        .logout button:hover {
+            background-color: #da190b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="loginForm">
+            <h1>Login Karyawan</h1>
+            <form id="login">
+                <label for="username">Nama:</label>
+                <input type="text" id="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+                <button type="submit">Login</button>
+            </form>
+            <div id="loginError" class="error"></div>
+        </div>
+
+        <div id="slipContainer" class="slip">
+            <h2>Slip Gaji Bulan Ini</h2>
+            <p><strong>ID Karyawan:</strong> <span id="id"></span></p>
+            <p><strong>Banyaknya Masuk Kerja (Hari):</strong> <span id="masuk"></span></p>
+            <p><strong>Gaji:</strong> <span id="gaji"></span></p>
+            <div class="logout">
+                <button onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data dummy karyawan dengan nama dan password (dalam dunia nyata, ganti dengan sistem aman)
+        const employees = {
+            "Ahmad Surya": { password: "pass123", id: "001", masuk: 22, gaji: "Rp 5.000.000" },
+            "Budi Santoso": { password: "pass456", id: "002", masuk: 20, gaji: "Rp 4.500.000" },
+            "Citra Dewi": { password: "pass789", id: "003", masuk: 25, gaji: "Rp 6.000.000" }
+        };
+
+        document.getElementById('login').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const loginError = document.getElementById('loginError');
+            const loginForm = document.getElementById('loginForm');
+            const slip = document.getElementById('slipContainer');
+
+            if (employees[username] && employees[username].password === password) {
+                // Login berhasil, tampilkan slip gaji
+                document.getElementById('id').textContent = employees[username].id;
+                document.getElementById('masuk').textContent = employees[username].masuk;
+                document.getElementById('gaji').textContent = employees[username].gaji;
+                loginForm.style.display = 'none';
+                slip.style.display = 'block';
+                loginError.textContent = '';
+            } else {
+                // Login gagal
+                loginError.textContent = 'Nama atau password salah. Silakan coba lagi.';
+            }
+        });
+
+        function logout() {
+            // Kembali ke form login
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('slipContainer').style.display = 'none';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('loginError').textContent = '';
+        }
+    </script>
+</body>
+</html>

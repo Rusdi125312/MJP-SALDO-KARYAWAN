@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Slip Gaji - MJP</title>
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4381097964402349"
+     crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* Tambahan gaya khusus halaman slip */
+    .slip-container {
+      margin-top: 100px;
+      background: rgba(0,0,0,0.6);
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #fff;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+
+    .slip-container input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .slip-container button {
+      width: 95%;
+      background-color: #2ecc71;
+      border: none;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .slip-container button:hover {
+      background-color: #27ae60;
+    }
+
+    .result {
+      margin-top: 25px;
+      background: rgba(44,62,80,0.8);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: left;
+      display: none;
+    }
+
+    .result h3 {
+      color: #00ffcc;
+      margin-top: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">MJP</a>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span><span></span><span></span>
+    </div>
+    <ul id="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="kasbon.html">Kasbon</a></li>
+      <li><a href="slip.html">Slip Gaji</a></li>
+      <li><a href="finance.html">Finance</a></li>
+      <li><a href="tips-gaji.html">Tips Gaji</a></li>
+      <li><a href="about.html">Tentang Kami</a></li>
+      <li><a href="privacy.html">Privasi</a></li>
+      <li><a href="contact.html">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <!-- Konten utama -->
+  <div class="slip-container">
+    <h2>Cek Slip Gaji Anda</h2>
+    <p>Masukkan NIK atau Nama untuk melihat detail gaji Anda</p>
+    <input type="text" id="searchInput" placeholder="Contoh: 230145 / Budi Santoso">
+    <button onclick="cekSlip()">Lihat Slip Gaji</button>
+
+    <div class="result" id="resultBox">
+      <h3>Slip Gaji Bulan Ini</h3>
+      <p><b>Nama:</b> <span id="nama"></span></p>
+      <p><b>Departemen:</b> <span id="departemen"></span></p>
+      <p><b>Gaji Pokok:</b> <span id="gaji"></span></p>
+      <p><b>Potongan:</b> <span id="potongan"></span></p>
+      <p><b>Total Diterima:</b> <span id="total"></span></p>
+    </div>
+  </div>
+
+  <script src="slip.js"></script>
+</body>
+</html>
