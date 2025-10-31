@@ -3,84 +3,212 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Absen Karyawan</title>
+  <title>Rincian Pendapatan - MJP</title>
 
+  <!-- CSS -->
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding-top: 60px; background: url('bg2.jpg') no-repeat center center fixed; background-size: cover; color: #fff; min-height: 100vh; display: flex; flex-direction: column; }
-    .navbar { background-color: rgba(44,62,80,0.9); padding: 10px 20px; position: fixed; top: 0; left: 0; right: 0; z-index: 999; display: flex; justify-content: space-between; align-items: center; }
-    .navbar .logo { color: #ecf0f1; font-weight: bold; font-size: 22px; text-decoration: none; }
-    .navbar ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 18px; }
-    .navbar ul li a { color: #fff; text-decoration: none; font-weight: 500; transition: color 0.2s; }
-    .navbar ul li a:hover { color: #00ffcc; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 60px;
+      background: url('bg2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: rgba(44, 62, 80, 0.9);
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar .logo {
+      color: #00ffcc;
+      font-weight: bold;
+      font-size: 22px;
+      text-decoration: none;
+      text-shadow: 0 0 6px #00ffcc;
+    }
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 18px;
+    }
+    .navbar ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .navbar ul li a:hover {
+      color: #00ffcc;
+    }
     .menu-toggle { display: none; }
-    @media (max-width: 700px) { .navbar ul { flex-direction: column; background: rgba(44,62,80,0.98); position: absolute; top: 50px; right: 0; left: 0; display: none; } .navbar ul.active { display: flex; } .menu-toggle { display: block; cursor: pointer; } .menu-toggle span { display: block; width: 25px; height: 3px; margin: 5px; background: #fff; } }
+    @media (max-width: 700px) {
+      .navbar ul {
+        flex-direction: column;
+        background: rgba(44,62,80,0.98);
+        position: absolute;
+        top: 50px;
+        right: 0;
+        left: 0;
+        display: none;
+      }
+      .navbar ul.active { display: flex; }
+      .menu-toggle { display: block; cursor: pointer; }
+      .menu-toggle span {
+        display: block;
+        width: 25px; height: 3px;
+        margin: 5px;
+        background: #fff;
+      }
+    }
 
-    .container { max-width: 900px; margin: 20px auto; background: rgba(0,0,0,0.7); border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.4); padding: 30px 20px 20px 20px; width: 92%; }
-    @media (max-width:600px){ .container{ padding: 20px 10px; margin: 20px 5px; } }
+    /* Container */
+    .container {
+      max-width: 500px;
+      margin: 20px auto;
+      background: rgba(0,0,0,0.75);
+      border-radius: 14px;
+      box-shadow: 0 0 20px rgba(0,255,204,0.4);
+      padding: 30px 20px 20px 20px;
+      width: 90%;
+    }
+    @media (max-width:600px) {
+      .container { padding: 20px 10px; margin: 20px 5px; }
+    }
 
-    h1,h2{ font-size: 24px; margin-bottom: 18px; text-align: center; color: #00ffcc; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
-    label{ font-size:16px; margin-bottom:6px; display:block; }
-    select,button{ width:100%; padding:10px; margin-top:8px; border-radius:8px; border:1px solid #3498db; font-size:16px; margin-bottom:10px; }
-    button{ background: linear-gradient(135deg,#00ff80,#00ccff); color:#000; font-weight:bold; border:none; cursor:pointer; }
-    button:hover{ background: linear-gradient(135deg,#00e673,#00b3e6); color:#fff; }
+    h1, h2 {
+      font-size: 24px;
+      margin-bottom: 18px;
+      text-align: center;
+      color: #00ffcc;
+      text-shadow: 0 0 6px #00ffcc;
+    }
 
-    table{ border-collapse: collapse; background: rgba(0,0,0,0.5); border-radius: 8px; overflow-x: auto; display: block; white-space: nowrap; }
-    th,td{ padding:10px 12px; border-bottom:1px solid #3498db; color:#fff; }
-    th{ background:#222; color:#00e0ff; }
-    tr:hover td{ background:#1a1a1a; }
+    label {
+      font-size: 16px;
+      margin-bottom: 6px;
+      display: block;
+    }
 
-    .toolbar{ display:flex; gap:10px; align-items:center; flex-wrap: wrap; }
-    .toolbar > *{ flex: 1 1 180px; }
+    select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border-radius: 8px;
+      border: 1px solid #00ffcc;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    button {
+      background: linear-gradient(135deg, #00ff80, #00ccff);
+      color: #000;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #00e673, #00b3e6);
+      color: #fff;
+    }
 
-    .back-btn{ display:inline-block; margin-top:20px; padding:10px 22px; background: linear-gradient(135deg,#00ff80,#00ccff); color:#000; border-radius:8px; font-size:16px; font-weight:bold; text-decoration:none; }
-    .back-btn:hover{ background: linear-gradient(135deg,#00e673,#00b3e6); color:#fff; }
-    footer{ margin-top:auto; padding:20px; background: rgba(0,0,0,0.7); text-align:center; font-size:14px; color:#aaa; }
+    /* Table */
+    table {
+      border-collapse: collapse;
+      background: rgba(0,0,0,0.6);
+      border-radius: 8px;
+      overflow-x: auto;
+      display: block;
+      white-space: nowrap;
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #00ccff;
+      color: #fff;
+      text-align: left;
+    }
+    th {
+      background: #001f2b;
+      color: #00ffcc;
+      text-shadow: 0 0 6px #00ffcc;
+    }
+    tr:hover td {
+      background: rgba(0, 255, 204, 0.08);
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 22px;
+      background: linear-gradient(135deg, #00ff80, #00ccff);
+      color: #000;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .back-btn:hover {
+      background: linear-gradient(135deg, #00e673, #00b3e6);
+      color: #fff;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 20px;
+      background: rgba(0,0,0,0.8);
+      text-align: center;
+      font-size: 14px;
+      color: #aaa;
+      border-top: 1px solid rgba(0,255,204,0.2);
+    }
   </style>
 </head>
 <body>
+  <!-- Navbar -->
   <nav class="navbar">
-    <a href="#" class="logo">MJP</a>
-    <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <a href="index.html" class="logo">MJP</a>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
     <ul id="menu">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Kasbon</a></li>
-      <li><a href="#">Isi Link</a></li>
-      <li><a href="#">Finance</a></li>
-      <li><a href="#">Tips Gaji</a></li>
-      <li><a href="#">Tentang Kami</a></li>
-      <li><a href="#">Privasi</a></li>
-      <li><a href="#">Kontak</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="kasbon.html">Kasbon</a></li>
+      <li><a href="index2.html">Isi Link</a></li>
+      <li><a href="finance.html">Finance</a></li>
+      <li><a href="tips-gaji.html">Tips Gaji</a></li>
+      <li><a href="about.html">Tentang Kami</a></li>
+      <li><a href="privacy.html">Privasi</a></li>
+      <li><a href="contact.html">Kontak</a></li>
     </ul>
   </nav>
 
   <div class="container">
     <div id="loginScreen">
-      <h1>Login Absen</h1>
+      <h1>Rincian Pendapatan</h1>
       <label>Pilih Nama:</label>
       <select id="nameSelect"></select>
-      <button id="loginBtn">Login</button>
+      <button id="loginBtn">Lihat Pendapatan</button>
     </div>
 
-    <div id="absenScreen" style="display:none;">
-      <h2>Absen Karyawan</h2>
-      <div>Login sebagai: <span id="userName"></span></div>
-      <div class="toolbar" style="margin: 10px 0;">
+    <div id="dataScreen" style="display:none;">
+      <h2>Rincian Pendapatan untuk <span id="userName"></span></h2>
+      <div style="margin: 10px 0;">
         <button id="btnLogout">Logout</button>
         <button id="btnReload">Reload</button>
-        <select id="pageSize">
-          <option value="-1">Tampilkan semua</option>
-          <option value="50">50 / halaman</option>
-          <option value="100">100 / halaman</option>
-          <option value="200">200 / halaman</option>
-          <option value="500">500 / halaman</option>
-        </select>
-        <div style="display:flex; gap:8px; align-items:center;">
-          <button id="prevPage">◀</button>
-          <span id="pageInfo" style="min-width:120px; text-align:center;">Halaman 1/1</span>
-          <button id="nextPage">▶</button>
-        </div>
       </div>
-
       <div id="status">Memuat data...</div>
       <div style="overflow:auto; margin-top:12px;">
         <table>
@@ -88,189 +216,128 @@
           <tbody id="tbody"></tbody>
         </table>
       </div>
-      <a href="#" class="back-btn">← Kembali ke Dashboard</a>
+      <a href="index.html" class="back-btn">← Kembali ke Dashboard</a>
     </div>
   </div>
 
-  <footer>MJP © 2025. All rights reserved.</footer>
+  <footer>
+    MJP © 2025. All rights reserved.
+  </footer>
 
-<script>
-  function toggleMenu(){ document.getElementById('menu').classList.toggle('active'); }
-
-  // Ganti URL di bawah ini dengan URL publish CSV kamu (yang sekarang), TANPA parameter range.
-  // Script ini akan otomatis mengambil CSV DALAM BEBERAPA CHUNK > mengatasi batas 1000 baris.
-  const CSV_BASE = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSyAD19vapWIxD6g1NlIy63tyH0stasOJtgSfVdTRrJfBkmsOYPfp5hIZ3qlyZqE-BJwhbT2Wjl3V5O/pub?gid=853862450&single=true&output=csv';
-  const CHUNK_SIZE = 1000;           // Google publish CSV biasanya 1000 baris per response
-  const MAX_EMPTY_CHUNKS = 1;        // berhenti saat chunk berikutnya kosong
-  const MAX_ROWS_SAFETY = 50000;     // pagar atas (hindari loop tak berujung)
-
-  const loginScreen = document.getElementById('loginScreen');
-  const absenScreen = document.getElementById('absenScreen');
-  const nameSelect  = document.getElementById('nameSelect');
-  const loginBtn    = document.getElementById('loginBtn');
-  const btnLogout   = document.getElementById('btnLogout');
-  const btnReload   = document.getElementById('btnReload');
-  const userNameSpan= document.getElementById('userName');
-  const statusEl    = document.getElementById('status');
-  const theadRow    = document.getElementById('theadRow');
-  const tbody       = document.getElementById('tbody');
-  const pageSizeSel = document.getElementById('pageSize');
-  const prevPageBtn = document.getElementById('prevPage');
-  const nextPageBtn = document.getElementById('nextPage');
-  const pageInfo    = document.getElementById('pageInfo');
-
-  let rawData = [];   // semua baris
-  let header  = [];   // header CSV
-  let currentUser = '';
-  let filteredUserRows = [];
-  let currentPage = 1;
-
-  function csvRange(startRow, endRow){
-    // Kolom dilebihkan ke ZZZ agar menangkap semua kolom yang ada
-    return `A${startRow}:ZZZ${endRow}`; 
-  }
-
-  async function fetchChunk(range){
-    const url = CSV_BASE + `&range=${encodeURIComponent(range)}`;
-    const res = await fetch(url);
-    if(!res.ok) throw new Error('HTTP ' + res.status);
-    return res.text();
-  }
-
-  function parseCSVLine(line){
-    const result = []; let cur = '', inQuotes = false;
-    for(let i=0;i<line.length;i++){
-      const ch = line[i];
-      if(ch === '"'){
-        if(inQuotes && line[i+1] === '"'){ cur += '"'; i++; } // escaped quote
-        else inQuotes = !inQuotes;
-      } else if(ch === ',' && !inQuotes){ result.push(cur); cur=''; }
-      else{ cur += ch; }
+  <script>
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('active');
     }
-    result.push(cur);
-    return result;
-  }
 
-  function parseCSV(text){
-    const lines = text.split(/\r?\n/).filter(l=>l.trim()!=='');
-    if(lines.length === 0) return {header: [], rows: []};
-    const head = parseCSVLine(lines[0]);
-    const rows = [];
-    for(let i=1;i<lines.length;i++){
-      const vals = parseCSVLine(lines[i]);
-      const obj = {};
-      head.forEach((h,j)=> obj[h] = vals[j] || '');
-      rows.push(obj);
-    }
-    return {header: head, rows};
-  }
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSyAD19vapWIxD6g1NlIy63tyH0stasOJtgSfVdTRrJfBkmsOYPfp5hIZ3qlyZqE-BJwhbT2Wjl3V5O/pub?gid=853862450&single=true&output=csv";
+    const loginScreen = document.getElementById('loginScreen');
+    const dataScreen = document.getElementById('dataScreen');
+    const nameSelect = document.getElementById('nameSelect');
+    const loginBtn = document.getElementById('loginBtn');
+    const btnLogout = document.getElementById('btnLogout');
+    const btnReload = document.getElementById('btnReload');
+    const userNameSpan = document.getElementById('userName');
+    const statusEl = document.getElementById('status');
+    const theadRow = document.getElementById('theadRow');
+    const tbody = document.getElementById('tbody');
+    let rawData = [];
+    let currentUser = "";
 
-  async function fetchAllCSV(){
-    statusEl.textContent = 'Mengambil data (multi-chunk)...';
-    rawData = []; header = []; let start = 1; let emptyCount = 0; let chunkIndex = 0;
-
-    while(start <= MAX_ROWS_SAFETY){
-      const end = start + CHUNK_SIZE - 1;
-      const range = csvRange(start, end);
-      try{
-        const text = await fetchChunk(range);
-        const {header: h, rows} = parseCSV(text);
-        if(chunkIndex === 0) header = h; // header hanya dari chunk pertama
-
-        if(rows.length === 0){
-          emptyCount++;
-          if(emptyCount >= MAX_EMPTY_CHUNKS) break;
-        } else {
-          rawData.push(...rows);
-          emptyCount = 0;
-        }
-        chunkIndex++;
-        start += CHUNK_SIZE; // lanjut chunk berikutnya
-      } catch(e){
-        console.error('Gagal ambil chunk', range, e);
-        break;
+    async function fetchCSV(){
+      statusEl.textContent = "Mengambil data...";
+      try {
+        const res = await fetch(CSV_URL);
+        const text = await res.text();
+        parseCSV(text);
+        statusEl.textContent = `Selesai. ${rawData.length} baris ditemukan.`;
+      } catch(err) {
+        statusEl.textContent = "Error: " + err.message;
+        console.error(err);
       }
     }
 
-    statusEl.textContent = `Selesai. ${rawData.length} baris ditemukan.`;
-    populateNameList();
-    if(currentUser) applyFilterAndRender();
-  }
-
-  function populateNameList(){
-    const nameCol = header.find(h=>/nama|name/i.test(h)) || header[0] || 'Nama';
-    const uniqueNames = [...new Set(rawData.map(r=>r[nameCol]).filter(Boolean))].sort();
-    nameSelect.innerHTML = uniqueNames.map(n=>`<option value="${n}">${n}</option>`).join('');
-  }
-
-  function applyFilterAndRender(){
-    const nameCol = header.find(h=>/nama|name/i.test(h)) || header[0];
-    filteredUserRows = rawData.filter(r=> r[nameCol] === currentUser);
-    currentPage = 1;
-    renderTable();
-  }
-
-  function renderTable(){
-    // header
-    theadRow.innerHTML = '';
-    header.forEach(h=>{ const th=document.createElement('th'); th.textContent=h; theadRow.appendChild(th); });
-
-    // pagination
-    const pageSize = parseInt(pageSizeSel.value, 10);
-    let rowsToShow = filteredUserRows;
-    let totalPages = 1;
-
-    if(pageSize > 0){
-      totalPages = Math.max(1, Math.ceil(filteredUserRows.length / pageSize));
-      if(currentPage > totalPages) currentPage = totalPages;
-      const start = (currentPage - 1) * pageSize;
-      rowsToShow = filteredUserRows.slice(start, start + pageSize);
-      pageInfo.textContent = `Halaman ${currentPage}/${totalPages}`;
-      prevPageBtn.disabled = currentPage <= 1;
-      nextPageBtn.disabled = currentPage >= totalPages;
-    } else {
-      pageInfo.textContent = `Semua (${filteredUserRows.length} baris)`;
-      prevPageBtn.disabled = true; nextPageBtn.disabled = true;
+    function parseCSV(csvText){
+      const lines = csvText.split(/\r\n|\n/).filter(l=>l.trim()!=="");
+      const header = parseCSVLine(lines[0]);
+      const rows = [];
+      for(let i=1;i<lines.length;i++){
+        const vals = parseCSVLine(lines[i]);
+        const obj = {};
+        header.forEach((h,j)=> obj[h] = vals[j] || "");
+        rows.push(obj);
+      }
+      rawData = rows;
+      populateNameList(header);
+      if(currentUser) renderTable(header, rows);
     }
 
-    // body
-    tbody.innerHTML = '';
-    const frag = document.createDocumentFragment();
-    for(const row of rowsToShow){
-      const tr = document.createElement('tr');
-      for(const h of header){ const td=document.createElement('td'); td.textContent=row[h] ?? ''; tr.appendChild(td); }
-      frag.appendChild(tr);
+    function parseCSVLine(line){
+      const result = []; let cur = "", inQuotes = false;
+      for(let ch of line){
+        if(ch === '"'){ inQuotes = !inQuotes; }
+        else if(ch === ',' && !inQuotes){ result.push(cur); cur=""; }
+        else{ cur += ch; }
+      }
+      result.push(cur);
+      return result;
     }
-    tbody.appendChild(frag);
-  }
 
-  // Event handlers
-  loginBtn.addEventListener('click', ()=>{
-    currentUser = nameSelect.value;
-    if(currentUser){
-      loginScreen.style.display='none';
-      absenScreen.style.display='block';
-      userNameSpan.textContent = currentUser;
-      fetchAllCSV();
+    function populateNameList(header){
+      if(nameSelect.options.length > 0) return;
+      const nameCol = header.find(h=>/nama|name/i.test(h)) || header[0];
+      const uniqueNames = [...new Set(rawData.map(r=>r[nameCol]).filter(n=>n))].sort();
+      nameSelect.innerHTML = "";
+      uniqueNames.forEach(n=>{
+        const opt = document.createElement('option');
+        opt.value = n;
+        opt.textContent = n;
+        nameSelect.appendChild(opt);
+      });
     }
-  });
 
-  btnLogout.addEventListener('click', ()=>{ currentUser=''; absenScreen.style.display='none'; loginScreen.style.display='block'; });
-  btnReload.addEventListener('click', ()=> fetchAllCSV());
-  pageSizeSel.addEventListener('change', ()=>{ currentPage=1; renderTable(); });
-  prevPageBtn.addEventListener('click', ()=>{ if(currentPage>1){ currentPage--; renderTable(); }});
-  nextPageBtn.addEventListener('click', ()=>{ currentPage++; renderTable(); });
+    function renderTable(header, data){
+      const nameCol = header.find(h=>/nama|name/i.test(h)) || header[0];
+      const filtered = data.filter(r => r[nameCol] === currentUser);
+      const limitedHeader = header.slice(0, 4); // hanya 4 kolom pertama
 
-  // Preload nama (tanpa login) agar user bisa pilih dulu
-  (async function preload(){
-    try{
-      // cukup ambil chunk pertama untuk mengisi dropdown nama
-      const text = await fetchChunk(csvRange(1, CHUNK_SIZE));
-      const {header: h, rows} = parseCSV(text);
-      header = h; rawData = rows; populateNameList();
-      statusEl.textContent = 'Silakan login untuk memuat semua data.';
-    } catch(e){ statusEl.textContent = 'Gagal memuat awal: ' + e.message; }
-  })();
-</script>
+      theadRow.innerHTML = "";
+      limitedHeader.forEach(h=>{
+        const th = document.createElement('th');
+        th.textContent = h;
+        theadRow.appendChild(th);
+      });
+
+      tbody.innerHTML = "";
+      filtered.forEach(row=>{
+        const tr = document.createElement('tr');
+        limitedHeader.forEach(h=>{
+          const td = document.createElement('td');
+          td.textContent = row[h];
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+    }
+
+    loginBtn.addEventListener('click', ()=>{
+      currentUser = nameSelect.value;
+      if(currentUser){
+        loginScreen.style.display = "none";
+        dataScreen.style.display = "block";
+        userNameSpan.textContent = currentUser;
+        fetchCSV();
+      }
+    });
+
+    btnLogout.addEventListener('click', ()=>{
+      currentUser = "";
+      dataScreen.style.display = "none";
+      loginScreen.style.display = "block";
+    });
+
+    btnReload.addEventListener('click', ()=> fetchCSV());
+
+    fetchCSV();
+  </script>
 </body>
 </html>
