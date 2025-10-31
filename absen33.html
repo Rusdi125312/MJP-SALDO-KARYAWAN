@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Rincian Pendapatan - MJP</title>
 
-  <!-- CSS -->
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -19,14 +18,12 @@
       flex-direction: column;
     }
 
-    /* Navbar */
+    /* Navbar tetap */
     .navbar {
       background-color: rgba(44, 62, 80, 0.9);
       padding: 10px 20px;
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 999;
       display: flex;
       justify-content: space-between;
@@ -41,112 +38,114 @@
     }
     .navbar ul {
       list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 18px;
+      margin: 0; padding: 0;
+      display: flex; gap: 18px;
     }
     .navbar ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
+      color: #fff; text-decoration: none; font-weight: 500;
     }
-    .navbar ul li a:hover {
-      color: #00ffcc;
-    }
+    .navbar ul li a:hover { color: #00ffcc; }
     .menu-toggle { display: none; }
+
     @media (max-width: 700px) {
       .navbar ul {
         flex-direction: column;
         background: rgba(44,62,80,0.98);
         position: absolute;
-        top: 50px;
-        right: 0;
-        left: 0;
+        top: 50px; right: 0; left: 0;
         display: none;
       }
       .navbar ul.active { display: flex; }
       .menu-toggle { display: block; cursor: pointer; }
       .menu-toggle span {
-        display: block;
-        width: 25px; height: 3px;
-        margin: 5px;
-        background: #fff;
+        display: block; width: 25px; height: 3px;
+        margin: 5px; background: #fff;
       }
     }
 
-    /* Container */
+    /* Container utama */
     .container {
       max-width: 500px;
       margin: 20px auto;
       background: rgba(0,0,0,0.75);
       border-radius: 14px;
       box-shadow: 0 0 20px rgba(0,255,204,0.4);
-      padding: 30px 20px 20px 20px;
+      padding: 35px 25px;
       width: 90%;
-    }
-    @media (max-width:600px) {
-      .container { padding: 20px 10px; margin: 20px 5px; }
     }
 
     h1, h2 {
-      font-size: 24px;
-      margin-bottom: 18px;
       text-align: center;
       color: #00ffcc;
       text-shadow: 0 0 6px #00ffcc;
+      margin-bottom: 25px;
     }
 
     label {
-      font-size: 16px;
-      margin-bottom: 6px;
       display: block;
+      margin-top: 10px;
+      font-weight: bold;
     }
 
-    select, button {
+    /* Input dan select lebih rapi */
+    select, input[type="password"] {
       width: 100%;
-      padding: 10px;
-      margin-top: 8px;
-      border-radius: 8px;
+      padding: 12px 14px;
+      border-radius: 10px;
       border: 1px solid #00ffcc;
+      margin-top: 6px;
+      margin-bottom: 14px;
       font-size: 16px;
-      margin-bottom: 10px;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      outline: none;
+      box-shadow: inset 0 0 6px rgba(0,255,204,0.3);
+      transition: 0.3s;
     }
+
+    input[type="password"]:focus, select:focus {
+      background: rgba(255,255,255,0.15);
+      box-shadow: 0 0 10px #00ffcc;
+    }
+
+    /* Tombol login lebih elegan */
     button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
       background: linear-gradient(135deg, #00ff80, #00ccff);
       color: #000;
       font-weight: bold;
+      font-size: 16px;
       border: none;
       cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 8px rgba(0,255,204,0.4);
     }
     button:hover {
       background: linear-gradient(135deg, #00e673, #00b3e6);
       color: #fff;
+      box-shadow: 0 0 12px rgba(0,255,204,0.6);
+      transform: scale(1.02);
     }
 
-    /* Table */
+    /* Tabel dan footer tetap sama */
     table {
       border-collapse: collapse;
       background: rgba(0,0,0,0.6);
       border-radius: 8px;
       overflow-x: auto;
-      display: block;
-      white-space: nowrap;
+      width: 100%;
     }
     th, td {
       padding: 10px 12px;
       border-bottom: 1px solid #00ccff;
       color: #fff;
-      text-align: left;
     }
     th {
       background: #001f2b;
       color: #00ffcc;
       text-shadow: 0 0 6px #00ffcc;
-    }
-    tr:hover td {
-      background: rgba(0, 255, 204, 0.08);
     }
 
     .back-btn {
@@ -159,6 +158,7 @@
       font-size: 16px;
       font-weight: bold;
       text-decoration: none;
+      box-shadow: 0 0 8px rgba(0,255,204,0.4);
     }
     .back-btn:hover {
       background: linear-gradient(135deg, #00e673, #00b3e6);
@@ -195,22 +195,26 @@
     </ul>
   </nav>
 
+  <!-- Login Section -->
   <div class="container">
     <div id="loginScreen">
       <h1>Rincian Pendapatan</h1>
       <label>Pilih Nama:</label>
       <select id="nameSelect"></select>
-      <button id="loginBtn">Lihat Pendapatan</button>
+      <label>Masukkan Password:</label>
+      <input type="password" id="passwordInput" placeholder="Masukkan Password">
+      <button id="loginBtn">Masuk</button>
+      <div id="loginMsg" style="color:#ff8080;text-align:center;margin-top:8px;"></div>
     </div>
 
     <div id="dataScreen" style="display:none;">
       <h2>Rincian Pendapatan untuk <span id="userName"></span></h2>
-      <div style="margin: 10px 0;">
+      <div style="margin:10px 0;">
         <button id="btnLogout">Logout</button>
         <button id="btnReload">Reload</button>
       </div>
       <div id="status">Memuat data...</div>
-      <div style="overflow:auto; margin-top:12px;">
+      <div style="overflow:auto;margin-top:12px;">
         <table>
           <thead><tr id="theadRow"></tr></thead>
           <tbody id="tbody"></tbody>
@@ -220,124 +224,10 @@
     </div>
   </div>
 
-  <footer>
-    MJP © 2025. All rights reserved.
-  </footer>
+  <footer>MJP © 2025. All rights reserved.</footer>
 
   <script>
-    function toggleMenu() {
-      document.getElementById('menu').classList.toggle('active');
-    }
-
-    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSyAD19vapWIxD6g1NlIy63tyH0stasOJtgSfVdTRrJfBkmsOYPfp5hIZ3qlyZqE-BJwhbT2Wjl3V5O/pub?gid=853862450&single=true&output=csv";
-    const loginScreen = document.getElementById('loginScreen');
-    const dataScreen = document.getElementById('dataScreen');
-    const nameSelect = document.getElementById('nameSelect');
-    const loginBtn = document.getElementById('loginBtn');
-    const btnLogout = document.getElementById('btnLogout');
-    const btnReload = document.getElementById('btnReload');
-    const userNameSpan = document.getElementById('userName');
-    const statusEl = document.getElementById('status');
-    const theadRow = document.getElementById('theadRow');
-    const tbody = document.getElementById('tbody');
-    let rawData = [];
-    let currentUser = "";
-
-    async function fetchCSV(){
-      statusEl.textContent = "Mengambil data...";
-      try {
-        const res = await fetch(CSV_URL);
-        const text = await res.text();
-        parseCSV(text);
-        statusEl.textContent = `Selesai. ${rawData.length} baris ditemukan.`;
-      } catch(err) {
-        statusEl.textContent = "Error: " + err.message;
-        console.error(err);
-      }
-    }
-
-    function parseCSV(csvText){
-      const lines = csvText.split(/\r\n|\n/).filter(l=>l.trim()!=="");
-      const header = parseCSVLine(lines[0]);
-      const rows = [];
-      for(let i=1;i<lines.length;i++){
-        const vals = parseCSVLine(lines[i]);
-        const obj = {};
-        header.forEach((h,j)=> obj[h] = vals[j] || "");
-        rows.push(obj);
-      }
-      rawData = rows;
-      populateNameList(header);
-      if(currentUser) renderTable(header, rows);
-    }
-
-    function parseCSVLine(line){
-      const result = []; let cur = "", inQuotes = false;
-      for(let ch of line){
-        if(ch === '"'){ inQuotes = !inQuotes; }
-        else if(ch === ',' && !inQuotes){ result.push(cur); cur=""; }
-        else{ cur += ch; }
-      }
-      result.push(cur);
-      return result;
-    }
-
-    function populateNameList(header){
-      if(nameSelect.options.length > 0) return;
-      const nameCol = header.find(h=>/nama|name/i.test(h)) || header[0];
-      const uniqueNames = [...new Set(rawData.map(r=>r[nameCol]).filter(n=>n))].sort();
-      nameSelect.innerHTML = "";
-      uniqueNames.forEach(n=>{
-        const opt = document.createElement('option');
-        opt.value = n;
-        opt.textContent = n;
-        nameSelect.appendChild(opt);
-      });
-    }
-
-    function renderTable(header, data){
-      const nameCol = header.find(h=>/nama|name/i.test(h)) || header[0];
-      const filtered = data.filter(r => r[nameCol] === currentUser);
-      const limitedHeader = header.slice(0, 4); // hanya 4 kolom pertama
-
-      theadRow.innerHTML = "";
-      limitedHeader.forEach(h=>{
-        const th = document.createElement('th');
-        th.textContent = h;
-        theadRow.appendChild(th);
-      });
-
-      tbody.innerHTML = "";
-      filtered.forEach(row=>{
-        const tr = document.createElement('tr');
-        limitedHeader.forEach(h=>{
-          const td = document.createElement('td');
-          td.textContent = row[h];
-          tr.appendChild(td);
-        });
-        tbody.appendChild(tr);
-      });
-    }
-
-    loginBtn.addEventListener('click', ()=>{
-      currentUser = nameSelect.value;
-      if(currentUser){
-        loginScreen.style.display = "none";
-        dataScreen.style.display = "block";
-        userNameSpan.textContent = currentUser;
-        fetchCSV();
-      }
-    });
-
-    btnLogout.addEventListener('click', ()=>{
-      currentUser = "";
-      dataScreen.style.display = "none";
-      loginScreen.style.display = "block";
-    });
-
-    btnReload.addEventListener('click', ()=> fetchCSV());
-
-    fetchCSV();
+    function toggleMenu(){ document.getElementById('menu').classList.toggle('active'); }
   </script>
 </body>
 </html>
