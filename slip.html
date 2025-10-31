@@ -88,6 +88,8 @@
     }
     @media (max-width:600px) {
       .container { padding: 20px 10px; margin: 20px 5px; }
+      th, td { padding: 8px; font-size: 14px; }
+      h1, h2 { font-size: 20px; }
     }
 
     h1, h2 {
@@ -133,6 +135,7 @@
       overflow-x: auto;
       display: block;
       white-space: nowrap;
+      width: 100%;
     }
     th, td {
       padding: 10px 12px;
@@ -229,7 +232,9 @@
       document.getElementById('menu').classList.toggle('active');
     }
 
-    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSyAD19vapWIxD6g1NlIy63tyH0stasOJtgSfVdTRrJfBkmsOYPfp5hIZ3qlyZqE-BJwhbT2Wjl3V5O/pub?gid=853862450&single=true&output=csv";
+    // ✅ Ganti ke Google Sheet baru (versi CSV)
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSyAD19vapWIxD6g1NlIy63tyH0stasOJtgSfVdTRrJfBkmsOYPfp5hIZ3qlyZqE-BJwhbT2Wjl3V5O/pub?gid=1320856827&single=true&output=csv";
+
     const loginScreen = document.getElementById('loginScreen');
     const dataScreen = document.getElementById('dataScreen');
     const nameSelect = document.getElementById('nameSelect');
@@ -244,14 +249,14 @@
     let currentUser = "";
 
     async function fetchCSV(){
-      statusEl.textContent = "Mengambil data...";
+      statusEl.textContent = "⏳ Mengambil data, mohon tunggu...";
       try {
-        const res = await fetch(CSV_URL);
+        const res = await fetch(CSV_URL + "&t=" + new Date().getTime()); // cegah cache
         const text = await res.text();
         parseCSV(text);
-        statusEl.textContent = `Selesai. ${rawData.length} baris ditemukan.`;
+        statusEl.textContent = `✅ Data berhasil dimuat (${rawData.length} baris).`;
       } catch(err) {
-        statusEl.textContent = "Error: " + err.message;
+        statusEl.textContent = "❌ Gagal memuat data: " + err.message;
         console.error(err);
       }
     }
@@ -326,6 +331,7 @@
         dataScreen.style.display = "block";
         userNameSpan.textContent = currentUser;
         fetchCSV();
+        localStorage.setItem('mjplogin', currentUser);
       }
     });
 
@@ -333,11 +339,24 @@
       currentUser = "";
       dataScreen.style.display = "none";
       loginScreen.style.display = "block";
+      localStorage.removeItem('mjplogin');
     });
 
     btnReload.addEventListener('click', ()=> fetchCSV());
 
-    fetchCSV();
+    // Auto-login jika sudah pernah masuk
+    window.addEventListener('load', ()=>{
+      const lastUser = localStorage.getItem('mjplogin');
+      if(lastUser){
+        currentUser = lastUser;
+        loginScreen.style.display = "none";
+        dataScreen.style.display = "block";
+        userNameSpan.textContent = currentUser;
+        fetchCSV();
+      } else {
+        fetchCSV();
+      }
+    });
   </script>
 </body>
 </html>
