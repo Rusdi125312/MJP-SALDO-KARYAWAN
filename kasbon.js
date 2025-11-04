@@ -5,6 +5,10 @@ document.getElementById("loginKasbonForm").addEventListener("submit", function(e
   const password = document.getElementById("password").value;
   const hasilKasbon = document.getElementById("hasilKasbon");
   const kasbonText = document.getElementById("kasbonText");
+ ``
+hasilKasbonDiv.style.display = "block";
+hasilKasbonDiv.classList.add("popup-anim");
+kasbonText.classList.add("text-anim");
 
   // Data karyawan (nama dan password dalam huruf kecil semua)
   const dataKasbon = {
