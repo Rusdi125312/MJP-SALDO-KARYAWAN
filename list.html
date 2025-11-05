@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CEK LIST PENGAMBILAN GAJI - MJP</title>
+<style>
+body { font-family: Arial,sans-serif; margin:0; padding-top:60px; background:url('bg2.jpg') no-repeat center center fixed; background-size:cover; color:#fff; min-height:100vh; display:flex; flex-direction:column; }
+.navbar { background-color: rgba(44,62,80,0.9); padding:10px 20px; position:fixed; top:0; left:0; right:0; z-index:999; display:flex; justify-content:space-between; align-items:center; }
+.navbar .logo { color:#00ffcc; font-weight:bold; font-size:22px; text-decoration:none; text-shadow:0 0 6px #00ffcc; }
+.navbar ul { list-style:none; margin:0; padding:0; display:flex; gap:18px; }
+.navbar ul li a { color:#fff; text-decoration:none; font-weight:500; }
+.navbar ul li a:hover { color:#00ffcc; }
+.menu-toggle { display:none; }
+@media(max-width:700px){ .navbar ul { flex-direction:column; background: rgba(44,62,80,0.98); position:absolute; top:50px; right:0; left:0; display:none; } .navbar ul.active{ display:flex; } .menu-toggle{ display:block; cursor:pointer; } .menu-toggle span{ display:block; width:25px; height:3px; margin:5px; background:#fff; } }
+.container{ max-width:500px; margin:20px auto; background: rgba(0,0,0,0.75); border-radius:14px; box-shadow:0 0 20px rgba(0,255,204,0.4); padding:30px 20px; width:90%; }
+h1,h2{ text-align:center; color:#00ffcc; text-shadow:0 0 6px #00ffcc; }
+label { display:block; margin-top:10px; }
+select,input,button{ width:100%; padding:10px; border-radius:8px; border:1px solid #00ffcc; margin-top:6px; margin-bottom:10px; font-size:16px; box-sizing:border-box; }
+button{ background: linear-gradient(135deg,#00ff80,#00ccff); color:#000; font-weight:bold; border:none; cursor:pointer; transition:all 0.3s ease; }
+button:hover { background: linear-gradient(135deg,#00e673,#00b3e6); color:#fff; transform:scale(1.03); }
+table { border-collapse:collapse; background: rgba(0,0,0,0.6); border-radius:8px; overflow-x:auto; width:100%; }
+th,td{ padding:10px 12px; border-bottom:1px solid #00ccff; color:#fff; }
+th { background:#001f2b; color:#00ffcc; text-shadow:0 0 6px #00ffcc; }
+.back-btn{ display:inline-block; margin-top:20px; padding:10px 22px; background: linear-gradient(135deg,#00ff80,#00ccff); color:#000; border-radius:8px; font-size:16px; font-weight:bold; text-decoration:none; }
+.back-btn:hover { background: linear-gradient(135deg,#00e673,#00b3e6); color:#fff; }
+footer { margin-top:auto; padding:20px; background: rgba(0,0,0,0.8); text-align:center; font-size:14px; color:#aaa; border-top:1px solid rgba(0,255,204,0.2); }
+</style>
+</head>
+<body>
+<nav class="navbar">
+<a href="index.html" class="logo">MJP</a>
+<div class="menu-toggle" onclick="document.getElementById('menu').classList.toggle('active')"><span></span><span></span><span></span></div>
+<ul id="menu">
+<li><a href="index.html">Home</a></li>
+<li><a href="kasbon.html">Kasbon</a></li>
+<li><a href="index2.html">Isi Link</a></li>
+<li><a href="finance.html">Finance</a></li>
+<li><a href="tips-gaji.html">Tips Gaji</a></li>
+<li><a href="about.html">Tentang Kami</a></li>
+<li><a href="privacy.html">Privasi</a></li>
+<li><a href="contact.html">Kontak</a></li>
+</ul>
+</nav>
+
+<div class="container">
+<div id="loginScreen">
+<h1>CEK LIST PENGAMBILAN GAJI</h1>   
+<label>Pilih Nama:</label>
+<select id="nameSelect"></select>
+<label>Masukkan Password:</label>
+<input type="password" id="passwordInput" placeholder="••••••">
+<button id="loginBtn">Masuk</button>
+<div id="loginMsg" style="color:#ff8080;text-align:center;margin-top:5px;"></div>
+</div>
+
+<div id="dataScreen" style="display:none;">
+<h2>LIST PENGAMBILAN GAJI <span id="userName"></span></h2>
+<div style="margin:10px 0;">
+<button id="btnLogout">Logout</button>
+<button id="btnReload">Reload</button>
+</div>
+<div id="status">Memuat data...</div>
+<div style="overflow:auto;margin-top:12px;">
+<table>
+<thead><tr id="theadRow"></tr></thead>
+<tbody id="tbody"></tbody>
+</table>
+</div>
+<a href="index.html" class="back-btn">← Kembali ke Dashboard</a>
+</div>
+</div>
+
+<footer>MJP © 2025. All rights reserved.</footer>
+
+<script>
+const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSXuNe0lU_ohDNJIvDkGjGzl2W05KyOUn8P1FPcDGJ3G6nDfm278c9UFdy5mGtqOIiR7gBtPnW_qABP/pub?gid=1942298685&single=true&output=csv";
+
+const loginScreen = document.getElementById('loginScreen');
+const dataScreen = document.getElementById('dataScreen');
+const nameSelect = document.getElementById('nameSelect');
+const passwordInput = document.getElementById('passwordInput');
+const loginMsg = document.getElementById('loginMsg');
+const userNameSpan = document.getElementById('userName');
+const btnLogout = document.getElementById('btnLogout');
+const btnReload = document.getElementById('btnReload');
+const theadRow = document.getElementById('theadRow');
+const tbody = document.getElementById('tbody');
+const statusEl = document.getElementById('status');
+
+let rawData = [];
+let currentUser = "";
+
+async function fetchCSV(){
+    statusEl.textContent = "⏳ Mengambil data...";
+    try {
+        const res = await fetch(CSV_URL + "&t=" + new Date().getTime());
+        const text = await res.text();
+        parseCSV(text);
+        statusEl.textContent = `✅ Data berhasil dimuat (${rawData.length} baris)`;
+    } catch(e){ statusEl.textContent = "❌ Gagal memuat data: " + e.message; }
+}
+
+function parseCSV(csvText){
+    const lines = csvText.split(/\r?\n/).filter(l=>l.trim()!=="");
+    const header = parseCSVLine(lines[0]);
+    const rows = [];
+    for(let i=1;i<lines.length;i++){
+        const vals = parseCSVLine(lines[i]);
+        const obj = {};
+        header.forEach((h,j)=> obj[h.trim()] = vals[j] || "");
+        rows.push(obj);
+    }
+    rawData = rows;
+    populateNameList(header);
+}
+
+function parseCSVLine(line){
+    const result=[]; let cur="", inQuotes=false;
+    for(let ch of line){
+        if(ch === '"'){ inQuotes=!inQuotes; }
+        else if(ch === ',' && !inQuotes){ result.push(cur); cur=""; }
+        else{ cur += ch; }
+    }
+    result.push(cur);
+    return result;
+}
+
+function populateNameList(header){
+    const nameCol = header.find(h=>/nama|name/i.test(h)) || header[0];
+    const uniqueNames = [...new Set(rawData.map(r=>r[nameCol]).filter(n=>n))].sort();
+    nameSelect.innerHTML = "";
+    uniqueNames.forEach(n=>{
+        const opt = document.createElement('option');
+        opt.value = n; opt.textContent = n;
+        nameSelect.appendChild(opt);
+    });
+}
+
+function renderTable(header, data){
+    const nameCol = header.find(h=>/nama|name/i.test(h)) || header[0];
+    const filtered = data.filter(r => r[nameCol] === currentUser);
+    const visibleHeader = header.filter((_, idx)=> idx!==2); // kolom ke-3 (password) disembunyikan
+    const limitedHeader = visibleHeader.slice(0,2); // tampilkan 2 kolom pertama
+    theadRow.innerHTML=""; tbody.innerHTML="";
+
+    limitedHeader.forEach(h=>{
+        const th = document.createElement('th'); th.textContent=h; theadRow.appendChild(th);
+    });
+    filtered.forEach(row=>{
+        const tr = document.createElement('tr');
+        limitedHeader.forEach(h=>{
+            const td = document.createElement('td'); td.textContent=row[h]; tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+    });
+}
+
+loginBtn.addEventListener('click', ()=>{
+    const nama = nameSelect.value;
+    const pass = passwordInput.value.trim();
+    if(!nama || !pass){ loginMsg.textContent="Nama dan password harus diisi."; return; }
+
+    const row = rawData.find(r=>r[Object.keys(r)[0]]===nama);
+    if(!row){ loginMsg.textContent="Data tidak ditemukan."; return; }
+
+    const passValue = Object.values(row)[2]; // kolom ke-3 sebagai password
+    if(passValue === pass){
+        currentUser = nama;
+        loginScreen.style.display="none";
+        dataScreen.style.display="block";
+        userNameSpan.textContent = nama;
+        renderTable(Object.keys(row), rawData);
+        loginMsg.textContent="";
+    } else loginMsg.textContent="Password salah.";
+});
+
+btnLogout.addEventListener('click', ()=>{
+    currentUser=""; dataScreen.style.display="none"; loginScreen.style.display="block"; passwordInput.value="";
+});
+
+btnReload.addEventListener('click', ()=>fetchCSV());
+
+window.addEventListener('load', ()=>fetchCSV());
+</script>
+</body>
+</html>
