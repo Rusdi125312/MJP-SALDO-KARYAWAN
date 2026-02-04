@@ -1,1 +1,107 @@
-google.com, pub-4381097964402349, DIRECT, f08c47fec0942fa0
+def garis(panjang=40):
+    print("-" * panjang)
+
+
+print("\t  POS SEBLAK K ONE")
+garis(40)
+print("Kode Topping\tNama Topping\tHarga")
+garis(40)
+print("A\tSosis\t\tRp. 2000")
+print("B\tBakso\t\tRp. 3000")
+print("C\tCireng\t\tRp. 1000")
+print("D\tMakaroni\tRp. 1500")
+print("E\tTelur\t\tRp. 2500")
+print("F\tCeker\t\tRp. 4000")
+garis(40)
+
+BASE_SEBLAK = 12000
+print("Harga Base Seblak = Rp.", BASE_SEBLAK)
+
+# input banyak jenis topping
+banyak_topping = int(input("Banyak topping yang dipilih : "))
+
+jenis_list = []
+harga_list = []
+banyak_list = []
+jumlah_list = []
+
+for i in range(banyak_topping):
+    print("\nTopping ke -", i+1)
+    kode = input("Kode Topping [A/B/C/D/E/F] : ").upper()
+    banyak = int(input("Banyak topping : "))
+    
+
+    if kode == "A":
+        jenis = "Sosis"
+        harga = 2000
+    elif kode == "B":
+        jenis = "Bakso"
+        harga = 3000
+    elif kode == "C":
+        jenis = "Cireng"
+        harga = 1000
+    elif kode == "D":
+        jenis = "Makaroni"
+        harga = 1500
+    elif kode == "E":
+        jenis = "Telur"
+        harga = 2500
+    elif kode == "F":
+        jenis = "Ceker"
+        harga = 4000
+    else:
+        jenis = "Kode salah"
+        harga = 0
+
+    jumlah = harga * banyak
+
+    jenis_list.append(jenis)
+    harga_list.append(harga)
+    banyak_list.append(banyak)
+    jumlah_list.append(jumlah)
+
+# Output
+def garis2(panjang2=60):
+    print("-" * panjang2)
+
+
+print("\nPOS SEBLAK K ONE - STRUK PENJUALAN")
+garis2(60)
+print("No\tTopping\t\tHarga\tBanyak\tJumlah Harga")
+garis2(60)
+
+total_bayar = BASE_SEBLAK
+print(f"0\tSeblak Base\t{BASE_SEBLAK}\t1\tRp {BASE_SEBLAK}")
+
+for i in range(banyak_topping):
+    print(f"{i+1}\t{jenis_list[i]}\t\t{harga_list[i]}\t{banyak_list[i]}\tRp {jumlah_list[i]}")
+    total_bayar += jumlah_list[i]
+
+# Diskon 5% jika total > 30000
+diskon = 0
+if total_bayar > 30000:
+    diskon = total_bayar * 0.05
+
+total_semua = total_bayar - diskon
+
+garis2(60)
+print(f"Jumlah Bayar\t\t\t\tRp {total_bayar}")
+print(f"Diskon 5%\t\t\t\tRp {int(diskon)}")
+print(f"Total Bayar\t\t\t\tRp {int(total_semua)}")
+garis2(60)
+
+# input uang bayar pembeli + ulang jika kurang
+while True:
+    uang_bayar = int(input("Masukkan uang bayar pembeli : Rp "))
+    
+    if uang_bayar < total_semua:
+        print("Uang tidak cukup! Silahkan masukkan nominal yang lebih besar.")
+    else:
+        break   # keluar dari loop kalau uang cukup
+
+kembalian = uang_bayar - int(total_semua)
+
+print(f"Uang Bayar\t\t\t\tRp {uang_bayar}")
+print(f"Kembalian\t\t\t\tRp {kembalian}")
+garis2(60)
+print("Terima kasih telah berbelanja di POS SEBLAK K ONE!")
