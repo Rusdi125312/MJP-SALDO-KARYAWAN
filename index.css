@@ -88,7 +88,7 @@
       align-items: center;
       height: 55px;
       box-sizing: border-box;
-      border-bottom: 2px solid #383be0; /* Oranye Halloween */
+      border-bottom: 2px solid #0be052 /* Oranye Halloween */
     }
 
     .navbar .logo {
@@ -113,7 +113,7 @@
       padding: 8px 14px;
       border-radius: 5px;
       transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid #082c70;
+    
     }
 
     .navbar ul li a:hover {
@@ -156,7 +156,7 @@
     /* Container */
     .container {
       flex: 1 0 auto;
-      padding-top: 280px; /* Tinggi navbar + margin */
+      padding-top: 130px; /* Tinggi navbar + margin */
       padding-bottom: 40px;
       max-width: 1000px;
       margin: 0 auto;
