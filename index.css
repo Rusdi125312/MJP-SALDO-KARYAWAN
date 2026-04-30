@@ -155,8 +155,10 @@
 
     /* Container */
     .container {
-      flex: 1 0 auto;
-      padding-top: 130px; /* Tinggi navbar + margin */
+      display: flex;
+      flex-direction: column;
+      margin-top: 100px;
+      padding-top: 180px; /* Tinggi navbar + margin */
       padding-bottom: 40px;
       max-width: 1000px;
       margin: 0 auto;

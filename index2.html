@@ -9,8 +9,8 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4381097964402349"
      crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="style2.css" />
+  <link rel="stylesheet" href="styleZ.css" />
+  <link rel="stylesheet" href="style2Z.css" />
 
   <style>
     body {
@@ -95,16 +95,31 @@
       }
     }
 
-    .container {
-      padding-top: 100px;
-      max-width: 400px;
+    .container  {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      margin:  120px auto 40px;
+      padding: 30px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 15px;
+      border: 1px solid #00ffcc;
+      box-shadow: 0 0 20px rgba(0, 255, 34, 0.2);
+
+      margin-top: 100px;
+      padding-top: 80px; /* Tinggi navbar + margin */
+      padding-bottom: 80px;
+      max-width: 500px;
       margin: 0 auto;
       text-align: center;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      min-height: 50vh;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 1;
     }
+     
 
 
     h2 {
